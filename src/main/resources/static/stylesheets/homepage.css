@@ -254,3 +254,8 @@ input{
   background-color:  mintcream;
   border-radius: 7px;
 }
+
+.skrolaj{
+  overflow-y: scroll;
+  max-height: 250px;
+}

@@ -22,6 +22,7 @@
 
 		<div class="col-md-12">
 		<h2 style="text-align:center;"><b>Pregled incidenata</b></h2>
+        <div class="skrolaj">
 		<table class="col-12 tabela">
 		<thead>
 			<tr>
@@ -30,7 +31,99 @@
 					<button ng-if="aktuelniKlik" type="button" class="btn btn-info" style="float:right;" data-toggle="collapse" ng-click="sakrijAktuelne()">∆</button>
 				</th>
 			</tr>
+
 			<tr ng-show="aktuelniKlik">
+				<td colspan="8"><b>Filter</b></td>
+			</tr>
+
+			<tr ng-show="aktuelniKlik">
+
+				<th class="glyphicon glyphicon-sort-by-attributes"></th>
+				<th>
+					<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    
+					    {{filterRedoslijed}}
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a ng-click="filterRedoslijed='Opadajuci'">Opadajuci</a></li>
+					    <li><a ng-click="filterRedoslijed='nOpadajuci'">Rastuci</a></li>
+					  </ul>
+					</div>
+				</th>
+				<th>Naziv incidenta</th>
+				<th>
+					<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    Prioritet
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a href="#">0</a></li>
+					    <li><a href="#">1</a></li>
+					    <li><a href="#">2</a></li>
+					    <li><a href="#">3</a></li>
+					    <li><a href="#">4</a></li>
+					    <li><a href="#">5</a></li>   
+					  </ul>
+					</div>
+				</th>
+				<th>
+					<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    Odjel
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a href="#">Incident management</a></li>
+					    <li><a href="#">Problem management</a></li>
+					    <li><a href="#">Request fulfillment</a></li>   
+					  </ul>
+					</div>
+
+				</th>
+				<th>
+					<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    Status
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a href="#">Nerijesen</a></li>
+					    <li><a href="#">Zatvoren</a></li>
+					    <li><a href="#">Popravljen</a></li>
+					    <li><a href="#">U obradi</a></li>
+					    <li><a href="#">Odbijen</a></li>
+					    <li><a href="#">Odobren</a></li>  
+					    <li><a href="#">Otkazan</a></li>
+					    <li><a href="#">Pogresno prijavljen</a></li> 
+					  </ul>
+					</div>
+
+				</th>
+				<th>
+					<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    Datum prijave
+
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a href="#">Od najstarijeg ka najmladjem</a></li>
+					    <li><a href="#">Od najmladjeg ka najstarijem</a></li>
+					  </ul>
+					</div>
+				</th>
+				<th><input type="submit" class="btn btn-primary" style="margin-bottom:3px" ng-click="filtriraj()" value="Filtriraj"/><br></th>
+			</tr> 
+			<tr ng-show="aktuelniKlik"></tr>
+		</thead>
+		
+		<tbody ng-show="aktuelniKlik">
+			
+			<tr ng-show="aktuelniKlik">
+				
 				<th>#</th>
 				<th>Redoslijed rješavanja</th>
 				<th>Naziv incidenta</th>
@@ -40,8 +133,6 @@
 				<th>Datum prijave</th>
 				<th>Opcije</th>
 			</tr>
-		</thead>
-		<tbody ng-show="aktuelniKlik">
 			<tr ng-repeat="inc in incidents">
 				<td>{{inc.id}}</td>
 				<td>{{inc.urgency}}</td>
@@ -61,8 +152,13 @@
 			</tr>
 
 		</tbody>
+	
+	
 
 		</table>
+	</div>
+
+	<div class="skrolaj">
 
 		<table class="col-12 tabela">
 		<thead>
@@ -100,6 +196,9 @@
 
 		</tbody>
 		</table>
+	</div>
+
+	<div class="skrolaj">
 
 		<table class="col-12 tabela">
 		<thead>
@@ -152,6 +251,7 @@
 		</tbody>
 
 		</table>
+	</div>
 
 
 		</div>

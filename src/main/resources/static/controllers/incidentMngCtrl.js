@@ -10,6 +10,12 @@ app.controller('incidentMngCtrl',function($http,$log,$rootScope,$scope,$route,$l
 	$scope.statistikaKlik=0;
 	$scope.incident={};
 
+	$scope.filterRedoslijed="Redoslijed rješavanja";
+	$scope.filterPrioritet=-1;
+	$scope.filterStatus="";
+	$scope.filterOdjel="";
+	$scope.filterDatum="";
+
 	 $scope.labels = ["Aktivni incidenti", "Zatvoreni incidenti"];
 
  	 $scope.options={responsive: false,
@@ -61,7 +67,10 @@ app.controller('incidentMngCtrl',function($http,$log,$rootScope,$scope,$route,$l
 				}
 		})
 	}
-
+    
+    $scope.filtriraj=function(){
+    	$log.log($scope.filterRedoslijed,$scope.filterPrioritet,$scope.filterStatus,$scope.filterOdjel,$scope.filterDatum);
+    }
 	$scope.sakrijAktuelne=function(){
 		$scope.aktuelniKlik=0;
 	}
