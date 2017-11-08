@@ -39,6 +39,8 @@
 			<tr ng-show="aktuelniKlik">
 
 				<th class="glyphicon glyphicon-sort-by-attributes"></th>
+				<th>Naziv incidenta</th>
+
 				<th>
 					<div class="dropdown">
 					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -48,56 +50,36 @@
 					  </button>
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 					    <li><a ng-click="filterRedoslijed='Opadajuci'">Opadajuci</a></li>
-					    <li><a ng-click="filterRedoslijed='nOpadajuci'">Rastuci</a></li>
-					  </ul>
-					</div>
-				</th>
-				<th>Naziv incidenta</th>
-				<th>
-					<div class="dropdown">
-					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					    Prioritet
-					    <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					    <li><a href="#">0</a></li>
-					    <li><a href="#">1</a></li>
-					    <li><a href="#">2</a></li>
-					    <li><a href="#">3</a></li>
-					    <li><a href="#">4</a></li>
-					    <li><a href="#">5</a></li>   
+					    <li><a ng-click="filterRedoslijed='Rastuci'">Rastuci</a></li>
 					  </ul>
 					</div>
 				</th>
 				<th>
 					<div class="dropdown">
 					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					    Odjel
+					    {{filterPrioritet}}
 					    <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					    <li><a href="#">Incident management</a></li>
-					    <li><a href="#">Problem management</a></li>
-					    <li><a href="#">Request fulfillment</a></li>   
+					    <li><a ng-click="filterPrioritet='0'">0</a></li>
+					    <li><a ng-click="filterPrioritet='1'">1</a></li>
+					    <li><a ng-click="filterPrioritet='2'">2</a></li>
+					    <li><a ng-click="filterPrioritet='3'">3</a></li>
+					    <li><a ng-click="filterPrioritet='4'">4</a></li>
+					    <li><a ng-click="filterPrioritet='5'">5</a></li>   
 					  </ul>
 					</div>
-
 				</th>
 				<th>
 					<div class="dropdown">
 					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					    Status
+					    {{filterOdjel}}
 					    <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					    <li><a href="#">Nerijesen</a></li>
-					    <li><a href="#">Zatvoren</a></li>
-					    <li><a href="#">Popravljen</a></li>
-					    <li><a href="#">U obradi</a></li>
-					    <li><a href="#">Odbijen</a></li>
-					    <li><a href="#">Odobren</a></li>  
-					    <li><a href="#">Otkazan</a></li>
-					    <li><a href="#">Pogresno prijavljen</a></li> 
+					    <li><a ng-click="filterOdjel='Incident management'">Incident management</a></li>
+					    <li><a ng-click="filterOdjel='Problem management'">Problem management</a></li>
+					    <li><a ng-click="filterOdjel='Request fulfillment'">Request fulfillment</a></li>   
 					  </ul>
 					</div>
 
@@ -105,13 +87,32 @@
 				<th>
 					<div class="dropdown">
 					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					    Datum prijave
+					    {{filterStatus}}
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a ng-click="filterStatus='Nerijesen'">Nerijesen</a></li>
+					    <li><a ng-click="filterStatus='Zatvoren'">Zatvoren</a></li>
+					    <li><a ng-click="filterStatus='Popravljen'">Popravljen</a></li>
+					    <li><a ng-click="filterStatus='U obradi'">U obradi</a></li>
+					    <li><a ng-click="filterStatus='Odbijen'">Odbijen</a></li>
+					    <li><a ng-click="filterStatus='Odobren'">Odobren</a></li>  
+					    <li><a ng-click="filterStatus='Otkazan'">Otkazan</a></li>
+					    <li><a ng-click="filterStatus='Pogresno prijavljen'">Pogresno prijavljen</a></li> 
+					  </ul>
+					</div>
+
+				</th>
+				<th>
+					<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    {{filterDatum}}
 
 					    <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					    <li><a href="#">Od najstarijeg ka najmladjem</a></li>
-					    <li><a href="#">Od najmladjeg ka najstarijem</a></li>
+					    <li><a ng-click="filterDatum='Od najstarijeg ka najmladjem'">Od najstarijeg ka najmladjem</a></li>
+					    <li><a ng-click="filterDatum='Od najmladjeg ka najstarijem'">Od najmladjeg ka najstarijem</a></li>
 					  </ul>
 					</div>
 				</th>
@@ -125,8 +126,8 @@
 			<tr ng-show="aktuelniKlik">
 				
 				<th>#</th>
-				<th>Redoslijed rješavanja</th>
 				<th>Naziv incidenta</th>
+				<th>Redoslijed rješavanja</th>
 				<th>Prioritet</th>
 				<th>Odjel</th>
 				<th>Status</th>
@@ -135,8 +136,8 @@
 			</tr>
 			<tr ng-repeat="inc in incidents">
 				<td>{{inc.id}}</td>
-				<td>{{inc.urgency}}</td>
 				<td>{{inc.title}}</td>
+				<td>{{inc.urgency}}</td>
 				<td><span class="priority-class" value="{{inc.priority}}">{{inc.priority}}</span></td>
 				<td><span class="department-class" value="{{inc.department.name}}">{{inc.department.name}}</span></td>
 				<td><span class="status-class" value="{{inc.status.status}}">{{inc.status.status}}</span></td>

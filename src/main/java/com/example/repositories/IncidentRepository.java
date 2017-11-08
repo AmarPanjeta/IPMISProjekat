@@ -54,4 +54,30 @@ public interface IncidentRepository extends CrudRepository<Incident, Long>{
 	
 	@Query("select count(i) from Incident i where i.created between :d1 and :d2 and i.status.status='Pogresno prijavljen'")
 	int falsePositive(@Param("d1") Date d1,@Param("d2") Date d2);
+	
+	@Query("select i from Incident i where i.status.status like :status and i.department.name like :odjel")
+	List<Incident> filterByStatusDepartment(@Param("status") String status, @Param("odjel") String odjel);
+
+	
+	@Query("select i from Incident i where i.status.status like :status and i.department.name like :odjel")
+	List<Incident> filterByStatusDateDepartment(@Param("status") String status, @Param("odjel") String odjel);
+
+	@Query("select i from Incident i where i.status.status like :status and i.department.name like :odjel order by i.created asc")
+	List<Incident> filterByStatusDateAscDepartment(@Param("status") String status, @Param("odjel") String odjel);
+
+
+	@Query("select i from Incident i where i.status.status like :status and i.department.name like :odjel order by i.created desc")
+	List<Incident> filterByStatusDateDescDepartment(@Param("status") String status, @Param("odjel") String odjel);
+	
+	@Query("select i from Incident i where i.status.status like :status and i.department.name like :odjel and i.priority=:prioritet order by i.created asc")
+	List<Incident> filterWithPriorityAsc(@Param("status") String status, @Param("odjel") String odjel,@Param("prioritet") int prioritet);
+	
+	@Query("select i from Incident i where i.status.status like :status and i.department.name like :odjel and i.priority=:prioritet order by i.created desc")
+	List<Incident> filterWithPriorityDesc(@Param("status") String status, @Param("odjel") String odjel,@Param("prioritet") int prioritet);
+
+	@Query("select i from Incident i where i.status.status like :status and i.department.name like :odjel and i.priority=:prioritet")
+	List<Incident> filterWithPriority(@Param("status") String status, @Param("odjel") String odjel,@Param("prioritet") int prioritet);
+
+	
+
 }

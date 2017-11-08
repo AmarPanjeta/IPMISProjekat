@@ -1,5 +1,6 @@
 package com.example.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -622,6 +623,57 @@ public class IncidentController {
     	Incident i = ir.findById(id);
     	i.setStatus(statusr.findByStatus("Zatvoren"));
     	ir.save(i);    	
+    }
+    
+    @RequestMapping("/filter")
+    public List<Incident> filter(@RequestParam("status") String status,@RequestParam("odjel") String odjel, @RequestParam("prioritet") String prioritet, @RequestParam("datum") String datum) {
+    	
+    	if(status.equalsIgnoreCase("Status")) status="%";
+    	if(odjel.equalsIgnoreCase("Odjel")) odjel="%";
+    	
+    	if(prioritet.equalsIgnoreCase("Prioritet")) {
+    		
+    		if(datum.equalsIgnoreCase("Datum prijave")) {
+       		 return (List<Incident>)ir.filterByStatusDepartment(status, odjel);
+	       	}
+	       	else {
+	       		
+	       		if(datum.equalsIgnoreCase("Od najstarijeg ka najmladjem")) {
+	           		
+	           		return (List<Incident>)ir.filterByStatusDateAscDepartment(status, odjel);
+	           	}
+	       		else if(datum.equalsIgnoreCase("Od najmladjeg ka najstarijem")) {
+	           		
+	           		return (List<Incident>)ir.filterByStatusDateDescDepartment(status, odjel);
+	           	}
+	           	
+	       	}
+    		
+    	}
+    	else {
+    		
+    		int kodPrioriteta=Integer.parseInt(prioritet);
+    		
+    		if(datum.equalsIgnoreCase("Datum prijave")) {
+          		 return (List<Incident>)ir.filterWithPriority(status, odjel, kodPrioriteta);
+   	       	}
+   	       	else {
+   	       		
+   	       		if(datum.equalsIgnoreCase("Od najstarijeg ka najmladjem")) {
+   	           		
+   	           		return (List<Incident>)ir.filterWithPriorityAsc(status, odjel, kodPrioriteta);
+   	           	}
+   	       		else if(datum.equalsIgnoreCase("Od najmladjeg ka najstarijem")) {
+   	           		
+   	           		return (List<Incident>)ir.filterWithPriorityDesc(status, odjel, kodPrioriteta);
+   	           	}
+   	           	
+   	       	}
+    		
+    	}
+    
+    	return new ArrayList<Incident>();
+    
     }
     
 	@SuppressWarnings("unused")

@@ -11,10 +11,10 @@ app.controller('incidentMngCtrl',function($http,$log,$rootScope,$scope,$route,$l
 	$scope.incident={};
 
 	$scope.filterRedoslijed="Redoslijed rješavanja";
-	$scope.filterPrioritet=-1;
-	$scope.filterStatus="";
-	$scope.filterOdjel="";
-	$scope.filterDatum="";
+	$scope.filterPrioritet="Prioritet";
+	$scope.filterStatus="Status";
+	$scope.filterOdjel="Odjel";
+	$scope.filterDatum="Datum prijave";
 
 	 $scope.labels = ["Aktivni incidenti", "Zatvoreni incidenti"];
 
@@ -70,9 +70,33 @@ app.controller('incidentMngCtrl',function($http,$log,$rootScope,$scope,$route,$l
     
     $scope.filtriraj=function(){
     	$log.log($scope.filterRedoslijed,$scope.filterPrioritet,$scope.filterStatus,$scope.filterOdjel,$scope.filterDatum);
+    
+		$http.get("http://localhost:8080/incidents/filter?status="+$scope.filterStatus+"&odjel="+$scope.filterOdjel+"&prioritet="+$scope.filterPrioritet+"&datum="+$scope.filterDatum).then(function(response){
+			$scope.incidents=response.data;
+
+				for(i=0;i<$scope.incidents.length;i++){
+
+				timestamp=$scope.incidents[i].created;
+				var date = new Date(timestamp);
+
+				var year = date.getUTCFullYear();
+				var month = date.getUTCMonth() + 1;
+				var day = date.getUTCDate();
+				var hours = date.getUTCHours();
+				var minutes = date.getUTCMinutes();
+				var seconds = date.getUTCSeconds();
+				$scope.incidents[i].datumPrijave={year,month,day,hours,minutes,seconds};
+
+				}
+		})
     }
 	$scope.sakrijAktuelne=function(){
 		$scope.aktuelniKlik=0;
+		$scope.filterRedoslijed="Redoslijed rješavanja";
+		$scope.filterPrioritet="Prioritet";
+		$scope.filterStatus="Status";
+		$scope.filterOdjel="Odjel";
+		$scope.filterDatum="Datum prijave";
 	}
 
 	$scope.prikaziZatvorene=function(){
