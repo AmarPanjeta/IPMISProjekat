@@ -42,7 +42,7 @@
 
   <thead>
     <tr>
-      <th colspan="5">
+      <th colspan="6">
         Usluge telekoma
       </th>
     </tr>
@@ -50,6 +50,7 @@
       <th colspan="1">Naziv usluge</th>
       <th colspan="2">Opis usluge</th>
       <th colspan="1">Cijena usluge</th>
+      <th ng-if="user.type==1" colspan="1">Dostupnost usluge</th>
       <th colspan="1">Opcije</th>
     </tr>
   </thead>
@@ -65,6 +66,10 @@
     <td>
 
       <label>{{service.price}}</label>
+    </td>
+    <td ng-if="user.type==1" >
+
+      <label>{{service.available==true? "Dostupna":"Nedostupna"}}</label>
     </td>
     <td>
       <div ng-if="user.type==2">
