@@ -428,6 +428,57 @@ public class RequestController {
     public List<Request> all(){
     	return (List<Request>)reqr.findAll();
     }
+    
+    @RequestMapping("/filter")
+    public List<Request> filter(@RequestParam("status") String status,@RequestParam("odjel") String odjel, @RequestParam("prioritet") String prioritet, @RequestParam("datum") String datum) {
+    	
+    	if(status.equalsIgnoreCase("Status")) status="%";
+    	if(odjel.equalsIgnoreCase("Odjel")) odjel="%";
+    	
+    	if(prioritet.equalsIgnoreCase("Prioritet")) {
+    		
+    		if(datum.equalsIgnoreCase("Datum prijave")) {
+       		 return (List<Request>)reqr.filterByStatusDepartment(status, odjel);
+	       	}
+	       	else {
+	       		
+	       		if(datum.equalsIgnoreCase("Od najstarijeg ka najmladjem")) {
+	           		
+	           		return (List<Request>)reqr.filterByStatusDateAscDepartment(status, odjel);
+	           	}
+	       		else if(datum.equalsIgnoreCase("Od najmladjeg ka najstarijem")) {
+	           		
+	           		return (List<Request>)reqr.filterByStatusDateDescDepartment(status, odjel);
+	           	}
+	           	
+	       	}
+    		
+    	}
+    	else {
+    		
+    		int kodPrioriteta=Integer.parseInt(prioritet);
+    		
+    		if(datum.equalsIgnoreCase("Datum prijave")) {
+          		 return (List<Request>)reqr.filterWithPriority(status, odjel, kodPrioriteta);
+   	       	}
+   	       	else {
+   	       		
+   	       		if(datum.equalsIgnoreCase("Od najstarijeg ka najmladjem")) {
+   	           		
+   	           		return (List<Request>)reqr.filterWithPriorityAsc(status, odjel, kodPrioriteta);
+   	           	}
+   	       		else if(datum.equalsIgnoreCase("Od najmladjeg ka najstarijem")) {
+   	           		
+   	           		return (List<Request>)reqr.filterWithPriorityDesc(status, odjel, kodPrioriteta);
+   	           	}
+   	           	
+   	       	}
+    		
+    	}
+    
+    	return new ArrayList<Request>();
+    
+    }
 
     private static class ReqBody{
         public String description;

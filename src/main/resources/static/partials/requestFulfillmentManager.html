@@ -22,6 +22,7 @@
 
 		<div class="col-md-12">
 		<h2 style="text-align:center;"><b>Pregled zahtjeva za uslugom</b></h2>
+		<div class="skrolaj">
 		<table class="col-12 tabela">
 		<thead>
 			<tr>
@@ -30,6 +31,77 @@
 					<button ng-if="aktuelniKlik" type="button" class="btn btn-info " style="float:right;" data-toggle="collapse" ng-click="sakrijAktuelne()">∆</button>
 				</th>
 			</tr>
+			<tr ng-show="aktuelniKlik">
+				<th class="glyphicon glyphicon-sort-by-attributes"></th>
+				<th colspan="2"></th>
+				<th>
+					<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    {{filterPrioritet}}
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a ng-click="filterPrioritet='0'">0</a></li>
+					    <li><a ng-click="filterPrioritet='1'">1</a></li>
+					    <li><a ng-click="filterPrioritet='2'">2</a></li>
+					    <li><a ng-click="filterPrioritet='3'">3</a></li>
+					    <li><a ng-click="filterPrioritet='4'">4</a></li>
+					    <li><a ng-click="filterPrioritet='5'">5</a></li>   
+					  </ul>
+					</div>
+				</th>
+				<th>
+					<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    {{filterOdjel}}
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a ng-click="filterOdjel='Incident management'">Incident management</a></li>
+					    <li><a ng-click="filterOdjel='Problem management'">Problem management</a></li>
+					    <li><a ng-click="filterOdjel='Request fulfillment'">Request fulfillment</a></li>   
+					  </ul>
+					</div>
+
+				</th>
+				<th>
+					<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    {{filterStatus}}
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a ng-click="filterStatus='Nerijesen'">Nerijesen</a></li>
+					    <li><a ng-click="filterStatus='Zatvoren'">Zatvoren</a></li>
+					    <li><a ng-click="filterStatus='Popravljen'">Popravljen</a></li>
+					    <li><a ng-click="filterStatus='U obradi'">U obradi</a></li>
+					    <li><a ng-click="filterStatus='Odbijen'">Odbijen</a></li>
+					    <li><a ng-click="filterStatus='Odobren'">Odobren</a></li>  
+					    <li><a ng-click="filterStatus='Otkazan'">Otkazan</a></li>
+					    <li><a ng-click="filterStatus='Pogresno prijavljen'">Pogresno prijavljen</a></li> 
+					  </ul>
+					</div>
+
+				</th>
+				<th>
+					<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    {{filterDatum}}
+
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a ng-click="filterDatum='Od najstarijeg ka najmladjem'">Od najstarijeg ka najmladjem</a></li>
+					    <li><a ng-click="filterDatum='Od najmladjeg ka najstarijem'">Od najmladjeg ka najstarijem</a></li>
+					  </ul>
+					</div>
+				</th>
+				<th><input type="submit" class="btn btn-primary" style="margin-bottom:3px" ng-click="filtriraj()" value="Filtriraj"/><br></th>
+				
+			</tr>
+			<tr ng-show="aktuelniKlik"></tr>
+		</thead>
+		<tbody ng-show="aktuelniKlik">
 			<tr ng-show="aktuelniKlik">
 				<th>#</th>
 				<th>Redoslijed rješavanja</th>
@@ -40,8 +112,6 @@
 				<th>Datum prijave</th>
 				<th>Opcije</th>
 			</tr>
-		</thead>
-		<tbody ng-show="aktuelniKlik">
 			<tr ng-repeat="inc in requests">
 				<td>{{inc.id}}</td>
 				<td>{{inc.urgency}}</td>
@@ -64,6 +134,9 @@
 		</tbody>
 
 		</table>
+	</div>
+
+	<div class="skrolaj">
 
 		<table class="col-12 tabela">
 		<thead>
@@ -101,6 +174,9 @@
 
 		</tbody>
 		</table>
+	</div>
+
+	<div class="skrolaj">
 
 		<table class="col-12 tabela">
 		<thead>
@@ -152,6 +228,7 @@
 		</tbody>
 
 		</table>
+	</div>
 
 
 		</div>
