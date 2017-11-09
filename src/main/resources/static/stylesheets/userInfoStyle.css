@@ -159,12 +159,7 @@ div[ng-view]{
 	margin: 0px;
 }
 
-.main{
-	-webkit-transition: width 1s ease-in-out;
-	-moz-transition: width 1s ease-in-out;
-	-o-transition: width 1s ease-in-out;
-	transition: width 1s ease-in-out;
-}
+
 /**/
 #try{
 	display: inline-block;

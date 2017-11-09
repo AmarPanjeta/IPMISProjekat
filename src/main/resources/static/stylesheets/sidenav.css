@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhai|Baloo+Thambi|Righteous');
+
+body{
+  background-color: #F7F8FA;
+  margin: 0;
+}
+
+.sidenav{
+  height: 100%;
+  width: 16%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #2F3848;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.sidenav .sidenav-header{
+  background-color: #3f869b;
+  height: 65px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.sidenav .sidenav-header:hover{
+  cursor: pointer;
+}
+
+
+.sidenav a {
+    padding: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #676E7C;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #5997CD;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.main{
+  background-color: #F7F8FA;
+  width:84%;
+  margin-left:16%;
+}
+
+.main .main-header{
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  height: 65px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 0px 25px;
+  width: 84%;
+}
+
+.main-header-separator{
+  height: 65px;
+}
+
+.main .main-body{
+  padding: 10px 20px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/homepage.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="stylesheets/userInfoStyle.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="stylesheets/sidenav.css">
 
 
 <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
@@ -14,11 +15,69 @@
   </head>
   <body ng-app="PPISDzala">
 
-    <!-- Navigacija -->
+    <div id="sidenav" class="sidenav" ng-controller="navigationCtrl as nav">
+      <div class="sidenav-header" onclick="closeNav()">
+
+        <!-- Menu icon by Icons8 -->
+        <img class="icon icons8-Menu" width="32" height="32" src="http://www.eurosticks.com/wp-content/themes/eurosticks/images/menu-alt-512.png">
+        <h1 style="display:inline-block;font-family: 'Baloo Bhai', cursive;color:white;font-weight:100;margin-left:5px;">m.</h2>
+
+      </div>
+
+      <a href="#!/services">
+        <img src="menu-grid.png" alt="" height="16" style="vertical-align:middle;margin-right:10px;"/>
+        Usluge
+      </a>
+      <a href="#!/incidentmanager" ng-show="isAdmin() || isType(4)">
+        <img src="calendar-light.png" alt="" height="16" style="vertical-align:middle;margin-right:10px;"/>
+        Incident panel
+      </a>
+      <a href="#!/reqm" ng-show="isAdmin() || isType(3)">
+        <img src="knife-and-fork.png" alt="" height="16" style="vertical-align:middle;margin-right:10px;"/>
+        Zahtjevi panel
+      </a>
+      <a href="#!/login" ng-show="!logged()">
+        <img src="hospital.png" alt="" height="16" style="vertical-align:middle;margin-right:10px;"/>
+        Login
+      </a>
+      <a href="#!/registration" ng-show="!logged()">
+        <img src="question.png" alt="" height="16" style="vertical-align:middle;margin-right:10px;"/>
+        Registracija
+      </a>
+      <a href="#!/profile" ng-show="logged()">
+        <img src="information-sign.png" alt="" height="16" style="vertical-align:middle;margin-right:10px;"/>
+        Profile
+      </a>
+      <a href="#" ng-show="logged()">
+        <img src="logout.png" alt="" height="16" style="vertical-align:middle;margin-right:10px;"/>
+        Sign out
+      </a>
+      <a ng-show="logged()" href="" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+    </div>
+
+
+<div id="main" class="main">
+
+  <div id="main-header" class="main-header">
+    <div class="">
+      <img id="menu" style="display:none;vertical-align:middle;cursor:pointer;" onclick="openNav()" class="icon icons8-Menu" width="32" height="32" src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png">
+      <img src="stylesheets/calendar.png" alt="" width="24px" height="24px" style="vertical-align:middle;"/>
+      DZAALA TELEKOM
+    </div>
+    <div style="margin-left:auto;">
+      <img src="http://via.placeholder.com/40x40" alt="" style="vertical-align:middle;"/>
+      Martin Ozill
+      <img src="https://image.flaticon.com/icons/svg/130/130907.svg" alt="" height="16"style="vertical-align:middle;margin: 0px 10px;"/>
+    </div>
+  </div>
+  <div class="main-header-separator">
+
+  </div>
+    <!-- Navigacija --
 
   <nav ng-controller="navigationCtrl as nav" class="navbar navbar-default menu">
     <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
+      <!-- Brand and toggle get grouped for better mobile display --
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
@@ -26,10 +85,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="brand navbar-brand " href="#!/">DžAALA TELEKOM</a>
+        <a class="brand navbar-brand " onclick="openNav()" >DžAALA TELEKOM</a>
       </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
+      <!-- Collect the nav links, forms, and other content for toggling --
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
 
@@ -54,8 +113,8 @@
           <li ng-show="logged()"><a href="" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 
         </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+      </div><!-- /.navbar-collapse --
+    </div><!-- /.container-fluid
   </nav>
 
       <!-- Kraj navigacije -->
@@ -70,6 +129,8 @@
     <span>Copyright &copy; IPMIS 2017/2018.</span>
   </div>
 </footer>
+
+</div>
 
     <!--- Script files --->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -118,6 +179,26 @@
     <script src="controllers/userInfoCtrl.js" charset="utf-8"></script>
     <script src="controllers/requestReportCtrl.js" charset="utf-8"></script>
 
+    <script type="text/javascript">
+    function openNav() {
+        document.getElementById("sidenav").style.width = "16%";
+        document.getElementById("main").style.marginLeft = "16%";
+        document.getElementById("main").style.width = "84%";
+    //    document.getElementById("main-header").style.marginLeft = "16%";
+        document.getElementById("main-header").style.width = "84%";
+        document.getElementById('menu').style.display="none";
+    }
+
+    /* Set the width of the side navigation to 0 */
+    function closeNav() {
+        document.getElementById("sidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+        document.getElementById("main").style.width = "100%";
+        //document.getElementById("main-header").style.marginLeft = "0";
+        document.getElementById("main-header").style.width = "100%";
+        document.getElementById('menu').style.display="inline-block";
+    }
+    </script>
 
 
     <!--- End of script files --->
