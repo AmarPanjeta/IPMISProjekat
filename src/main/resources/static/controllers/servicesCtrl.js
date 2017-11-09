@@ -15,7 +15,7 @@ app.controller("servicesCtrl",function($rootScope,$scope,$log,$http,$location){
 /**
  * Created by Admira on 07-May-17.
  */
-app.controller('servicesCtrl', function ($rootScope, $log, $location, $scope, $http, $route) {
+app.controller('servicesCtrl', function ($rootScope, $log, $location, $scope, $http, $route,$window) {
 
 
     $scope.onInit = function () {
@@ -93,6 +93,7 @@ app.controller('servicesCtrl', function ($rootScope, $log, $location, $scope, $h
                 }
             ).then(function (response) {
 
+                /* nelogicna putanja - refactor*/
                 $http.get('/incidents/services').then(function (response1) {
 
                         $scope.services = response1.data;
@@ -119,6 +120,10 @@ app.controller('servicesCtrl', function ($rootScope, $log, $location, $scope, $h
             ).then(function (response) {
 
             })
+        }
+
+        $scope.detaljnije=function(service){
+          $window.alert('Potrebno implementirati prikz pojedinacnog incidenta!');
         }
 
 
