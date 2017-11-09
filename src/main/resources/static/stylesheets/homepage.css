@@ -74,9 +74,9 @@ body{
 }
 
 .info{
-  border-style: solid;
+ /* border-style: solid;
   border-width: 1px;
-  border-color: silver;
+  border-color: silver;*/
   border-radius: 20px;
 }
 .form-group{
@@ -99,19 +99,21 @@ h4{
 
  .tabela {
 
-        border-collapse: separate;
-        border-spacing: 3px;
-        width: 100%
+        /*border-collapse: separate;
+        border-spacing: 3px;*/
+        width: 100%;
+
     }
 
+
     .tabela tr {
-        background-color: gainsboro;
+       /* background-color: gainsboro;*/
 
     }
 
     .tabela tr td {
-        background-color: lightgray;
-        border-radius: 10px;
+      /*  background-color: lightgray;
+        border-radius: 10px;*/
       /*  padding: 30px 20px;*/
 
     }
@@ -161,27 +163,27 @@ h4{
     }
 
     .priority-class[value="5"]{
-      background-color: #ff2500;
+      background-color: #ed0404;
     }
 
     .priority-class[value="4"]{
-      background-color: #f44336;
+      background-color: #f45c42;
     }
 
     .priority-class[value="3"]{
-      background-color: #ff9800;
+      background-color: #e88a10;
     }
 
     .priority-class[value="2"]{
-      background-color: #fff400;
+      background-color: #d8c922;
     }
 
     .priority-class[value="1"]{
-      background-color: white;
+      background-color: #fff95e;
     }
 
     .priority-class[value="0"]{
-      background-color: black;
+      background-color: #44938b;
       color: white;
     }
 
@@ -257,5 +259,34 @@ input{
 
 .skrolaj{
   overflow-y: scroll;
-  max-height: 250px;
+  max-height: 500px;
 }
+
+.naslov-tabele{
+  background-color: #3f869b;
+  color:white;
+}
+
+.naziv-u-tabeli{
+   text-align: left;
+}
+
+.filter-red{
+  padding: 6px;
+}
+
+.btn-primary{
+  background-color: #3f869b;
+}
+
+.filter-opcija{
+  background-color: #3f869b;
+  color:white;
+}
+
+.amarove-ikone{
+  background-color: #3f869b;
+  border-radius: 50%;
+  padding: 12px;
+}
+
