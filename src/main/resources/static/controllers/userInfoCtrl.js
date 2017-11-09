@@ -1,4 +1,6 @@
 app.controller('userInfoCtrl', function($scope, $http, $rootScope, $log){
+
+	$scope.sideMenu=true;
 	$scope.usluge=[];
 	$scope.zahtjevi=[];
 	$scope.statusIncs=[];

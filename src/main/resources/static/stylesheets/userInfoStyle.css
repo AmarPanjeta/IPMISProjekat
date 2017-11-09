@@ -1,5 +1,21 @@
+body,html{
+	height: 100%;
+}
+
+div[ng-view]{
+	height: 100%;
+}
 #miniMeni{
 	padding: 0px;
+}
+
+.hide{
+	display: none;
+}
+
+.nhide{
+	display: block;
+	background-color: red;
 }
 
 .miniMiniMeni{
@@ -11,14 +27,14 @@
 }
 
 .navbar-fixed-left {
-	position: fixed;
+	/*position: fixed;*/
 	border-radius: 0px;
 	background-color: transparent;
 	padding: 0px;
 }
 
 .navbar-minimal {
-	width: 20%;
+	/* width: 20%; */
 	border-width: 0px;
 	z-index: 1000;
 	height: 50%;
@@ -141,4 +157,27 @@
 	width: 100%;
 	padding:0px;
 	margin: 0px;
+}
+
+.main{
+	-webkit-transition: width 1s ease-in-out;
+	-moz-transition: width 1s ease-in-out;
+	-o-transition: width 1s ease-in-out;
+	transition: width 1s ease-in-out;
+}
+/**/
+#try{
+	display: inline-block;
+	background-color: cyan;
+	width: 100px;
+	height: 100px;
+	-webkit-transition: width 1s ease-in-out;
+	-moz-transition: width 1s ease-in-out;
+	-o-transition: width 1s ease-in-out;
+	transition: width 1s ease-in-out;
+}
+
+#try:hover{
+	width: 200px;
+
 }

@@ -1,8 +1,9 @@
+
 <div class="row" id="userView">
 	<div class="col-xs-3" id="miniMeni">
 
 		<!--meni-->
-		<nav class="navbar navbar-fixed-left navbar-minimal" role="navigation">
+		<nav class="navbar navbar-fixed-left navbar-minimal" role="navigation" ng-class="{nhide:sideMenu==true}">
 			<ul class="navbar-menu">
 				<li ng-click="prikazi('info')">
 					<a href="#!/useraccount" >
@@ -387,3 +388,27 @@
 
 		</div>
 	</div>
+
+
+
+
+<div class="col-xs-3 main" style="background-color:yellow;min-height:100%;" ng-class={'col-xs-3':sideMenu==true,'hide':sideMenu==false}>
+	<h2>Meni</h2>
+	<ul class="nav nav-pills nav-stacked">
+		<li ><a href="#">Moj profil</a></li>
+		<li ><a href="#">Incidenti</a></li>
+		<li ><a href="#">Zahtjevi za uslugom</a></li>
+		<li ><a href="#"></a></li>
+	</ul>
+</div>
+
+<div class="main" style="background-color:red;height:100%;" ng-class={'col-xs-9':sideMenu==true,'col-xs-12':sideMenu==false}>
+
+<button type="button" name="button" class="btn btn-default" ng-click="sideMenu=!sideMenu">ddddd</button>
+<div id="try" class="">
+
+</div>
+<div style="display:inline-block;width:100px;height:100px;background-color:white;">
+
+</div>
+</div>
