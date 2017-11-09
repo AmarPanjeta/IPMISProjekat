@@ -125,7 +125,7 @@ public class IncidentController {
 	@ResponseBody
 	public Iterable<Service> findServices() {
 
-		return sr.findAll();
+		return sr.getServicesOrderedByName();
 	}
 	@RequestMapping("/{id}/delete")
 	public void deleteIncident(@PathVariable("id") long id) throws Exception
