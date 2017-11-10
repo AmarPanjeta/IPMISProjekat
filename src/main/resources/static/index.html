@@ -36,23 +36,22 @@
         <img src="knife-and-fork.png" alt="" height="16" style="vertical-align:middle;margin-right:10px;"/>
         Zahtjevi panel
       </a>
-      <a href="#!/login" ng-show="!logged()">
-        <img src="hospital.png" alt="" height="16" style="vertical-align:middle;margin-right:10px;"/>
-        Login
+      <a href="#!/myservices" ng-show="isType(2)">
+        <img src="calendar-light.png" alt="" height="16" style="vertical-align:middle;margin-right:10px;"/>
+        Moje usluge
       </a>
-      <a href="#!/registration" ng-show="!logged()">
-        <img src="question.png" alt="" height="16" style="vertical-align:middle;margin-right:10px;"/>
-        Registracija
+      <a href="#!/myincidents" ng-show="isType(2)">
+        <img src="calendar-light.png" alt="" height="16" style="vertical-align:middle;margin-right:10px;"/>
+        Moji incidenti
       </a>
-      <a href="#!/profile" ng-show="logged()">
-        <img src="information-sign.png" alt="" height="16" style="vertical-align:middle;margin-right:10px;"/>
-        Profile
+      <a href="#!/myrequests" ng-show="isType(2)">
+        <img src="knife-and-fork.png" alt="" height="16" style="vertical-align:middle;margin-right:10px;"/>
+        Moji zahtjevi
       </a>
-      <a href="#" ng-show="logged()">
-        <img src="logout.png" alt="" height="16" style="vertical-align:middle;margin-right:10px;"/>
-        Sign out
+      <a ng-show="logged()" href="" ng-click="logout()">
+        <span class="glyphicon glyphicon-log-out"></span>
+        Odjava
       </a>
-      <a ng-show="logged()" href="" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
     </div>
 
 
@@ -73,7 +72,7 @@
           <ul class="dropdown-menu dropdown-menu-right">
             <li><a href="#">Uloga: {{getRole()}}</a></li>
             <li class="divider"></li>
-            <li><a href="#">Profil</a></li>
+            <li><a href="#!/useraccount">Profil</a></li>
             <li><a href="#" ng-click="logout()">Odjava</a></li>
           </ul>
         </span>
@@ -87,51 +86,7 @@
   <div class="main-header-separator">
 
   </div>
-    <!-- Navigacija --
 
-  <nav ng-controller="navigationCtrl as nav" class="navbar navbar-default menu">
-    <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display --
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="brand navbar-brand " onclick="openNav()" >DžAALA TELEKOM</a>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling --
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-
-
-
-        </ul>
-
-        <form class="navbar-form navbar-left">
-
-        </form>
-
-        <ul class="nav navbar-nav navbar-right menu-list">
-          <li ng-show="logged()" ng-class="{active:nav.tab('servicesController')}"><a href="#!/services"><span class="glyphicon glyphicon-book"></span> Usluge</a></li>
-          <li ng-show="isAdmin() || isType(4)" ng-class="{active:nav.tab('servicesController')}"><a href="#!/incidentmanager"><span class="glyphicon glyphicon-list-alt"></span> Incident panel</a></li>
-          <li ng-show="isAdmin() || isType(3)" ng-class="{active:nav.tab('userAccountController')}"><a href="#!/reqm"><span class=" glyphicon glyphicon-list-alt"></span> Zahtjevi panel</a></li>
-          <li ng-show="logged()" ng-class="{active:nav.tab('userAccountController')}"><a href="#!/useraccount"><span class=" glyphicon glyphicon-list-alt"></span> Profil</a></li>
-          <li ng-show="!logged()" ng-class="{active:nav.tab('loginController')}"><a href="#!/login"><span class="glyphicon glyphicon-user"></span>Login</a></li>
-          <li ng-show="!logged()" ng-class="{active:nav.tab('registrationController')}"><a href="#!/registration"><span class="glyphicon glyphicon-log-in"></span> Registracija</a></li>
-
-
-
-          <li ng-show="logged()"><a href="" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-
-        </ul>
-      </div><!-- /.navbar-collapse --
-    </div><!-- /.container-fluid
-  </nav>
-
-      <!-- Kraj navigacije -->
 
     <div ng-view class="container-fluid"></div>
 
@@ -192,6 +147,8 @@
     <script src="controllers/closedRequestViewCtrl.js" charset="utf-8"></script>
     <script src="controllers/userInfoCtrl.js" charset="utf-8"></script>
     <script src="controllers/requestReportCtrl.js" charset="utf-8"></script>
+    <script src="controllers/myRequestsCtrl.js"></script>
+    <script src="controllers/myIncidentsCtrl.js"></script>
     <script src="controllers/loggedCtrl.js" charset="utf-8"></script>
 
     <script type="text/javascript">
