@@ -1,42 +1,52 @@
 <div class="container">
 <div ng-show="loggedIn()">
 <h1 ng-model="user.username" >Dobro došli, <b><i>{{user.username}}!</i></b></h1>
-
+<!--
 	<div class="row info">
 
 		<div class="col-md-12">
-		<h2 style="text-align:center;"><b>Informacije o prijavljenom korisniku</b></h2>
+		<h2 style="text-align:center;"><b>Informacije o korisniku</b></h2>
 			<h4 ng-model="user.username"><b>Korisničko ime:</b> {{user.username}}</h4>
 			<h4 ng-model="user.username"><b>Ime:</b> {{user.name}}</h4>
 			<h4 ng-model="user.username"><b>Prezime:</b> {{user.surname}}</h4>
 			<h4 ng-model="user.address"><b>Adresa:</b> {{user.address}}</h4>
 			<h4 ng-model="user.email"><b>Email:</b> {{user.email}}</h4>
 			<h4 ng-model="user.telephone"><b>Kontakt telefon:</b> {{user.telephone}}</h4>
-			<h4 ng-model="user.type"><b>Uloga:</b> {{dajUlogu(user.type)}}</h4>
+			<h4 ><b>Uloga:</b>Upravljanje incidentima</h4>
 			<input type="submit" class="btn btn-info dugme-prijava" style="margin-bottom: 10px;" ng-click="promjenaPodataka()" value="Promijeni podatke"/>
 		</div>
 
 	</div>
+-->
 
 	<div class="row info">
 
 		<div class="col-md-12">
-		<h2 style="text-align:center;"><b>Pregled zahtjeva za uslugom</b></h2>
-		<div class="skrolaj">
+		<h2 style="text-align:center;"><b>Pregled zahtjeva</b></h2>
+        <div class="skrolaj" ng-show="!zatvoreniKlik && !statistikaKlik" style="margin-left: 10px;">
 		<table class="col-12 tabela">
 		<thead>
-			<tr>
-				<th colspan="8">Aktuelni zahtjevi
-					<button ng-if="!aktuelniKlik" type="button" class="btn btn-info " style="float:right;" data-toggle="collapse" ng-click="prikaziAktuelne()">▼</button>
-					<button ng-if="aktuelniKlik" type="button" class="btn btn-info " style="float:right;" data-toggle="collapse" ng-click="sakrijAktuelne()">∆</button>
+			<tr  class="naslov-tabele">
+				<th colspan="8" class="naziv-u-tabeli"><span class="glyphicon glyphicon-flash"> </span>Aktuelni zahtjevi
+					<button ng-if="!aktuelniKlik" type="button" class="btn filter-opcija" style="float:right;" data-toggle="collapse" ng-click="prikaziAktuelne()">▼</button>
+					<button ng-if="aktuelniKlik" type="button" class="btn filter-opcija" style="float:right;" data-toggle="collapse" ng-click="sakrijAktuelne()">∆</button>
 				</th>
 			</tr>
-			<tr ng-show="aktuelniKlik">
-				<th class="glyphicon glyphicon-sort-by-attributes"></th>
-				<th colspan="2"></th>
-				<th>
+
+		
+
+			<tr ng-show="aktuelniKlik" style="border-bottom: 2px solid white;">
+
+				<th class="glyphicon glyphicon-sort-by-attributes filter-red"></th>
+			<!--	<th>Naziv incidenta</th>
+
+				<th>Redoslijed rjesavanja</th>
+			-->
+			<th colspan="2" class="filter-red"></th>
+			
+				<th class="filter-red">
 					<div class="dropdown">
-					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					  <button class="btn btn-default dropdown-toggle filter-opcija" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					    {{filterPrioritet}}
 					    <span class="caret"></span>
 					  </button>
@@ -50,9 +60,9 @@
 					  </ul>
 					</div>
 				</th>
-				<th>
+				<th class="filter-red">
 					<div class="dropdown">
-					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					  <button class="btn btn-default dropdown-toggle filter-opcija" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					    {{filterOdjel}}
 					    <span class="caret"></span>
 					  </button>
@@ -64,9 +74,9 @@
 					</div>
 
 				</th>
-				<th>
+				<th class="filter-red">
 					<div class="dropdown">
-					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					  <button class="btn btn-default dropdown-toggle filter-opcija" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					    {{filterStatus}}
 					    <span class="caret"></span>
 					  </button>
@@ -83,9 +93,9 @@
 					</div>
 
 				</th>
-				<th>
+				<th class="filter-red">
 					<div class="dropdown">
-					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					  <button class="btn btn-default dropdown-toggle filter-opcija" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					    {{filterDatum}}
 
 					    <span class="caret"></span>
@@ -97,25 +107,27 @@
 					</div>
 				</th>
 				<th><input type="submit" class="btn btn-primary" style="margin-bottom:3px" ng-click="filtriraj()" value="Filtriraj"/><br></th>
-				
-			</tr>
+			</tr> 
 			<tr ng-show="aktuelniKlik"></tr>
 		</thead>
+		
 		<tbody ng-show="aktuelniKlik">
+			
 			<tr ng-show="aktuelniKlik">
+				
 				<th>#</th>
-				<th>Redoslijed rješavanja</th>
 				<th>Naziv zahtjeva</th>
+				<th>Redoslijed rješavanja</th>
 				<th>Prioritet</th>
 				<th>Odjel</th>
 				<th>Status</th>
 				<th>Datum prijave</th>
-				<th>Opcije</th>
+				<th style="width: 157px;">Opcije</th>
 			</tr>
 			<tr ng-repeat="inc in requests">
 				<td>{{inc.id}}</td>
-				<td>{{inc.urgency}}</td>
 				<td>{{inc.title}}</td>
+				<td>{{inc.urgency}}</td>
 				<td><span class="priority-class" value="{{inc.priority}}">{{inc.priority}}</span></td>
 				<td><span class="department-class" value="{{inc.department.name}}">{{inc.department.name}}</span></td>
 				<td><span class="status-class" value="{{inc.status.status}}">{{inc.status.status}}</span></td>
@@ -123,27 +135,26 @@
 				{{inc.datumPrijave.hours}}:{{inc.datumPrijave.minutes}}:{{inc.datumPrijave.seconds}} sati
 				</td>
 				<td>
-				<input type="submit" class="btn btn-primary" ng-click="detaljnoZahtjev(inc.id)" style="margin-bottom:3px" value="Detaljno"/><br>
-				<input type="submit" class="btn btn-primary" ng-show="zauzetoOdKorisnika(inc.taken)" ng-click="rijesiIncident(inc.id)" style="margin-bottom:3px" value="Detaljno"/><br>
-				<input type="submit" class="btn btn-primary" ng-show="zauzetoOdKorisnika(inc.taken)" ng-click="rijesiIncident(inc.id)"  style="margin-bottom:3px;padding-right:32px;" value="Rijesi"/><br>
-				<input type="submit" class="btn btn-primary" ng-show="zauzeto(inc.taken)==false" ng-click="zauzmiIncident(inc.id)" value="Zauzmi"/>
-				<input type="submit" class="btn btn-primary" ng-show="zauzetoOdKorisnika(inc.taken)" ng-click="oslobodiIncident(inc.id)" value="Oslobodi"/></td>
+				    <span class="glyphicon glyphicon-list amarove-ikone" title="Detaljno" ng-click="detaljnoZahtjev(inc.id)" ></span>
+				</td>
 
 			</tr>
 
 		</tbody>
+	
+	
 
 		</table>
 	</div>
 
-	<div class="skrolaj">
+	<div class="skrolaj" ng-show="!aktuelniKlik && !statistikaKlik"  style="margin: 0px 5px;">
 
 		<table class="col-12 tabela">
 		<thead>
-			<tr>
-				<th colspan="8">Zatvoreni zahtjevi
-					<button ng-if="!zatvoreniKlik" type="button" class="btn btn-info" style="float:right;" data-toggle="collapse" ng-click="prikaziZatvorene()">▼</button>
-					<button ng-if="zatvoreniKlik" type="button"  class="btn btn-info" style="float:right;" data-toggle="collapse" ng-click="sakrijZatvorene()">∆</button>
+			<tr class="naslov-tabele">
+				<th colspan="8" class="naziv-u-tabeli"><span class="glyphicon glyphicon-ok-sign"> </span>Zatvoreni zahtjevi
+					<button ng-if="!zatvoreniKlik" type="button" class="btn filter-opcija" style="float:right;" data-toggle="collapse" ng-click="prikaziZatvorene()">▼</button>
+					<button ng-if="zatvoreniKlik" type="button"  class="btn filter-opcija" style="float:right;" data-toggle="collapse" ng-click="sakrijZatvorene()">∆</button>
 				</th>
 			</tr>
 			<tr ng-show="zatvoreniKlik">
@@ -168,7 +179,9 @@
 				<td>{{cinc.datumPrijave.day}}.{{cinc.datumPrijave.month}}.{{cinc.datumPrijave.year}}.godine <br/>
 				{{cinc.datumPrijave.hours}}:{{cinc.datumPrijave.minutes}}:{{cinc.datumPrijave.seconds}} sati
 				</td>
-				<td><input type="submit" class="btn btn-primary" ng-click="zatvoreniZahtjev(cinc.id)" value="Prikaži detaljnije"/></td>
+				<td>
+					 <span class="glyphicon glyphicon-list amarove-ikone" title="Prikazi detaljnije" ng-click="zatvoreniZahtjev(cinc.id)" ></span>
+				</td>
 			</tr>
 
 
@@ -176,14 +189,14 @@
 		</table>
 	</div>
 
-	<div class="skrolaj">
+	<div class="skrolaj" ng-show="!aktuelniKlik && !zatvoreniKlik"  style="margin-right: 10px;">
 
 		<table class="col-12 tabela">
 		<thead>
-			<tr>
-				<th colspan="8">Statistika
-					<button ng-if="!statistikaKlik" type="button" class="btn btn-info" style="float:right;" data-toggle="collapse" ng-click="prikaziStatistiku()">▼</button>
-					<button ng-if="statistikaKlik" type="button"  class="btn btn-info" style="float:right;" data-toggle="collapse" ng-click="sakrijStatistiku()">∆</button>
+			<tr class="naslov-tabele">
+				<th colspan="8" class="naziv-u-tabeli"><span class="glyphicon glyphicon-tasks"> </span>Statistika
+					<button ng-if="!statistikaKlik" type="button" class="btn filter-opcija" style="float:right;" data-toggle="collapse" ng-click="prikaziStatistiku()">▼</button>
+					<button ng-if="statistikaKlik" type="button"  class="btn filter-opcija" style="float:right;" data-toggle="collapse" ng-click="sakrijStatistiku()">∆</button>
 				</th>
 			</tr>
 
@@ -221,7 +234,8 @@
 					<input type="submit" class="btn btn-danger" style="margin-bottom: 10px;margin-top: 10px;width:60%;" ng-click="izvjestaji()" value="Statisticki izvjestaj"/>
 					<!--
 					<input type="submit" class="btn btn-danger" style="margin-bottom: 10px;margin-top: 10px;width:60%;" ng-click="generisiIzvjestaj()" value="Generisi izvjestaj"/>
-				-->
+			-->
+
 				</td>
 			</tr>
 
@@ -239,9 +253,11 @@
 		<div class="col-md-12">
 			<input type="submit" class="btn btn-danger dugme-prijava" style="margin-bottom: 10px;margin-top: 10px;" ng-click="evidentirajZahtjev()" value="Evidentiraj zahtjev"/>
 			<br>
+
 		</div>
 
 	</div>
+
 	<div style="height:25px;">
 
 	</div>
@@ -249,3 +265,5 @@
 
 </div>
 </div>
+
+
