@@ -58,16 +58,27 @@
 
 <div id="main" class="main">
 
-  <div id="main-header" class="main-header">
+  <div id="main-header" class="main-header" ng-controller="loggedCtrl">
     <div class="">
       <img id="menu" style="display:none;vertical-align:middle;cursor:pointer;" onclick="openNav()" class="icon icons8-Menu" width="32" height="32" src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png">
-      <img src="stylesheets/calendar.png" alt="" width="24px" height="24px" style="vertical-align:middle;"/>
+      <img src="http://free-icon-rainbow.com/i/icon_02938/icon_029380_256.png" alt="" width="24px" height="24px" style="vertical-align:middle;"/>
       DZAALA TELEKOM
     </div>
     <div style="margin-left:auto;">
-      <img src="http://via.placeholder.com/40x40" alt="" style="vertical-align:middle;"/>
-      Martin Ozill
-      <img src="https://image.flaticon.com/icons/svg/130/130907.svg" alt="" height="16"style="vertical-align:middle;margin: 0px 10px;"/>
+      <div id="profile_wrapper" ng-show="logged()">
+        <img src="http://via.placeholder.com/40x40" alt="" style="vertical-align:middle;"/>
+        {{getUsername();}}
+
+        <span class="dropdown">
+        <img src="https://image.flaticon.com/icons/svg/130/130907.svg" alt="" height="16"style="vertical-align:middle;margin: 0px 10px;" class="dropdown" data-toggle="dropdown"/>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><a href="#">Uloga: {{getRole()}}</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Profil</a></li>
+          <li><a href="#" ng-click="logout()">Odjava</a></li>
+        </ul>
+      </span>
+      </div>
     </div>
   </div>
   <div class="main-header-separator">
@@ -178,6 +189,7 @@
     <script src="controllers/closedRequestViewCtrl.js" charset="utf-8"></script>
     <script src="controllers/userInfoCtrl.js" charset="utf-8"></script>
     <script src="controllers/requestReportCtrl.js" charset="utf-8"></script>
+    <script src="controllers/loggedCtrl.js" charset="utf-8"></script>
 
     <script type="text/javascript">
     function openNav() {
