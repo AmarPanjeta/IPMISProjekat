@@ -66,18 +66,21 @@
     </div>
     <div style="margin-left:auto;">
       <div id="profile_wrapper" ng-show="logged()">
-        <img src="http://via.placeholder.com/40x40" alt="" style="vertical-align:middle;"/>
+        <img src="https://cdn1.iconfinder.com/data/icons/freeline/32/account_friend_human_man_member_person_profile_user_users-512.png" height="40px" alt="" style="vertical-align:middle;"/>
         {{getUsername();}}
-
         <span class="dropdown">
-        <img src="https://image.flaticon.com/icons/svg/130/130907.svg" alt="" height="16"style="vertical-align:middle;margin: 0px 10px;" class="dropdown" data-toggle="dropdown"/>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <li><a href="#">Uloga: {{getRole()}}</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Profil</a></li>
-          <li><a href="#" ng-click="logout()">Odjava</a></li>
-        </ul>
-      </span>
+          <img src="https://image.flaticon.com/icons/svg/130/130907.svg" alt="" height="16"style="vertical-align:middle;margin: 0px 10px;" class="dropdown" data-toggle="dropdown"/>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li><a href="#">Uloga: {{getRole()}}</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Profil</a></li>
+            <li><a href="#" ng-click="logout()">Odjava</a></li>
+          </ul>
+        </span>
+      </div>
+      <div id="not_logged_wrapper" ng-show="!logged()">
+        <span style="cursor:pointer;"><a href="#!/registration" style="color:inherit;"><img src="icons/ic_add_box_black_24px.svg" alt="">Registracija</a></span>
+        <span style="margin-left:5px;cursor:pointer;"><a href="#!/login" style="color:inherit;"><img src="http://icons.veryicon.com/ico/System/Icons8%20Metro%20Style/System%20Login.ico" height="24px" alt="">Prijava</a></span>
       </div>
     </div>
   </div>
