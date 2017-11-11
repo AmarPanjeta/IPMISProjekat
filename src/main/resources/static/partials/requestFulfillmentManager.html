@@ -33,7 +33,7 @@
 				</th>
 			</tr>
 
-		
+
 
 			<tr ng-show="aktuelniKlik" style="border-bottom: 2px solid white;">
 
@@ -43,7 +43,7 @@
 				<th>Redoslijed rjesavanja</th>
 			-->
 			<th colspan="2" class="filter-red"></th>
-			
+
 				<th class="filter-red">
 					<div class="dropdown">
 					  <button class="btn btn-default dropdown-toggle filter-opcija" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -56,7 +56,7 @@
 					    <li><a ng-click="filterPrioritet='2'">2</a></li>
 					    <li><a ng-click="filterPrioritet='3'">3</a></li>
 					    <li><a ng-click="filterPrioritet='4'">4</a></li>
-					    <li><a ng-click="filterPrioritet='5'">5</a></li>   
+					    <li><a ng-click="filterPrioritet='5'">5</a></li>
 					  </ul>
 					</div>
 				</th>
@@ -69,7 +69,7 @@
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 					    <li><a ng-click="filterOdjel='Incident management'">Incident management</a></li>
 					    <li><a ng-click="filterOdjel='Problem management'">Problem management</a></li>
-					    <li><a ng-click="filterOdjel='Request fulfillment'">Request fulfillment</a></li>   
+					    <li><a ng-click="filterOdjel='Request fulfillment'">Request fulfillment</a></li>
 					  </ul>
 					</div>
 
@@ -86,9 +86,9 @@
 					    <li><a ng-click="filterStatus='Popravljen'">Popravljen</a></li>
 					    <li><a ng-click="filterStatus='U obradi'">U obradi</a></li>
 					    <li><a ng-click="filterStatus='Odbijen'">Odbijen</a></li>
-					    <li><a ng-click="filterStatus='Odobren'">Odobren</a></li>  
+					    <li><a ng-click="filterStatus='Odobren'">Odobren</a></li>
 					    <li><a ng-click="filterStatus='Otkazan'">Otkazan</a></li>
-					    <li><a ng-click="filterStatus='Pogresno prijavljen'">Pogresno prijavljen</a></li> 
+					    <li><a ng-click="filterStatus='Pogresno prijavljen'">Pogresno prijavljen</a></li>
 					  </ul>
 					</div>
 
@@ -107,14 +107,14 @@
 					</div>
 				</th>
 				<th><input type="submit" class="btn btn-primary" style="margin-bottom:3px" ng-click="filtriraj()" value="Filtriraj"/><br></th>
-			</tr> 
+			</tr>
 			<tr ng-show="aktuelniKlik"></tr>
 		</thead>
-		
+
 		<tbody ng-show="aktuelniKlik">
-			
+
 			<tr ng-show="aktuelniKlik">
-				
+
 				<th>#</th>
 				<th>Naziv zahtjeva</th>
 				<th>Redoslijed rješavanja</th>
@@ -141,8 +141,8 @@
 			</tr>
 
 		</tbody>
-	
-	
+
+
 
 		</table>
 	</div>
@@ -251,10 +251,10 @@
 
 	<div class="row">
 		<div class="col-md-12">
-			<input type="submit" class="btn btn-danger dugme-prijava" style="margin-bottom: 10px;margin-top: 10px;" ng-click="evidentirajZahtjev()" value="Evidentiraj zahtjev"/>
-			<br>
-
-		</div>
+				<input id="floating-button" type="submit" class="btn-danger floating-add-button" style="margin-bottom: 10px;margin-top: 10px;" ng-click="evidentirajZahtjev()" value="+" />
+				<div id="message" class="floating-add-button-message">
+					Dodaj zahtjev
+				</div>
 
 	</div>
 
@@ -266,4 +266,15 @@
 </div>
 </div>
 
-
+<script type="text/javascript">
+$('#floating-button').mouseenter(
+	function() {
+		$('#message').css("display", "block");
+	}
+);
+$('#floating-button').mouseleave(
+	function() {
+		$('#message').css("display", "none");
+	}
+);
+</script>
