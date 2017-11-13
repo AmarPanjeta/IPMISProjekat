@@ -21,3 +21,8 @@ build/
 nbbuild/
 nbdist/
 .nb-gradle/
+
+### OSX Specific ###
+.DS_Store
+
+
