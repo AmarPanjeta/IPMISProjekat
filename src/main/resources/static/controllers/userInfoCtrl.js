@@ -1,4 +1,4 @@
-app.controller('userInfoCtrl', function($scope, $http, $rootScope, $log){
+app.controller('userInfoCtrl', function(servis,$scope, $http, $rootScope, $log){
 
 	$scope.sideMenu=true;
 	$scope.usluge=[];
@@ -157,20 +157,32 @@ app.controller('userInfoCtrl', function($scope, $http, $rootScope, $log){
 	}
 
 	$scope.zatvoriIncident=function(){
+        var data = {
+            headerText: "Zatvori incident",
+            bodyText: "Da li ste sigurni da želite zatvoriti incident"
+        };
+        servis.modal(data).then(function (x) {
+            if (x) {
 		$http.get("http://localhost:8080/incidents/close/"+$scope.selectedIncident.id).then(function(response){
 			$http.get("http://localhost:8080/incidents/usersactive?userid="+$rootScope.id).then(function(response){
 				$scope.incidenti=response.data;
 			});
-		})
+		})}});
 	}
 
 	$scope.zatvoriZahtjev=function(){
+        var data = {
+            headerText: "Zatvori zahtjev",
+            bodyText: "Da li ste sigurni da želite zatvoriti zahtjev"
+        };
+        servis.modal(data).then(function (x) {
+            if (x) {
 		$http.get("http://localhost:8080/requests/close/"+$scope.selectedRequest.id).then(function(response){
 			$http.get('http://localhost:8080/requests/usersactive?userid='+$rootScope.id).then(function(res)
 			{
 				$scope.zahtjevi=res.data;
 			});
-		})
+		})}});
 	}
 
 	$scope.dajOdgovoreZahtjev=function(){
@@ -241,9 +253,15 @@ app.controller('userInfoCtrl', function($scope, $http, $rootScope, $log){
 
 	$scope.odjaviUslugu=function(uslugaid)
 	{
+        var data = {
+            headerText: "Odjavi uslugu",
+            bodyText: "Da li ste sigurni da želite odjaviti uslugu"
+        };
+        servis.modal(data).then(function (x) {
+            if (x) {
 		$http.get('http://localhost:8080/userservice/'+$rootScope.id+'/odjaviuslugu/'+uslugaid).then(function(response){
 			$scope.prikazi('usluge');
-		});
+		});}});
 	}
 
 	$scope.dodajOdgovorNaIncident=function(noviOdgovorText)

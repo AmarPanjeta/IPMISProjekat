@@ -1,8 +1,8 @@
-app.controller('loginCtrl',function($http,$log,$rootScope,$scope,$route,$location){
-	$scope.user={};
+app.controller('loginCtrl',['$http','$log','$rootScope','$scope','$route','$location','servis',
+	function($http,$log,$rootScope,$scope,$route,$location,servis){
+	$scope.user={}
 
 	$scope.login=function(){
-
 		$http.post("http://localhost:8080/user/login",$scope.user).then(function(response){
 			$log.log(response.data);
 			$rootScope.username=response.data.username;
@@ -19,4 +19,4 @@ app.controller('loginCtrl',function($http,$log,$rootScope,$scope,$route,$locatio
 
 
 
-})
+}])

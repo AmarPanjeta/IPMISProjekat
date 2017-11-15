@@ -1,33 +1,113 @@
-   <form ng-submit="register()" name="registrationForm" class="login-form" novalidate>
-      <div class="form-group">
-        <label>Ime:</label><br>
-        <input type="text" placeholder="Ime" ng-model="user.name" name="name" class="username" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required />
-      </div>
-      <div class="form-group">
-        <label>Prezime:</label><br>
-        <input type="text" placeholder="Prezime" ng-model="user.surname" name="surname" class="username" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/"  required />
+   <div class="login-page">
+       <div class="form">
+           <form ng-submit="register()">
+            <input type="text" placeholder="Ime" ng-model="user.name" name="name" class="username" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required />
+               <input type="text" placeholder="Prezime" ng-model="user.surname" name="surname" class="username" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/"  required />
+               <input type="text" placeholder="Adresa" ng-model="user.address" name="address" class="address" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required />
+               <input type="text" placeholder="Korisničko ime" ng-model="user.username" name="username" class="username" ng-minlength="4" required />
+               <input type="password" placeholder="Korisnička šifra" ng-model="user.password" name="password" class="pass" ng-minlength="4" required />
+               <input type="password" placeholder="Ponovljena šifra" ng-model="passwordRepeat" name="passwordRepeat" class="pass" required />
+               <button type="submit">Registruj se</button>
+               </form>
+       </div>
+   </div>
 
-      </div>
+   <style>
+       @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-      <div class="form-group">
-        <label>Adresa:</label><br>
-        <input type="text" placeholder="Adresa" ng-model="user.address" name="address" class="address" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required />
-      </div>
+       .login-page {
+           width: 360px;
+           padding: 3% 0 0;
+           margin: auto;
+       }
+       .form {
+           position: fixed;
+           z-index: 1;
+           background: #FFFFFF;
+           max-width: 360px;
+           margin: 0 auto 100px;
+           padding: 45px;
+           text-align: center;
+           box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+       }
+       .form input {
+           font-family: "Roboto", sans-serif;
+           outline: 0;
+           background: #f2f2f2;
+           width: 100%;
+           border: 0;
+           margin: 0 0 15px;
+           padding: 15px;
+           box-sizing: border-box;
+           font-size: 14px;
+       }
+       .form button {
+           font-family: "Roboto", sans-serif;
+           text-transform: uppercase;
+           outline: 0;
+           background: #3f869b;
+           width: 100%;
+           border: 0;
+           padding: 15px;
+           color: #FFFFFF;
+           font-size: 14px;
+           -webkit-transition: all 0.3 ease;
+           transition: all 0.3 ease;
+           cursor: pointer;
+       }
+       .form button:hover,.form button:active,.form button:focus {
+           background: #3f869b;
+       }
+       .form .message {
+           margin: 15px 0 0;
+           color: #b3b3b3;
+           font-size: 12px;
+       }
+       .form .message a {
+           color: #4CAF50;
+           text-decoration: none;
+       }
+       .form .register-form {
+           display: none;
+       }
+       .container {
+           position: relative;
+           z-index: 1;
+           max-width: 300px;
+           margin: 0 auto;
+       }
+       .container:before, .container:after {
+           content: "";
+           display: block;
+           clear: both;
+       }
+       .container .info {
+           margin: 50px auto;
+           text-align: center;
+       }
+       .container .info h1 {
+           margin: 0 0 15px;
+           padding: 0;
+           font-size: 36px;
+           font-weight: 300;
+           color: #1a1a1a;
+       }
+       .container .info span {
+           color: #4d4d4d;
+           font-size: 12px;
+       }
+       .container .info span a {
+           color: #000000;
+           text-decoration: none;
+       }
+       .container .info span .fa {
+           color: #EF3B3A;
+       }
+       body {
 
-      <div class="form-group">
-        <label>Korisnicko ime:</label><br>
-        <input type="text" placeholder="Korisnicko ime" ng-model="user.username" name="username" class="username" ng-minlength="4" required />
+           font-family: "Roboto", sans-serif;
+           -webkit-font-smoothing: antialiased;
+           -moz-osx-font-smoothing: grayscale;
+       }
 
-      </div>
-      <div class="form-group">
-        <label>Korisnicka sifra:</label><br>
-        <input type="password" placeholder="Korisnicka sifra" ng-model="user.password" name="password" class="pass" ng-minlength="4" required />
-
-      </div>
-      <div class="form-group">
-        <label>Ponovljena sifra:</label><br>
-        <input type="password" placeholder="Ponovljena sifra" ng-model="passwordRepeat" name="passwordRepeat" class="pass" required />
-      </div>
-
-      <input type="submit" class="btn btn-info dugme-registracija" value="Registruj se" />
-</form>
+   </style>

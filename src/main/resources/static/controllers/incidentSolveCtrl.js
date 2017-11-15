@@ -1,4 +1,4 @@
-app.controller('incidentSolveCtrl',function($http,$log,$rootScope,$scope,$route,$location,$routeParams){
+app.controller('incidentSolveCtrl',function(servis,$http,$log,$rootScope,$scope,$route,$location,$routeParams){
 	$scope.user={};
 	$scope.incident={};
 	$scope.priorities=[1,2,3,4,5];
@@ -188,9 +188,15 @@ $scope.rijesenIncident=function(){
 }
 
 $scope.removeFromIncidents=function(){
+    var data = {
+        headerText: "Pretvori u zahtjev",
+        bodyText: "Da li ste sigurni da incident želite pretvoriti u zahtjev?"
+    };
+    servis.modal(data).then(function (x) {
+        if (x) {
 	  $http.get('http://localhost:8080/incidents/convert/'+$routeParams.id).then(function(response){
       $location.path("/incidentmanager");
-    })
+    })}});
 }
 
 

@@ -1,4 +1,4 @@
-app.controller('showRequestCtrl',function($scope,$http,$location,$log,$routeParams,$rootScope){
+app.controller('showRequestCtrl',function(servis,$scope,$http,$location,$log,$routeParams,$rootScope){
   $scope.request={};
   $scope.urgency=["Velika","Srednja","Mala"];
   $scope.influence=["Veliki","Srednji","Mali"];
@@ -23,6 +23,12 @@ app.controller('showRequestCtrl',function($scope,$http,$location,$log,$routePara
 
 
   $scope.sacuvajIzmjene=function(){
+      var data = {
+          headerText: "Sačuvaj izmjene",
+          bodyText: "Da li ste sigurni da želite sačuvati izmjene?"
+      };
+      servis.modal(data).then(function (x) {
+          if (x) {
     if(!changed) $location.path("/reqm");
     else {
       $http.post('http://localhost:8080/requests/partialupdate/'+$routeParams.id,$scope.request).then(function(){
@@ -31,7 +37,7 @@ app.controller('showRequestCtrl',function($scope,$http,$location,$log,$routePara
         $location.path("/reqm");
       }
       )
-    }
+    }}});
   }
 
   $scope.change=function(){
@@ -39,9 +45,15 @@ app.controller('showRequestCtrl',function($scope,$http,$location,$log,$routePara
     changed=true;
   }
   $scope.pretvoriUIncident=function(){
+      var data = {
+          headerText: "Pretvori u incident",
+          bodyText: "Da li ste sigurni da zahtjev želite pretvoriti u incident?"
+      };
+      servis.modal(data).then(function (x) {
+          if (x) {
     $http.get('http://localhost:8080/requests/convert/'+$routeParams.id).then(function(response){
       $location.path("/reqm");
-    })
+    })}});
   }
 
   $scope.odustani=function(){
@@ -57,9 +69,15 @@ app.controller('showRequestCtrl',function($scope,$http,$location,$log,$routePara
   }
 
   $scope.odbijZahtjev=function() {
+      var data = {
+          headerText: "Odbij zahtjev",
+          bodyText: "Da li ste sigurni da želite odbiti zahtjev?"
+      };
+      servis.modal(data).then(function (x) {
+          if (x) {
     $http.get('http://localhost:8080/requests/reject/'+$routeParams.id).then(function(response){
       $location.path("/reqm");
-    })
+    })}});
   }
 
   $scope.dajNacinPrijave=function(id){

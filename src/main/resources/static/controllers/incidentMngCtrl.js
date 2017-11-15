@@ -1,4 +1,4 @@
-app.controller('incidentMngCtrl',function($http,$log,$rootScope,$scope,$route,$location){
+app.controller('incidentMngCtrl',function(servis,$http,$log,$rootScope,$scope,$route,$location){
 	$scope.user={};
 	$scope.incidents={};
 	$scope.activeInc=0;
@@ -182,19 +182,29 @@ app.controller('incidentMngCtrl',function($http,$log,$rootScope,$scope,$route,$l
 		$location.path("/reports");
 	}
 	$scope.zauzmiIncident=function(id){
-
+        var data = {
+            headerText: "Zauzmi incident",
+            bodyText: "Da li ste sigurni da želite zauzeti indident?"
+        };
+        servis.modal(data).then(function (x) {
+            if (x) {
 		$http.get("http://localhost:8080/incidents/take?id="+id+"&idUser="+$scope.user.id).then(function(response){
 
 			$scope.prikaziAktuelne();
-		})
+		})}});
 
 	}
 
 	$scope.oslobodiIncident=function(id){
-
+        var data = {
+            headerText: "Oslobodi incident",
+            bodyText: "Da li ste sigurni da želite osloboditi incident?"
+        };
+        servis.modal(data).then(function (x) {
+            if (x) {
 		$http.get("http://localhost:8080/incidents/release?id="+id).then(function(response){
 			$scope.prikaziAktuelne();
-		})
+		})}});
 
 	}
 

@@ -1,7 +1,7 @@
 /**
  * Created by Admira on 07-May-17.
  */
-app.controller('userAccountCtrl', function ($rootScope, $log, $location, $scope, $http, $route) {
+app.controller('userAccountCtrl', function (servis,$rootScope, $log, $location, $scope, $http, $route) {
 
 
     $scope.onInit = function () {
@@ -12,9 +12,9 @@ app.controller('userAccountCtrl', function ($rootScope, $log, $location, $scope,
             $scope.user = {};
             $http.get('/user/find?username=' + $rootScope.username).then(function (response) {
                 $scope.user = response.data;
-                  $http.get('/user/userservices?userid=' + $scope.user.id).then(function (response1) {
-                      $scope.services = response1.data;
-                      if($scope.user.type==1){
+                $http.get('/user/userservices?userid=' + $scope.user.id).then(function (response1) {
+                    $scope.services = response1.data;
+                    if ($scope.user.type == 1) {
                         $http.get('/incidents/userIncident?userid=' + $scope.user.id).then(function (response2) {
                             $scope.incidents = response2.data;
                             $http.get('/requests/userRequest?userid=' + $scope.user.id).then(function (response3) {
@@ -22,18 +22,18 @@ app.controller('userAccountCtrl', function ($rootScope, $log, $location, $scope,
                                 $log.log($scope.requests);
                             });
                         });
-                      }
-                      else{
-                        $http.get('requests/all').then(function(response2){
-                          $scope.requests=response2.data;
-                          $http.get('incidents/all').then(function(response3){
-                            $scope.incidents=response3.data;
-                          })
+                    }
+                    else {
+                        $http.get('requests/all').then(function (response2) {
+                            $scope.requests = response2.data;
+                            $http.get('incidents/all').then(function (response3) {
+                                $scope.incidents = response3.data;
+                            })
                         });
-                      }
+                    }
 
-                  });
                 });
+            });
 
         }
 
@@ -46,6 +46,10 @@ app.controller('userAccountCtrl', function ($rootScope, $log, $location, $scope,
         }
 
         $scope.edit = function () {
+            var data = {
+                headerText: "Sačuvaj promjene",
+                bodyText: "Da li ste sigurni da želite sačuvati promjene"
+            };
             $http({
                     method: 'PATCH',
                     url: '/users/' + $scope.user.id,
@@ -67,10 +71,10 @@ app.controller('userAccountCtrl', function ($rootScope, $log, $location, $scope,
             $scope.problem = 1;
             $scope.zahtjev = 0;
         }
-        $scope.odustaniIncident=function(){
-            $scope.problem=0;
-            $scope.incident={};
-            $scope.zahtjev=0;
+        $scope.odustaniIncident = function () {
+            $scope.problem = 0;
+            $scope.incident = {};
+            $scope.zahtjev = 0;
         }
 
         $scope.dodajZahtjev = function () {
@@ -78,13 +82,13 @@ app.controller('userAccountCtrl', function ($rootScope, $log, $location, $scope,
             $scope.problem = 0;
             $scope.zahtjev = 1;
         }
-        $scope.odustaniZahtjev=function(){
-          $scope.request={};
-          $scope.zahtjev=0;
-          $scope.problem=0;
+        $scope.odustaniZahtjev = function () {
+            $scope.request = {};
+            $scope.zahtjev = 0;
+            $scope.problem = 0;
         }
         $scope.prijaviIncidentUnos = function () {
-            $scope.incident.contactMethod = ($scope.incident.contact_method=="email"? 1:2);
+            $scope.incident.contactMethod = ($scope.incident.contact_method == "email" ? 1 : 2);
             $scope.incident.reportMethod = 1;
 
             $http({
@@ -99,15 +103,15 @@ app.controller('userAccountCtrl', function ($rootScope, $log, $location, $scope,
                 $http.get('/incidents/userIncident?userid=' + $scope.user.id).then(function (response2) {
                     $scope.incidents = response2.data;
                 });
-                $scope.incident={};
-                $scope.problem=0;
+                $scope.incident = {};
+                $scope.problem = 0;
             })
         }
 
 
         $scope.prijaviZahtjevZaUslugom = function () {
 
-            $scope.request.contactMethod = ($scope.request.contact_method=="email"? 1:2);
+            $scope.request.contactMethod = ($scope.request.contact_method == "email" ? 1 : 2);
             $scope.request.reportMethod = 3;
 
             $http({
@@ -116,61 +120,88 @@ app.controller('userAccountCtrl', function ($rootScope, $log, $location, $scope,
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    data: angular.toJson({userId:$scope.user.id,title:$scope.incident.title,description:$scope.incident.description,contactMethod:$scope.request.contactMethod})
+                    data: angular.toJson({
+                        userId: $scope.user.id,
+                        title: $scope.incident.title,
+                        description: $scope.incident.description,
+                        contactMethod: $scope.request.contactMethod
+                    })
                 }
             ).then(function (response) {
                 $http.get('/requests/userRequest?userid=' + $scope.user.id).then(function (response3) {
                     $scope.requests = response3.data;
                 });
-                $scope.request={};
+                $scope.request = {};
             })
         }
 
         $scope.obrisi = function (inc) {
-            $http({
-                    method: 'DELETE',
-                    url: '/incidents/' + inc.id + "/delete",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+            var data = {
+                headerText: "Obriši incident",
+                bodyText: "Da li ste sigurni da želite obrisat incident"
+            };
+            servis.modal(data).then(function (x) {
+                if (x) {
+                    $http({
+                            method: 'DELETE',
+                            url: '/incidents/' + inc.id + "/delete",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        }
+                    ).then(function (response) {
+
+                        $scope.incidents.splice($scope.incidents.indexOf(inc), 1);
+
+                    })
                 }
-            ).then(function (response) {
-
-                $scope.incidents.splice($scope.incidents.indexOf(inc), 1);
-
-            })
+            });
         }
         /* Ovo bi trebao biti soft delete, kako bi mogli lakse mogli koristiti podatke za analizu */
         $scope.obrisiZahtjev = function (req) {
+            var data = {
+                headerText: "Obriši zahtjev",
+                bodyText: "Da li ste sigurni da želite obrisati zahtjev"
+            };
+            servis.modal(data).then(function (x) {
+                if (x) {
+                    $http({
+                            method: 'DELETE',
+                            url: '/requests/' + req.id + "/delete",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        }
+                    ).then(function (response) {
 
-            $http({
-                    method: 'DELETE',
-                    url: '/requests/' + req.id + "/delete",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+                        $scope.requests.splice($scope.requests.indexOf(req), 1);
+
+                    })
                 }
-            ).then(function (response) {
-
-                $scope.requests.splice($scope.requests.indexOf(req), 1);
-
             })
-        }
+        };
 
         $scope.odjaviUslugu = function (service) {
+            var data = {
+                headerText: "Odjavi uslugu",
+                bodyText: "Da li ste sigurni da želite odjaviti uslugu"
+            };
+            servis.modal(data).then(function (x) {
+                if (x) {
+                    $http({
+                            method: 'GET',
+                            url: '/user/userservicesuserservice?userid=' + $scope.user.id + '&serviceid=' + service.id,
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        }
+                    ).then(function (response) {
 
-            $http({
-                    method: 'GET',
-                    url: '/user/userservicesuserservice?userid=' + $scope.user.id + '&serviceid=' + service.id,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+                        $scope.services.splice($scope.services.indexOf(service), 1);
+
+                    })
                 }
-            ).then(function (response) {
-
-                $scope.services.splice($scope.services.indexOf(service), 1);
-
-            })
+            });
         }
     }
 });

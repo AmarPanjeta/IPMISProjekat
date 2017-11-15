@@ -1,4 +1,4 @@
-app.controller('profileCtrl',function($http,$log,$rootScope,$scope,$route,$location){
+app.controller('profileCtrl',function(servis,$http,$log,$rootScope,$scope,$route,$location){
 	$scope.user={};
 
 	if($rootScope.username!=null){
@@ -14,13 +14,26 @@ app.controller('profileCtrl',function($http,$log,$rootScope,$scope,$route,$locat
 
 
 	 $scope.sacuvaj=function(){
-	 	$log.log($scope.user.id);
+         var data = {
+             headerText: "Sačuvaj promjene",
+             bodyText: "Da li ste sigurni da želite sačuvati promjene"
+         };
+         servis.modal(data).then(function (x) {
+             if (x) {
+             	$log.log($scope.user.id);
+             }
 		$http.put("http://localhost:8080/users/"+$scope.user.id,$scope.user).then(function(response){
 		  $location.path("/incidentmanager");
-		})
+		})});
 	}
 
 	$scope.odustani=function(){
+        var data = {
+            headerText: "Doustani",
+            bodyText: "Da li ste sigurni da želite odustati od promjena?"
+        };
+        servis.modal(data).then(function (x) {
+            if (x) {
 		$location.path("/incidentmanager");
-	}
+	}})};
 })

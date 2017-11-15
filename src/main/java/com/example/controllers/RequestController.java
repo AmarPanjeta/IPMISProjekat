@@ -9,7 +9,6 @@ import com.example.repositories.RequestRepository;
 import com.example.repositories.StatusRepository;
 import com.example.repositories.UserRepository;
 
-import org.mockito.exceptions.verification.NeverWantedButInvoked;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
