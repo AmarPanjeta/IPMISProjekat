@@ -153,14 +153,13 @@ app.controller('servicesCtrl', function (servis, $rootScope, $log, $location, $s
                 console.log('object', service.id );
                 console.log('user', $scope.services[i].id);
                 if($scope.services[i].id == service.id){
-                    $scope.text = 'Niste pretplaćeni na ovu uslugu.';
+                    $scope.text = 'Pretplaćeni ste na ovu uslugu.';
                     test= true;
                 }
             }
-            if(!test) $scope.text = 'Pretplaćeni ste na ovu uslugu.';
+            if(!test) $scope.text = 'Niste pretplaćeni na ovu uslugu.';
 
-            console.log($scope.text);
-            $location.path('/detailed/' + $scope.text);
+            $location.path('/detailed/'+ $scope.text+ '/'+ service.name+ '/'+ service.description + '/'+ service.price + '/'+ service.available);
 
         }
 

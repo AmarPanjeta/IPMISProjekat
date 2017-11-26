@@ -87,10 +87,10 @@
 
 	        <br/>
 					<br>
-					<h4  ng-show="imaOdgovora">Komentari:</h4>
-					<table class="col-12 tabela" ng-show="imaOdgovora">
+					<h4  ng-show="imaOdgovora" class="text-beauty">Komentari:</h4>
+					<table class="tabela-dataa" ng-show="imaOdgovora">
 						<thead>
-							<tr>
+							<tr class="tabela-tr-data">
 								<th colspan="1">Autor</th>
 								<th colspan="2">Odgovor</th>
 								<th colspan="1">Datum</th>
@@ -98,7 +98,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="a in answers">
+							<tr ng-repeat="a in answers" class="tabela-tr-data">
 							<td colspan="1">{{a.autor.username}}</td>
 							<td colspan="2">{{a.text}}</td>
 							<td>{{a.datumPrijave.day}}.{{a.datumPrijave.month}}.{{a.datumPrijave.year}}.godine <br/>

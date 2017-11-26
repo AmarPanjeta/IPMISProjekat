@@ -59,9 +59,9 @@
 
 
    		<h4 ng-show="imaOdgovoraNaInc"><b>Odgovori na incident:</b></h4>
-   		<table class="col-12 tabela" ng-show="imaOdgovoraNaInc">
+   		<table class="tabela-dataa" ng-show="imaOdgovoraNaInc">
         <thead>
-        	<tr style="text-align: center;">
+        	<tr class="tabela-tr-data">
         		<th style="width: 10%">Autor</th>
         		<th style="width: 60%">Odgovor</th>
         		<th style="width: 30%">Datum</th>
@@ -69,7 +69,7 @@
         	</tr>
         </thead>
         <tbody>
-        	<tr ng-repeat="a in answers1">
+        	<tr ng-repeat="a in answers1" class="tabela-tr-data">
         	<td style="width: 10%">{{a.autor.username}}</td>
         	<td style="width: 60%">{{a.text}}</td>
         	<td style="width: 30%">{{a.datumPrijave.day}}.{{a.datumPrijave.month}}.{{a.datumPrijave.year}}.godine u

@@ -1,6 +1,22 @@
 
 <div ng-controller="detailedServiceCtrl" ng-init="onInit()">
+    <div class="col-md-12">
+    <h4 ><b class="text-beauty">Naziv usluge: </b></h4>
+    <input type="text" placeholder="Naziv usluge" ng-model="naziv" name="name" class="input-beauty" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
-<h class="text-beauty"> {{ usluge_text }}</h>
+    <h4 ><b class="text-beauty">Opis usluge: </b></h4>
+    <input type="text" placeholder="Opis usluge" ng-model="opis" name="name" class="input-beauty" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+    <h4 ><b class="text-beauty">Cijena usluge: </b></h4>
+    <input type="text" placeholder="Cijena usluge" ng-model="cijena" name="name" class="input-beauty" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+    <h4 ><b class="text-beauty">Opcije: </b></h4>
+    <input type="text" placeholder="Opcije" ng-model="opcije" name="name" class="input-beauty" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+    <h4 ><b class="text-beauty">Prijavljeni: </b></h4>
+    <input type="text" placeholder="Prijavljeni" ng-model="usluge_text" name="name" class="input-beauty" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+    </div>
+
 
 </div>
