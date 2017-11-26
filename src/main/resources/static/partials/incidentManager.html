@@ -22,11 +22,11 @@
 
 		<div class="col-md-12">
 		<h2 style="text-align:center;"><b>Pregled incidenata</b></h2>
-        <div class="skrolaj" ng-show="!zatvoreniKlik && !statistikaKlik" style="margin-left: 10px;">
+        <div class="skrolaj" ng-show="!zatvoreniKlik && !statistikaKlik">
 		<table class="col-12 tabela">
 		<thead>
 			<tr  class="naslov-tabele">
-				<th colspan="8" class="naziv-u-tabeli"><span class="glyphicon glyphicon-flash"> </span>Aktuelni incidenti
+				<th colspan="8" class="naziv-u-tabeli"><span class="glyphicon glyphicon-flash" id="glyphiconMargin1"> </span>   Aktuelni incidenti
 					<button ng-if="!aktuelniKlik" type="button" class="btn filter-opcija" style="float:right;" data-toggle="collapse" ng-click="prikaziAktuelne()">▼</button>
 					<button ng-if="aktuelniKlik" type="button" class="btn filter-opcija" style="float:right;" data-toggle="collapse" ng-click="sakrijAktuelne()">∆</button>
 				</th>
@@ -152,12 +152,12 @@
 		</table>
 	</div>
 
-	<div class="skrolaj" ng-show="!aktuelniKlik && !statistikaKlik"  style="margin: 0px 5px;">
+	<div class="skrolaj" ng-show="!aktuelniKlik && !statistikaKlik">
 
 		<table class="col-12 tabela">
 		<thead>
 			<tr class="naslov-tabele">
-				<th colspan="8" class="naziv-u-tabeli"><span class="glyphicon glyphicon-ok-sign"> </span>Zatvoreni incidenti
+				<th colspan="8" class="naziv-u-tabeli"><span class="glyphicon glyphicon-ok-sign" id="glyphiconMargin2"> </span>   Zatvoreni incidenti
 					<button ng-if="!zatvoreniKlik" type="button" class="btn filter-opcija" style="float:right;" data-toggle="collapse" ng-click="prikaziZatvorene()">▼</button>
 					<button ng-if="zatvoreniKlik" type="button"  class="btn filter-opcija" style="float:right;" data-toggle="collapse" ng-click="sakrijZatvorene()">∆</button>
 				</th>
@@ -194,12 +194,12 @@
 		</table>
 	</div>
 
-	<div class="skrolaj" ng-show="!aktuelniKlik && !zatvoreniKlik"  style="margin-right: 10px;">
+	<div class="skrolaj" ng-show="!aktuelniKlik && !zatvoreniKlik" >
 
 		<table class="col-12 tabela">
 		<thead>
 			<tr class="naslov-tabele">
-				<th colspan="8" class="naziv-u-tabeli"><span class="glyphicon glyphicon-tasks"> </span>Statistika
+				<th colspan="8" class="naziv-u-tabeli"><span class="glyphicon glyphicon-tasks" id="glyphiconMargin3"> </span>   Statistika
 					<button ng-if="!statistikaKlik" type="button" class="btn filter-opcija" style="float:right;" data-toggle="collapse" ng-click="prikaziStatistiku()">▼</button>
 					<button ng-if="statistikaKlik" type="button"  class="btn filter-opcija" style="float:right;" data-toggle="collapse" ng-click="sakrijStatistiku()">∆</button>
 				</th>
