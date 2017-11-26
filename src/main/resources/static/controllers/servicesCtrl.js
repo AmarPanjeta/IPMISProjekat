@@ -21,6 +21,7 @@ app.controller('servicesCtrl', function (servis, $rootScope, $log, $location, $s
     $scope.onInit = function () {
         $scope.prikaziDodaj = 0;
         $scope.usluga = {};
+        var test = false;
 
         if (localStorage.hasOwnProperty("username")) {
             $rootScope.username = localStorage.getItem("username");
@@ -145,7 +146,22 @@ app.controller('servicesCtrl', function (servis, $rootScope, $log, $location, $s
         }
 
         $scope.detaljnije = function (service) {
-            $window.alert('Potrebno implementirati prikz pojedinacnog incidenta!');
+            $http.get("http://localhost:8080/services/getuserservices?id="+$scope.user.id).then(function(response1){
+                $scope.services = response1.data.toArray();
+            })
+            for(var i = 0; i<$scope.services.length; i++){
+                console.log('object', service.id );
+                console.log('user', $scope.services[i].id);
+                if($scope.services[i].id == service.id){
+                    $scope.text = 'Niste pretplaćeni na ovu uslugu.';
+                    test= true;
+                }
+            }
+            if(!test) $scope.text = 'Pretplaćeni ste na ovu uslugu.';
+
+            console.log($scope.text);
+            $location.path('/detailed/' + $scope.text);
+
         }
 
 
