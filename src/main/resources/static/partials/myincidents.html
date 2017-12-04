@@ -1,0 +1,81 @@
+<div ng-init="prikaziMojeIncidente('mojiincidenti')">
+			<h2 style="text-align:center;"><b>Pregled incidenata</b></h2>
+			<table class="col-12 tabela">
+				<thead>
+					<tr class="naslov-tabele">
+						<th style="width:50%" colspan="2">Naziv incidenta</th>
+						<th style="width:50%" class="filter-red">
+					<div class="dropdown">Status
+	
+					  <select name="filterStatus" ng-model="filterStatus"  ng-change="filtriraj()" class="btn btn-default dropdown-toggle filter-opcija" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    <option value="Nerijesen">Nerijesen</option>
+					    <option value="Zatvoren">Zatvoren</option>
+					    <option value="Popravljen">Popravljen</option>
+					    <option value="U obradi">U obradi</option>
+					    <option value="Odbijen">Odbijen</option>
+					    <option value="Odobren">Odobren</option>
+					    <option value="Otkazan">Otkazan</option>
+					    <option value="Pogresno prijavljen">Pogresno prijavljen</option>
+					  </select>
+					
+					</div>
+
+				</th>
+					</tr>
+				</thead>
+				<tbody style="width:100%" ng-repeat="incident in incidenti" ng-switch on="isSelInc(incident)">
+					<tr ng-class="{sel:selIdx==$index}" ng-click="selectIncident(incident,$index)">
+						<td colspan="2">{{incident.title}}</td>
+						<td colspan="2">{{incident.status.status}}</td>
+					</tr>
+				
+
+					<tr ng-switch-when="true" style="background-color: white" ng-click="selectIncident(incident,$index)">
+						<td style="font-size: 15px; text-align: left" colspan="4">Opis incidenta: {{incident.description}}</td>
+					</tr>
+					<tr ng-switch-when="true" style="background-color: white" ng-click="selectIncident(incident,$index)">
+						<td style="font-size: 15px; text-align: left;" colspan="4">Incident na uslugu: {{incident.service.name}}</td>
+					</tr>
+					<tr ng-switch-when="true" style="background-color: white" ng-show="imaOdgovor" ng-click="selectIncident(incident,$index)">
+						<td style="font-size: 15px; text-align: left" colspan="4"><br>Odgovori na incident: </td>
+					</tr>
+					<tr ng-switch-when="true" style="background-color: white" ng-show="imaOdgovor" ng-click="selectIncident(incident,$index)">
+						<td style="font-size: 15px; font-weight: bold; text-align: center; border:1px solid black" colspan="1">Autor</td>
+						<td style="font-size: 15px; font-weight: bold; text-align: center; border:1px solid black" colspan="2">Odgovor</td>
+						<td style="font-size: 15px; font-weight: bold; text-align: center; border:1px solid black" colspan="1">Datum</td>
+					</tr>
+					<tr ng-switch-when="true" style="background-color: white" ng-repeat="answer in answers1" ng-click="selectIncident(incident,$index)">
+						<td style="font-size: 15px; text-align: center; border:1px solid black; width:20%" colspan="1">{{answer.autor.username}}</td>
+						<td style="font-size: 15px; text-align: center; border:1px solid black; width:70%" colspan="2">{{answer.text}}</td>
+						<td style="font-size: 15px; text-align: center; border:1px solid black; width:10%" colspan="1">{{answer.datumPrijave.day}}.{{answer.datumPrijave.month}}.{{answer.datumPrijave.year}}.godine
+							{{answer.datumPrijave.hours}}:{{answer.datumPrijave.minutes}}:{{answer.datumPrijave.seconds}} sati</td>
+						</tr>
+
+						<tr ng-switch-when="true" style="background-color: white;" ng-show="!imaOdgovor" ng-click="selectIncident(incident,$index)">
+							<td colspan="4" style="font-size: 15px; text-align: left;">Ovaj incident nema odgovora.</td>
+						</tr>
+
+
+						<tr  ng-switch-when="true" style="background-color: white; height: 30px;" ng-click="selectIncident(incident,$index)">
+							<td colspan="4" style="font-size: 15px; text-align: left;"><br>Dodaj odgovor:</td>
+						</tr>
+						<tr ng-switch-when="true" style="background-color: white; height: 50px;">
+							<td style="font-size: 15px; text-align: left;" colspan="3">
+								<input type="text" name="noviOdgovorText" ng-model="noviOdgovorText" style="width: 98%; margin-left: 2%;">
+							</td>
+							<td colspan="1">
+								<button style="float: left; margin-left: 5%;" ng-click="dodajOdgovorNaIncident(noviOdgovorText)" class="glyphicon glyphicon-plus-sign"></button>
+								<button style="float: left; margin-left: 5%;" ng-click="zatvoriIncident()" class="glyphicon glyphicon-ok"></button>
+						</td>
+
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+
+
+	
+
+
+		

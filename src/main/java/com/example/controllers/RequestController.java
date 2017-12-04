@@ -57,7 +57,7 @@ public class RequestController {
         newreq.setContactMethod(req.contactMethod);
         newreq.setReportMethod(req.reportMethod);
         if(req.title!=null) newreq.setTitle(req.title);
-        
+
         reqr.save(newreq);
     }
 
@@ -80,30 +80,30 @@ public class RequestController {
 
         reqr.delete(i);
     }
-    
+
     @RequestMapping("/getbyid/{id}")
     public Request getRequest(@PathVariable("id") long id){
     	return reqr.findOne(id);
     }
-    
+
     @RequestMapping("/active")
     public List<Request> getActiveRequests(){
     	return reqr.getActiveRequests();
     }
-    
+
     @RequestMapping("/usersactive")
     public List<Request> getActiveRequestsByUser(@RequestParam("userid") long userid)
     {
     	return (List<Request>) reqr.getActiveRequestsByUser(userid);
     }
-    
+
     @RequestMapping("/closed")
     public List<Request> getClosedRequests(){
     	return reqr.getClosedRequests();
     }
     @RequestMapping("/add")
     public void add(@RequestBody Request rb){
-    	
+
     	Request r = new Request();
     	Status s=statusr.findByStatus("Nerijesen");
     	r.setTitle(rb.getTitle());
@@ -137,16 +137,16 @@ public class RequestController {
     	incidentr.save(realIncident);
     	falseRequest.setStatus(statusr.findByStatus("Pogresno prijavljen"));
     	reqr.save(falseRequest);
-    	
+
     }
-    
+
     @RequestMapping("/reject/{id}")
     public void reject(@PathVariable("id") long id){
     	Request request = reqr.findById(id);
     	request.setStatus(statusr.findByStatus("Odbijen"));
     	reqr.save(request);
     }
-    
+
     @RequestMapping("/partialupdate/{id}")
     public void partialUpdate(@PathVariable("id") long id,@RequestBody Request r){
     	Request request=reqr.findById(id);
@@ -154,7 +154,7 @@ public class RequestController {
     	request.setStatus(statusr.findByStatus("U obradi"));
     	request.setDepartment(r.getDepartment());
     	reqr.save(request);
-    	
+
     }
 
 	@RequestMapping("/yearlystatistics")
@@ -177,7 +177,7 @@ public class RequestController {
 		body.perWorker=(double)body.closed/numberOfWorkers;
 		return body;
 	}
-	
+
 	@RequestMapping("/monthlystatistics")
 	public StatisticsResponse yearlyStatistics(@RequestParam("year") int year,@RequestParam("month") int month){
 		StatisticsResponse body=new StatisticsResponse();
@@ -189,7 +189,7 @@ public class RequestController {
 		body.perWorker=(double)body.closed/numberOfWorkers;
 		return body;
 	}
-	
+
 	@RequestMapping("/yearlyall")
 	public int yearly(@RequestParam("year") int year){
 		Date d1=new Date();
@@ -200,7 +200,7 @@ public class RequestController {
 		d1.setMinutes(2);
 		d1.setSeconds(1);
 		System.out.println(d1);
-		
+
 		Date d2=new Date();
 		d2.setYear(year-1900);
 		d2.setDate(5);
@@ -210,9 +210,9 @@ public class RequestController {
 		d2.setMinutes(58);
 		d2.setSeconds(55);
 		System.out.println(d2);
-		
+
 		return reqr.countRequestsByDate(d1, d2);
-		
+
 	}
 	@RequestMapping("/falsestatsyear")
 	public int falseStats(@RequestParam("year") int year){
@@ -225,7 +225,7 @@ public class RequestController {
 		d1.setMinutes(2);
 		d1.setSeconds(1);
 		System.out.println(d1);
-		
+
 		Date d2=new Date();
 		d2.setYear(year-1900);
 		d2.setDate(5);
@@ -235,11 +235,11 @@ public class RequestController {
 		d2.setMinutes(58);
 		d2.setSeconds(55);
 		System.out.println(d2);
-		
-		
+
+
 		return reqr.falsePositive(d1, d2);
 	}
-	
+
 	@RequestMapping("/falsestatsmonth")
 	public int falseStats(@RequestParam("year") int year,@RequestParam("month") int month){
 		int niz[]={31,28,31,30,31,30,31,31,30,31,30,31};
@@ -251,7 +251,7 @@ public class RequestController {
 		d1.setMinutes(2);
 		d1.setSeconds(1);
 		System.out.println(d1);
-		
+
 		Date d2=new Date();
 		d2.setYear(year-1900);
 		d2.setDate(5);
@@ -261,11 +261,11 @@ public class RequestController {
 		d2.setSeconds(55);
 		d2.setDate(niz[month-1]);
 		System.out.println(d2);
-		
+
 		return reqr.falsePositive(d1, d2);
 	}
-	
-	
+
+
 	@RequestMapping("/monthlyall")
 	public int monthly(@RequestParam("year") int year,@RequestParam("month") int month){
 		int niz[]={31,28,31,30,31,30,31,31,30,31,30,31};
@@ -277,7 +277,7 @@ public class RequestController {
 		d1.setMinutes(2);
 		d1.setSeconds(1);
 		System.out.println(d1);
-		
+
 		Date d2=new Date();
 		d2.setYear(year-1900);
 		d2.setDate(5);
@@ -287,12 +287,12 @@ public class RequestController {
 		d2.setSeconds(55);
 		d2.setDate(niz[month-1]);
 		System.out.println(d2);
-		
+
 		return reqr.countRequestsByDate(d1, d2);
-		
+
 	}
-	
-	
+
+
 	@RequestMapping("/yearlyclosed")
 	public int yearlyClosed(@RequestParam("year") int year){
 		Date d1=new Date();
@@ -303,7 +303,7 @@ public class RequestController {
 		d1.setMinutes(2);
 		d1.setSeconds(1);
 		System.out.println(d1);
-		
+
 		Date d2=new Date();
 		d2.setYear(year-1900);
 		d2.setDate(5);
@@ -313,11 +313,11 @@ public class RequestController {
 		d2.setMinutes(58);
 		d2.setSeconds(55);
 		System.out.println(d2);
-		
+
 		return reqr.countClosedRequestsByDate(d1, d2);
-		
+
 	}
-	
+
 	@RequestMapping("/monthlyclosed")
 	public int monthlyclosed(@RequestParam("year") int year,@RequestParam("month") int month){
 		int niz[]={31,28,31,30,31,30,31,31,30,31,30,31};
@@ -329,7 +329,7 @@ public class RequestController {
 		d1.setMinutes(2);
 		d1.setSeconds(1);
 		System.out.println(d1);
-		
+
 		Date d2=new Date();
 		d2.setYear(year-1900);
 		d2.setDate(5);
@@ -339,11 +339,11 @@ public class RequestController {
 		d2.setSeconds(55);
 		d2.setDate(niz[month-1]);
 		System.out.println(d2);
-		
+
 		return reqr.countClosedRequestsByDate(d1, d2);
-		
+
 	}
-	
+
 	@RequestMapping("/yearlyactive")
 	public int yearlyActive(@RequestParam("year") int year){
 		Date d1=new Date();
@@ -354,7 +354,7 @@ public class RequestController {
 		d1.setMinutes(2);
 		d1.setSeconds(1);
 		System.out.println(d1);
-		
+
 		Date d2=new Date();
 		d2.setYear(year-1900);
 		d2.setDate(5);
@@ -364,11 +364,11 @@ public class RequestController {
 		d2.setMinutes(58);
 		d2.setSeconds(55);
 		System.out.println(d2);
-		
+
 		return reqr.countActiveRequestsByDate(d1, d2);
-		
+
 	}
-	
+
 	@RequestMapping("/monthlyactive")
 	public int monthlyactive(@RequestParam("year") int year,@RequestParam("month") int month){
 		int niz[]={31,28,31,30,31,30,31,31,30,31,30,31};
@@ -380,7 +380,7 @@ public class RequestController {
 		d1.setMinutes(2);
 		d1.setSeconds(1);
 		System.out.println(d1);
-		
+
 		Date d2=new Date();
 		d2.setYear(year-1900);
 		d2.setDate(5);
@@ -390,25 +390,25 @@ public class RequestController {
 		d2.setSeconds(55);
 		d2.setDate(niz[month-1]);
 		System.out.println(d2);
-		
+
 		return reqr.countActiveRequestsByDate(d1, d2);
-		
+
 	}
-	
+
 	@RequestMapping("/reportrequest")
 	public void reportRequest(@RequestBody UserRequestBody rb) throws ServletException{
 		RegisteredUser user=userr.findById(rb.userId);
 		Status status=statusr.findByStatus("Nerijesen");
 		Department d=departmentr.findByName("Odjel za podrsku korisnicima");
-		
+
 		if(rb.description==null || rb.description.equals("")){
 			throw new ServletException("Nedostaje opis zahtjeva");
 		}
-		
+
 		if(rb.title==null || rb.title.equals("")){
 			throw new ServletException("Nedostaje naziv zahtjeva");
 		}
-		
+
 		Request r = new Request();
 		r.setTitle(rb.title);
 		r.setDescription(rb.description);
@@ -419,64 +419,64 @@ public class RequestController {
 		r.setReportMethod(3);
 		r.setDepartment(d);
 		r.setUrgency(0);
-		
+
 		reqr.save(r);
 	}
-    
+
     @RequestMapping("/all")
     public List<Request> all(){
     	return (List<Request>)reqr.findAll();
     }
-    
+
     @RequestMapping("/filter")
     public List<Request> filter(@RequestParam("status") String status,@RequestParam("odjel") String odjel, @RequestParam("prioritet") String prioritet, @RequestParam("datum") String datum) {
-    	
+
     	if(status.equalsIgnoreCase("Status")) status="%";
     	if(odjel.equalsIgnoreCase("Odjel")) odjel="%";
-    	
+
     	if(prioritet.equalsIgnoreCase("Prioritet")) {
-    		
+
     		if(datum.equalsIgnoreCase("Datum prijave")) {
        		 return (List<Request>)reqr.filterByStatusDepartment(status, odjel);
 	       	}
 	       	else {
-	       		
+
 	       		if(datum.equalsIgnoreCase("Od najstarijeg ka najmladjem")) {
-	           		
+
 	           		return (List<Request>)reqr.filterByStatusDateAscDepartment(status, odjel);
 	           	}
 	       		else if(datum.equalsIgnoreCase("Od najmladjeg ka najstarijem")) {
-	           		
+
 	           		return (List<Request>)reqr.filterByStatusDateDescDepartment(status, odjel);
 	           	}
-	           	
+
 	       	}
-    		
+
     	}
     	else {
-    		
+
     		int kodPrioriteta=Integer.parseInt(prioritet);
-    		
+
     		if(datum.equalsIgnoreCase("Datum prijave")) {
           		 return (List<Request>)reqr.filterWithPriority(status, odjel, kodPrioriteta);
    	       	}
    	       	else {
-   	       		
+
    	       		if(datum.equalsIgnoreCase("Od najstarijeg ka najmladjem")) {
-   	           		
+
    	           		return (List<Request>)reqr.filterWithPriorityAsc(status, odjel, kodPrioriteta);
    	           	}
    	       		else if(datum.equalsIgnoreCase("Od najmladjeg ka najstarijem")) {
-   	           		
+
    	           		return (List<Request>)reqr.filterWithPriorityDesc(status, odjel, kodPrioriteta);
    	           	}
-   	           	
+
    	       	}
-    		
+
     	}
-    
+
     	return new ArrayList<Request>();
-    
+
     }
 
     private static class ReqBody{
@@ -485,14 +485,14 @@ public class RequestController {
         public int contactMethod;
         public String title;
     }
-    
+
     @RequestMapping("/close/{id}")
     public void close(@PathVariable("id") long id){
     	Request r = reqr.findById(id);
     	r.setStatus(statusr.findByStatus("Zatvoren"));
-    	reqr.save(r);    	
+    	reqr.save(r);
     }
-    
+
 	@SuppressWarnings("unused")
 	public static class StatisticsResponse{
 		public int active;
@@ -504,7 +504,7 @@ public class RequestController {
 		public int falsePositive;
 		public double perWorker;
 	}
-	
+
 	@SuppressWarnings("unused")
 	private static class UserRequestBody{
 		public long userId;
@@ -513,4 +513,3 @@ public class RequestController {
 		public int contactMethod;
 	}
 }
-

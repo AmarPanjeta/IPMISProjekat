@@ -99,32 +99,16 @@ div[ng-view]{
 
 
 .userTab{
-	background:transparent;
-	width:90%;
-	padding:5%;
-	border:2px solid #3f869b;
+ 
+    background: #b3daff;
+    padding: 20px; 
+    width:460px;
+    height: 330px; 
+    font-family:Arial;
+    position:center;
+  
 }
 
-
-.userTab > thead, .userTab > tbody{
-	background-color: transparent;
-	border:2px solid #3f869b;
-	font-size: 20px;
-}
-
-.userTab > tbody > tr, .userTab > tbody > tr > td, .userTab > thead > tr > td, .userTab > thead > tr > th, .userTab > thead > tr {
-	background-color: transparent;
-	border:none;
-	font-size: 20px;
-}
-
-.userTab > tbody > tr > td > button{
-	width:50px;
-	height: 20px;
-	float: right;
-	padding: 5px;
-	font-size: 10px;
-}
 
 #userView{
 	margin-top: 5%;
@@ -175,4 +159,9 @@ div[ng-view]{
 #try:hover{
 	width: 200px;
 
+}
+.mojProfil{
+	font-size:25px;
+	color:#3f869b;
+	margin-top:7%
 }
