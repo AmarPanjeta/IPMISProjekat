@@ -22,7 +22,13 @@ app.controller('myRequestsCtrl', function($scope, $http, $rootScope, $log, $loca
 	$scope.filterStatus="Status";
 	$scope.filterOdjel="Odjel";
 	$scope.filterDatum="Datum prijave";
+	
+	
+	$scope.odustani=function(){
 
+		location.reload();
+	}
+	
 
 	$scope.selectRequest=function(zah,idx){
 		if($scope.selectedRequest!=null){
@@ -124,7 +130,10 @@ app.controller('myRequestsCtrl', function($scope, $http, $rootScope, $log, $loca
 
 	$scope.prikaziDodavanjeZahtjevaZaUslugom=function()
 	{
-		if($scope.prikaz!='prijavaUsluge') $scope.prikaz='prijavaUsluge';
+		if($scope.prikaz!='prijavaUsluge')
+			{
+			$scope.prikaz='prijavaUsluge';
+			}
 
 	}
 
@@ -178,5 +187,8 @@ app.controller('myRequestsCtrl', function($scope, $http, $rootScope, $log, $loca
 				}
 		})
     }
+    
+
+
 
 });
