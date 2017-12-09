@@ -2,6 +2,8 @@ package com.example.controllers;
 
 import java.util.List;
 
+import org.apache.catalina.User;
+import org.apache.http.protocol.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +37,6 @@ public class UserServiceController {
 	{
 		RegisteredUser ru=ur.findById(userid);
 		Service s=sr.findById(serviceid);
-		
 		if(ru!=null && s!=null)
 		{
 	        List<UserService> lista = usr.getByUserAndService(userid, serviceid);
@@ -50,5 +51,29 @@ public class UserServiceController {
 		}
 		
 	}
-			
+
+	@RequestMapping(value="{userid}/prijaviuslugu/{serviceid}")
+	public void AddServiceByUser(@PathVariable("userid") long userid, @PathVariable("serviceid") long serviceid)
+	{
+		RegisteredUser ru=ur.findById(userid);
+		Service s=sr.findById(serviceid);
+		Iterable<UserService> list = usr.findAll();
+		long biggest = 0;
+		for (UserService u: list) {
+			if(u.getId() > biggest) biggest = u.getId();
+		}
+
+		if(ru!=null && s!=null)
+		{
+			UserService us = new UserService();
+			us.setUser(ru);
+			us.setService(s);
+			us.setId(biggest+1);
+			usr.save(us);
+
+		}
+
+	}
+
+
 }

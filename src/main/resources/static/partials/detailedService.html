@@ -15,7 +15,10 @@
 
     <h4 ><b class="text-beauty">Prijavljeni: </b></h4>
     <input type="text" placeholder="Prijavljeni" ng-model="usluge_text" name="name" class="input-beauty" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
-
+        <button type="submit" class="btn btn-primary dugme-prijava"
+                                        ng-click="Promijeni(usluge_text, id_service)">
+            Promijenite pretplatu
+        </button>
     </div>
 
 

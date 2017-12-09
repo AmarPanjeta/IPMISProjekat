@@ -2,6 +2,7 @@ package com.example.controllers;
 
 import java.util.List;
 
+import com.example.repositories.IncidentAnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,9 @@ import com.example.repositories.ServiceRepository;
 public class ServiceController {
 @Autowired
 ServiceRepository sr;
+
+@Autowired
+IncidentAnswerRepository iar;
 
 @RequestMapping("/getuserservices")
 List<Service> getUserServices(@RequestParam("id") long id){

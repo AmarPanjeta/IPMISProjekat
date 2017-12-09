@@ -147,19 +147,19 @@ app.controller('servicesCtrl', function (servis, $rootScope, $log, $location, $s
 
         $scope.detaljnije = function (service) {
             $http.get("http://localhost:8080/services/getuserservices?id="+$scope.user.id).then(function(response1){
-                $scope.services = response1.data.toArray();
-            })
-            for(var i = 0; i<$scope.services.length; i++){
-                console.log('object', service.id );
-                console.log('user', $scope.services[i].id);
-                if($scope.services[i].id == service.id){
-                    $scope.text = 'Pretplaćeni ste na ovu uslugu.';
-                    test= true;
+                $scope.services = response1.data;
+                for(var i = 0; i<$scope.services.length; i++){
+                    console.log('object', service.id );
+                    console.log('user', $scope.services[i].id);
+                    if($scope.services[i].id == service.id){
+                        $scope.text = 'Pretplaćeni ste na ovu uslugu.';
+                        test= true;
+                    }
                 }
-            }
-            if(!test) $scope.text = 'Niste pretplaćeni na ovu uslugu.';
+                if(!test) $scope.text = 'Niste pretplaćeni na ovu uslugu.';
+                $location.path('/detailed/'+ $scope.text+ '/'+ service.name+ '/'+ service.description + '/'+ service.price + '/'+ service.available + '/' + service.id);
 
-            $location.path('/detailed/'+ $scope.text+ '/'+ service.name+ '/'+ service.description + '/'+ service.price + '/'+ service.available);
+            });
 
         }
 

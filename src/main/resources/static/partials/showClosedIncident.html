@@ -2,7 +2,7 @@
 
 
 
-	<div class="row info">
+	<div class="col-md-12 col-lg-12 col-sm-12 div-container-beauty">
 
 		<div class="col-md-12">
 			<h2 style="text-decoration: underline;"><b>Prikaz zatvorenog incidenta</b></h2>
@@ -17,43 +17,71 @@
 
 
 			<h3 style="text-decoration: underline;"><b>Informacije o korisniku:</b></h2>
-				<h4><b>Korisničko ime:</b> {{incident.user.username}}</h4>
-				<h4><b>Ime:</b> {{incident.user.name}}</h4>
-				<h4><b>Prezime:</b> {{incident.user.surname}}</h4>
-				<h4><b>Adresa:</b> {{incident.user.address}}</h4>
-				<h4><b>Email:</b> {{incident.user.email}}</h4>
-				<h4><b>Kontakt telefon:</b> {{incident.user.telephone}}</h4>
+
+				<h4><b class="text-beauty">Korisnicko ime korisnika:</b></h4>
+				<input class="input-beauty"  type="text" placeholder="Ime" ng-model="incident.user.username" name="name"  class="input-beauty"
+					   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+				<h4><b class="text-beauty">Ime korisnika:</b></h4>
+				<input  class="input-beauty" type="text" placeholder="Ime" ng-model="incident.user.name" name="name"  class="input-beauty"
+						ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+				<h4 ><b class="text-beauty">Prezime korisnika:</b></h4>
+				<input type="text" placeholder="Prezime" ng-model="incident.user.surname" name="name"  class="input-beauty"
+					   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+				<h4><b class="text-beauty">Adresa korisnika:</b> </h4>
+				<input type="text" placeholder="Adresa korisnika" ng-model="incident.user.address" name="name"  class="input-beauty"
+					   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+				<h4><b class="text-beauty">Email korisnika:</b> </h4>
+				<input type="text" placeholder="Email" ng-model="incident.user.email" name="name"  class="input-beauty"
+					   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+				<h4><b class="text-beauty">Kontakt telefon:</b></h4>
+				<input type="text" placeholder="Kontakt telefon" ng-model="incident.user.telephone" name="name"  class="input-beauty"
+					   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
 
 				<h3 style="text-decoration: underline;"><b>Incident prijavio:</b></h2>
-					<h4><b>Korisničko ime:</b> {{incident.evidenterUser.username}}</h4>
+
+					<h4><b class="text-beauty">Korisnicko ime:</b></h4>
+					<input class="input-beauty"  type="text" placeholder="Ime" ng-model="incident.evidenterUser.username" name="name"  class="input-beauty"
+						   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
 					<h3 style="text-decoration: underline;"><b>Informacije o incidentu:</b></h2>
 
+						<h4><b class="text-beauty">Način prijave:</b></h4>
+						<input class="input-beauty"  type="text" placeholder="Ime" ng-model="methodR" name="name"  class="input-beauty"
+							   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
-						<h4><b>Način prijave:</b>{{methodR}}</h4>
+						<h4 ><b class="text-beauty">Usluga za koju se prijavljuje incident:</b></h4>
+						<input type="text" placeholder="Usluga za koju je prijavljen incident" ng-model="incident.service.name" name="name"  class="input-beauty" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
-						<h4 ><b>Usluga za koju je prijavljen incident:</b>{{incident.service.name}}</h4>
-
-
-						<h4 ><b>Naziv incidenta:</b> {{incident.title}}</h4>
-
-
-						<h4><b>Opis incidenta: </b>{{incident.description}} </h4>
-
-						<h4><b>Prioritet: </b>{{incident.priority}}</h4>
-
-						<h4><b>Status:</b>{{incident.status.status}}</h4>
+						<h4 ><b class="text-beauty">Naziv incidenta:</b></h4>
+						<input type="text" placeholder="Usluga za koju je prijavljen incident" ng-model="incident.title" name="name"  class="input-beauty" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
 
 
+						<h4 ><b class="text-beauty">Opis incidenta:</b></h4>
+						<input type="text" placeholder="Usluga za koju je prijavljen incident" ng-model="incident.description" name="name"  class="input-beauty" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
 
-						<h4><b>Odjel za rješavanje:</b>{{incident.department.name}}</h4>
+
+						<h4 ><b class="text-beauty">Prioritet:</b></h4>
+						<input type="text" placeholder="Usluga za koju je prijavljen incident" ng-model="incident.priority" name="name"  class="input-beauty" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+						<h4 ><b class="text-beauty">Status:</b></h4>
+						<input type="text" placeholder="Usluga za koju je prijavljen incident" ng-model="incident.status.status" name="name"  class="input-beauty" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
 
-						<h4><b>Način odgovaranja:</b>{{methodC}}</h4>
+						<h4 ><b class="text-beauty">Odjel za rješavanje:</b></h4>
+						<input type="text" placeholder="Usluga za koju je prijavljen incident" ng-model="incident.department.name" name="name"  class="input-beauty" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
-						<h4><b>Datum i vrijeme zatvaranja:</b>{{incident.fixedtime.day}}.{{incident.fixedtime.month}}.{{incident.fixedtime.year}}.godine u {{incident.fixedtime.hours}}.{{incident.fixedtime.minutes}}.{{incident.fixedtime.seconds}} sati
+						<h4 ><b class="text-beauty"> Način odgovaranja:</b></h4>
+						<input type="text" placeholder="Usluga za koju je prijavljen incident" ng-model="methodC" name="name"  class="input-beauty" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+						<h4><b>Datum i vrijeme zatvaranja:  </b>{{incident.fixedtime.day}}.{{incident.fixedtime.month}}.{{incident.fixedtime.year}}.godine u {{incident.fixedtime.hours}}.{{incident.fixedtime.minutes}}.{{incident.fixedtime.seconds}} sati
 						</h4>
 
 

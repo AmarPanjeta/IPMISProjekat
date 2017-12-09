@@ -11,7 +11,7 @@ app.config(function($routeProvider){
   }).when('/services/:id',{
     templateUrl:"partials/serviceViewPage.html",
     controller:"serviceViewCtrl"
-  }).when('/detailed/:text/:name/:about/:price/:options',{
+  }).when('/detailed/:text/:name/:about/:price/:options/:service',{
       templateUrl:"partials/detailedService.html",
       controller:"detailedServiceCtrl"
   }).when('/requests/:id',{
