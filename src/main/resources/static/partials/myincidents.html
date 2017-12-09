@@ -1,10 +1,11 @@
-<div ng-init="prikaziMojeIncidente('mojiincidenti')">
+<div class="container row" ng-init="prikaziMojeIncidente('mojiincidenti')">
+ <div class="col-md-12 col-lg-12 col-sm-12 form">
 			<h2 style="text-align:center;"><b>Pregled incidenata</b></h2>
 			<table class="col-12 tabela">
 				<thead>
 					<tr class="naslov-tabele">
-						<th style="width:50%" colspan="2">Naziv incidenta</th>
-						<th style="width:50%" class="filter-red">
+						<th style="width:40%" colspan="2">Naziv incidenta</th>
+						<th style="width:40%" class="filter-red">
 					<div class="dropdown">Status
 	
 					  <select name="filterStatus" ng-model="filterStatus"  ng-change="filtriraj()" class="btn btn-default dropdown-toggle filter-opcija" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -21,15 +22,17 @@
 					</div>
 
 				</th>
+				<th style="width:20%">Detalji i odgovori</th>
 					</tr>
 				</thead>
 				<tbody style="width:100%" ng-repeat="incident in incidenti" ng-switch on="isSelInc(incident)">
 					<tr ng-class="{sel:selIdx==$index}" ng-click="selectIncident(incident,$index)">
 						<td colspan="2">{{incident.title}}</td>
-						<td colspan="2">{{incident.status.status}}</td>
+						<td colspan="1">{{incident.status.status}}</td>
+						<td><span ng-click="selectRequest(zahtjev,$index)" class="glyphicon glyphicon-plus-sign" style="color:#3f869b;"></span></td>
 					</tr>
 				
-
+					<tr ng-switch-when="true" style="background-color:#3f869b; height:2px"><td colspan="5"></td></tr> 
 					<tr ng-switch-when="true" style="background-color: white" ng-click="selectIncident(incident,$index)">
 						<td style="font-size: 15px; text-align: left" colspan="4">Opis incidenta: {{incident.description}}</td>
 					</tr>
@@ -59,23 +62,103 @@
 						<tr  ng-switch-when="true" style="background-color: white; height: 30px;" ng-click="selectIncident(incident,$index)">
 							<td colspan="4" style="font-size: 15px; text-align: left;"><br>Dodaj odgovor:</td>
 						</tr>
-						<tr ng-switch-when="true" style="background-color: white; height: 50px;">
-							<td style="font-size: 15px; text-align: left;" colspan="3">
-								<input type="text" name="noviOdgovorText" ng-model="noviOdgovorText" style="width: 98%; margin-left: 2%;">
-							</td>
-							<td colspan="1">
-								<button style="float: left; margin-left: 5%;" ng-click="dodajOdgovorNaIncident(noviOdgovorText)" class="glyphicon glyphicon-plus-sign"></button>
-								<button style="float: left; margin-left: 5%;" ng-click="zatvoriIncident()" class="glyphicon glyphicon-ok"></button>
-						</td>
+						
+						<tr ng-switch-when="true" style="background-color: white; height: 48px;">
+               <td style="font-size: 15px; vertical-align:bottom; text-align: left;" colspan="3"> <br>
+                  <input type="text" name="noviOdgovorText" ng-model="noviOdgovorText" style="width: 98%; vertical-align:bottom; margin-left: 1%; margin-right:1%">
+               </td>
+               <td  class="dugme-prijava" style="height:100%; margin-bottom:3%; width: 100%;" colspan="1"><button><span ng-click="dodajOdgovorNaIncident(noviOdgovorText)"" ></span>Dodaj odgovor</button>
+               </td>
+            </tr>
+            <tr ng-switch-when="true" style="background-color: white; height: 50px;">
+               <td colspan="3"></td>
+               <td style="valign:middle;" colspan="1"><br>
+                  <button class="btn btn-danger dugme-prijava" style="background: #bf5230;"><span ng-click="zatvoriIncident()" ></span>Zatvori zahtjev</button><br><br>
+               </td>
+               </tr>
+               <tr ng-switch-when="true" style="background-color:#3f869b; height:2px"><td colspan="5"></td></tr>
+               
+						
 
-						</tr>
 					</tbody>
 
 				</table>
-			</div>
+			</div></div>
 
 
-	
+
+<style>
+   @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+   .form {
+   background: #FFFFFF;
+   padding: 45px;
+   text-align: left;
+   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+   }
+   .form input:not([type=radio]) {
+   font-family: "Roboto", sans-serif;
+   outline: 0;
+   background: #f2f2f2;
+   width: 100%;
+   border: 0;
+   margin: 0 0 15px;
+   padding: 15px;
+   box-sizing: border-box;
+   font-size: 14px;
+   }
+   .form button:hover, .form button:active, .form button:focus {
+   background: #3f869b;
+   }
+   .form button {
+   font-family: "Roboto", sans-serif;
+   text-transform: uppercase;
+   outline: 0;
+   background: #3f869b;
+   width: 100%;
+   border: 0;
+   padding: 15px;
+   color: #FFFFFF;
+   font-size: 14px;
+   -webkit-transition: all 0.3 ease;
+   transition: all 0.3 ease;
+   cursor: pointer;
+   }
+   .form .message a {
+   color: #3f869b;
+   text-decoration: none;
+   }
+   .container:before, .container:after {
+   content: "";
+   display: block;
+   clear: both;
+   }
+   .container .info h1 {
+   margin: 0 0 15px;
+   padding: 0;
+   font-size: 36px;
+   font-weight: 300;
+   color: #1a1a1a;
+   }
+   .container .info span {
+   color: #4d4d4d;
+   font-size: 12px;
+   }
+   .container .info span a {
+   color: #000000;
+   text-decoration: none;
+   }
+   .container .info span .fa {
+   color: #EF3B3A;
+   }
+   .container {
+   width: 100%;
+   }
+   body {
+   font-family: "Roboto", sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   }
+</style>	
 
 
 		

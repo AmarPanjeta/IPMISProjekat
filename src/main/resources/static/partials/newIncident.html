@@ -1,211 +1,81 @@
-<div class="container row">
+<div ng-init="prikaziMojeIncidente('mojiincidenti')">
+			<h2 style="text-align:center;"><b>Pregled incidenata</b></h2>
+			<table class="col-12 tabela">
+				<thead>
+					<tr class="naslov-tabele">
+						<th style="width:50%" colspan="2">Naziv incidenta</th>
+						<th style="width:50%" class="filter-red">
+					<div class="dropdown">Status
+	
+					  <select name="filterStatus" ng-model="filterStatus"  ng-change="filtriraj()" class="btn btn-default dropdown-toggle filter-opcija" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    <option value="Nerijesen">Nerijesen</option>
+					    <option value="Zatvoren">Zatvoren</option>
+					    <option value="Popravljen">Popravljen</option>
+					    <option value="U obradi">U obradi</option>
+					    <option value="Odbijen">Odbijen</option>
+					    <option value="Odobren">Odobren</option>
+					    <option value="Otkazan">Otkazan</option>
+					    <option value="Pogresno prijavljen">Pogresno prijavljen</option>
+					  </select>
+					
+					</div>
 
-    <div class="col-md-12 col-lg-12 col-sm-12 form">
-        <h2 style="text-decoration: underline;"><b>Prijava incidenta od strane uposlenika:</b></h2>
+				</th>
+					</tr>
+				</thead>
+				<tbody style="width:100%" ng-repeat="incident in incidenti" ng-switch on="isSelInc(incident)">
+					<tr ng-class="{sel:selIdx==$index}" ng-click="selectIncident(incident,$index)">
+						<td colspan="2">{{incident.title}}</td>
+						<td colspan="2">{{incident.status.status}}</td>
+					</tr>
+				
 
+					<tr ng-switch-when="true" style="background-color: white" ng-click="selectIncident(incident,$index)">
+						<td style="font-size: 15px; text-align: left" colspan="4">Opis incidenta: {{incident.description}}</td>
+					</tr>
+					<tr ng-switch-when="true" style="background-color: white" ng-click="selectIncident(incident,$index)">
+						<td style="font-size: 15px; text-align: left;" colspan="4">Incident na uslugu: {{incident.service.name}}</td>
+					</tr>
+					<tr ng-switch-when="true" style="background-color: white" ng-show="imaOdgovor" ng-click="selectIncident(incident,$index)">
+						<td style="font-size: 15px; text-align: left" colspan="4"><br>Odgovori na incident: </td>
+					</tr>
+					<tr ng-switch-when="true" style="background-color: white" ng-show="imaOdgovor" ng-click="selectIncident(incident,$index)">
+						<td style="font-size: 15px; font-weight: bold; text-align: center; border:1px solid black" colspan="1">Autor</td>
+						<td style="font-size: 15px; font-weight: bold; text-align: center; border:1px solid black" colspan="2">Odgovor</td>
+						<td style="font-size: 15px; font-weight: bold; text-align: center; border:1px solid black" colspan="1">Datum</td>
+					</tr>
+					<tr ng-switch-when="true" style="background-color: white" ng-repeat="answer in answers1" ng-click="selectIncident(incident,$index)">
+						<td style="font-size: 15px; text-align: center; border:1px solid black; width:20%" colspan="1">{{answer.autor.username}}</td>
+						<td style="font-size: 15px; text-align: center; border:1px solid black; width:70%" colspan="2">{{answer.text}}</td>
+						<td style="font-size: 15px; text-align: center; border:1px solid black; width:10%" colspan="1">{{answer.datumPrijave.day}}.{{answer.datumPrijave.month}}.{{answer.datumPrijave.year}}.godine
+							{{answer.datumPrijave.hours}}:{{answer.datumPrijave.minutes}}:{{answer.datumPrijave.seconds}} sati</td>
+						</tr>
 
-        <!-- automatski nerijesen
-            <h4 ng-model="incident.status"><b>Status incidenta:</b> </h4>
-            <input type="text" placeholder="Status incidenta:" ng-model="user.name" name="name" class="username"
-                           ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
-        -->
-
-        <h4><b>Prijavio:</b></h4>
-        <input type="text" placeholder="Korisnicko ime" ng-model="user.username" name="name" class="username"
-               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" ng-change="ispuni(user.username)" required/>
-
-        <h4><b>Ime korisnika:</b></h4>
-        <input type="text" placeholder="Ime" ng-model="user.name" name="name" class="username"
-               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
-
-        <h4><b>Prezime korisnika:</b></h4>
-        <input type="text" placeholder="Prezime" ng-model="user.surname" name="name" class="username"
-               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
-
-        <h4><b>Adresa korisnika:</b></h4>
-        <input type="text" placeholder="Adresa korisnika" ng-model="user.address" name="name" class="username"
-               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
-
-        <h4><b>Email korisnika:</b></h4>
-        <input type="text" placeholder="Email" ng-model="user.email" name="name" class="username"
-               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
-
-        <h4><b>Kontakt telefon:</b></h4>
-        <input type="text" placeholder="Kontakt telefon" ng-model="user.telephone" name="name" class="username"
-               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
-
-
-        <!--sta ako nije pogledao mail na vrijeme?
-                    <h4 ng-model="incident.created"><b>Datum prijave:</b> </h4>
-                    <input type="text" placeholder="Datum prijave" ng-model="user.name" name="name" class="username"
-                                   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
-        -->
-
-
-        <h4><b>Način prijave:</b></h4>
-        <label class="radio-inline" for="reportMethod-1">
-            <input type="radio" ng-model="incident.reportMethod" name="report_method" id="reportMethod-1" value="1"
-                   checked="checked">
-            Telefon
-        </label>
-        <label class="radio-inline" for="reportMethod-2">
-            <input type="radio" ng-model="incident.reportMethod" name="report_method" id="reportMethod-2" value="2">
-            E-mail
-        </label>
-
-        <h4><b>Usluga za koju se prijavljuje incident:</b></h4>
-        <select id="incident_service" class="form-control" ng-model="incident.service"
-                ng-options="x.name for x in services">
-        </select>
+						<tr ng-switch-when="true" style="background-color: white;" ng-show="!imaOdgovor" ng-click="selectIncident(incident,$index)">
+							<td colspan="4" style="font-size: 15px; text-align: left;">Ovaj incident nema odgovora.</td>
+						</tr>
 
 
-        <h4><b>Naziv incidenta:</b></h4>
-        <input type="text" placeholder="Opis incidenta" ng-model="incident.title" name="name" class="username"
-               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
+						<tr  ng-switch-when="true" style="background-color: white; height: 30px;" ng-click="selectIncident(incident,$index)">
+							<td colspan="4" style="font-size: 15px; text-align: left;"><br>Dodaj odgovor:</td>
+						</tr>
+						<tr ng-switch-when="true" style="background-color: white; height: 50px;">
+							<td style="font-size: 15px; text-align: left;" colspan="3">
+								<input type="text" name="noviOdgovorText" ng-model="noviOdgovorText" style="width: 98%; margin-left: 2%;">
+							</td>
+							<td colspan="1">
+								<button style="float: left; margin-left: 5%;" ng-click="dodajOdgovorNaIncident(noviOdgovorText)" class="glyphicon glyphicon-plus-sign"></button>
+								<button style="float: left; margin-left: 5%;" ng-click="zatvoriIncident()" class="glyphicon glyphicon-ok"></button>
+						</td>
 
-        <h4><b>Opis incidenta:</b></h4>
-        <input type="text" placeholder="Opis poduzetih incidenta" ng-model="incident.description" name="name"
-               class="username"
-               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
+						</tr>
+					</tbody>
 
-        <h4><b>Hitnost:</b></h4>
-        <select id="incident_urgency" class="form-control" ng-model="incidentUrgency" ng-options="x for x in urgency">
-        </select>
-
-
-        <h4><b>Uticaj:</b></h4>
-        <select id="incident_influence" class="form-control" ng-model="incidentInfluence"
-                ng-options="x for x in influence">
-        </select>
-
-
-        <h4><b>Odjel za rješavanje:</b></h4>
-        <div class="ui-select">
-            <select id="incident_influence" class="form-control" ng-model="incident.department"
-                    ng-options="x.name for x in departments">
-
-            </select>
-        </div>
+				</table>
+			</div>
 
 
-        <!--	<h4 ng-model="incident.incident"><b>Povezani incident:</b> </h4>
-            <input type="text" placeholder="Povezani incidenti" ng-model="incidentId" name="name" class="username"
-                           ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
-        -->
-        <!--
-			<h4><b>Broj ponavljanja incidenta:</b> </h4>
-			<input type="text" placeholder="Broj ponavljanja incidenta" ng-model="incident.repetition" name="name" class="username"
-                           ng-minlength="3" ng-pattern="/^[0-9\s]*$/" required/>
-        -->
-
-        <h4 ng-model="incident.contactMethod"><b>Način odgovaranja:</b></h4>
-        <label class="radio-inline" for="contactMethod-1">
-            <input type="radio" ng-model="incident.contactMethod" name="contactMethod" id="contactMethod-1" value="1"
-                   checked="checked" style="position: relative;">
-            Telefon
-        </label>
-        <label class="radio-inline" for="contactMethod-2">
-            <input type="radio" ng-model="incident.contactMethod" name="contactMethod" id="contactMethod-2" value="2">
-            E-mail
-        </label>
-
-        <br/>
-        <div class="row">
-
-            <span class="col-md-6"><button type="submit" class="btn btn-danger dugme-prijava" style="width: 100%;"
-                                           ng-click="prijaviIncident()">Prijavi incident
-            </button>
-            </span>
-            <span class="col-md-6"><button type="submit" class="btn btn-info dugme-prijava"
-                                           style="width: 100%; background: #bf5230;"
-                                           ng-click="odustani()"
-            >Odustani</button>
-            </span>
-        </div>
-
-    </div>
-
-</div>
+	
 
 
-<style>
-    @import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
-    .form {
-        background: #FFFFFF;
-        padding: 45px;
-        text-align: left;
-        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-    }
-
-    .form input:not([type=radio]) {
-        font-family: "Roboto", sans-serif;
-        outline: 0;
-        background: #f2f2f2;
-        width: 100%;
-        border: 0;
-        margin: 0 0 15px;
-        padding: 15px;
-        box-sizing: border-box;
-        font-size: 14px;
-    }
-
-    .form button:hover, .form button:active, .form button:focus {
-        background: #3f869b;
-    }
-
-    .form .message a {
-        color: #3f869b;
-        text-decoration: none;
-    }
-
-    .form button {
-        font-family: "Roboto", sans-serif;
-        text-transform: uppercase;
-        outline: 0;
-        background: #3f869b;
-        width: 100%;
-        border: 0;
-        padding: 15px;
-        color: #FFFFFF;
-        font-size: 14px;
-        -webkit-transition: all 0.3 ease;
-        transition: all 0.3 ease;
-        cursor: pointer;
-    }
-
-    .container:before, .container:after {
-        content: "";
-        display: block;
-        clear: both;
-    }
-
-    .container .info h1 {
-        margin: 0 0 15px;
-        padding: 0;
-        font-size: 36px;
-        font-weight: 300;
-        color: #1a1a1a;
-    }
-
-    .container .info span {
-        color: #4d4d4d;
-        font-size: 12px;
-    }
-
-    .container .info span a {
-        color: #000000;
-        text-decoration: none;
-    }
-
-    .container {
-        width: 100%;
-    }
-
-    body {
-        font-family: "Roboto", sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-
-</style>
+		
