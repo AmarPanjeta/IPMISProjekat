@@ -1,5 +1,6 @@
 
-<div ng-controller="detailedServiceCtrl" ng-init="onInit()">
+<div class="container" style="margin: 0px">
+<div ng-controller="detailedServiceCtrl" ng-init="onInit()" class="col-md-12 col-lg-12 col-sm-12 div-container-beauty">
     <div class="col-md-12">
     <h4 ><b class="text-beauty">Naziv usluge: </b></h4>
     <input type="text" placeholder="Naziv usluge" ng-model="naziv" name="name" class="input-beauty" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
@@ -15,11 +16,24 @@
 
     <h4 ><b class="text-beauty">Prijavljeni: </b></h4>
     <input type="text" placeholder="Prijavljeni" ng-model="usluge_text" name="name" class="input-beauty" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
-        <button type="submit" class="btn btn-primary dugme-prijava"
-                                        ng-click="Promijeni(usluge_text, id_service)">
-            Promijenite pretplatu
-        </button>
+       <div class="row-beauty">
+           <span class="col-md-6"><button type="submit" class="btn btn-info dugme-prijava-beauty" style="width: 100%; height: 100%; background: #3f869b"
+                                          ng-click="Promijeni(usluge_text, id_service)">PROMIJENITE PRETPLATU
+            </button>
+            </span>
+       </div>
     </div>
 
 
 </div>
+</div>
+
+
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+    body {
+        font-family: "Roboto", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+</style>

@@ -5,7 +5,7 @@
 	<div class="col-md-12 col-lg-12 col-sm-12 div-container-beauty">
 
 		<div class="col-md-12">
-			<h2 style="text-decoration: underline;"><b>Prikaz zatvorenog incidenta</b></h2>
+			<h3 style="text-decoration: underline;"><b>Prikaz zatvorenog incidenta</b></h3>
 
 
 
@@ -16,7 +16,7 @@
             -->
 
 
-			<h3 style="text-decoration: underline;"><b>Informacije o korisniku:</b></h2>
+			<h2><br style="text-decoration: underline;"><b>Informacije o korisniku:</b></h2>
 
 				<h4><b class="text-beauty">Korisnicko ime korisnika:</b></h4>
 				<input class="input-beauty"  type="text" placeholder="Ime" ng-model="incident.user.username" name="name"  class="input-beauty"
@@ -43,7 +43,7 @@
 					   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
 
-				<h3 style="text-decoration: underline;"><b>Incident prijavio:</b></h2>
+				<br style="text-decoration: underline;"><b>Incident prijavio:</b></h2>
 
 					<h4><b class="text-beauty">Korisnicko ime:</b></h4>
 					<input class="input-beauty"  type="text" placeholder="Ime" ng-model="incident.evidenterUser.username" name="name"  class="input-beauty"
@@ -152,14 +152,24 @@
 							</tbody>
 						</table>
 
+					</h3>
 
+				</br></br>
 
 
 						<!--
                                     <input type="submit" class="btn btn-danger dugme-prijava" style="margin-bottom: 10px;" ng-click="rijesenIncident()" value="Rijesi incident"/>
                         -->
 
-						<input type="submit" class="btn btn-info dugme-prijava" style="margin-bottom: 10px;" ng-click="odustani()" value="Nazad"/>
+						<div class="row-beauty">
+						<span class="col-md-6"><button type="submit" class="btn btn-info dugme-prijava-beauty"
+													   style="width: 100%;  height: 100%; background: #bf5230;"
+													   ng-click="odustani()"
+						>ODUSTANI</button>
+            </span>
+
+						</div>
+
 		</div>
 
 	</div>
@@ -170,3 +180,14 @@
 
 
 </div>
+
+
+
+<style>
+	@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+	body {
+		font-family: "Roboto", sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+</style>

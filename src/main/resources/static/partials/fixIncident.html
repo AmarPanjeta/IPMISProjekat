@@ -1,173 +1,206 @@
 <div class="container">
-	<div class="col-md-12 col-lg-12 col-sm-12 div-container-beauty">
+    <div class="col-md-12 col-lg-12 col-sm-12 div-container-beauty">
 
-		<div class="col-md-12">
-		<h2 style="text-decoration: underline;"><b class="text-beauty">Rješavanje incidenta</b></h2>
-
-
-
-		<!-- automatski nerijesen
-			<h4 ng-model="incident.status"><b>Status incidenta:</b> </h4>
-			<input type="text" placeholder="Status incidenta:" ng-model="user.name" name="name" class="username"
-                           ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
-        -->
+        <div class="col-md-12">
+            <h2 style="text-decoration: underline;"><b class="text-beauty">Rješavanje incidenta</b></h2>
 
 
-		<h3 ><b class="text-beauty">Informacije o korisniku:</b></h2>
-			<h4 ><b class="text-beauty">Korisničko ime: </b> </h4>
-			<input type="text" placeholder="Korisničko ime" ng-model="incident.user.username" name="name" class="input-beauty"
-				   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
-			<h4 ><b class="text-beauty">Ime:  </b> </h4>
-			<input type="text" placeholder="Ime:" ng-model="incident.user.name" name="name" class="input-beauty"
-				   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
-			<h4 ><b class="text-beauty">Prezime:  </b> </h4>
-			<input type="text" placeholder="Prezime:" ng-model="incident.user.surname" name="name" class="input-beauty"
-				   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
-
-			<h4 ><b class="text-beauty">Adresa:  </b> </h4>
-			<input type="text" placeholder="Ime:" ng-model="incident.user.address" name="name" class="input-beauty"
-				   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
-
-			<h4 ><b class="text-beauty">Email:  </b> </h4>
-			<input type="text" placeholder="Ime:" ng-model="incident.user.email" name="name" class="input-beauty"
-				   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
-
-			<h4 ><b class="text-beauty">Kontakt telefon:  </b> </h4>
-			<input type="text" placeholder="Kontakt telefon:" ng-model="incident.user.telephone" name="name" class="input-beauty"
-				   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
-
-			<h3><b class="text-beauty">Incident prijavio:</b></h2>
-				<h4 ><b class="text-beauty">Korisničko ime:  </b> </h4>
-				<input type="text" placeholder="Ime:" ng-model="incident.evidenterUser.username" name="name" class="input-beauty"
-					   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
-
-		<h3 ><b class="text-beauty">Informacije o incidentu: </b></h2>
-
-			<h4 ><b class="text-beauty">Način prijave: :  </b> </h4>
-			<input type="text" placeholder="Ime:" ng-model="methodR" name="name" class="input-beauty"
-				   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+            <!-- automatski nerijesen
+                <h4 ng-model="incident.status"><b>Status incidenta:</b> </h4>
+                <input type="text" placeholder="Status incidenta:" ng-model="user.name" name="name" class="username"
+                               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
+            -->
 
 
-			<h4 ><b class="text-beauty">Usluga za koju je prijavljen incident: </b></h4>
-			<input type="text" placeholder="Usluga za koju je prijavljen incident" ng-model="incident.service.name" name="name" class="input-beauty"
-				   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+            <h3><b class="text-beauty">Informacije o korisniku:</b></h2>
+                <h4><b class="text-beauty">Korisničko ime: </b></h4>
+                <input type="text" placeholder="Korisničko ime" ng-model="incident.user.username" name="name"
+                       class="input-beauty"
+                       ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+                <h4><b class="text-beauty">Ime: </b></h4>
+                <input type="text" placeholder="Ime:" ng-model="incident.user.name" name="name" class="input-beauty"
+                       ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+                <h4><b class="text-beauty">Prezime: </b></h4>
+                <input type="text" placeholder="Prezime:" ng-model="incident.user.surname" name="name"
+                       class="input-beauty"
+                       ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
+                <h4><b class="text-beauty">Adresa: </b></h4>
+                <input type="text" placeholder="Ime:" ng-model="incident.user.address" name="name" class="input-beauty"
+                       ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
-			<h4 ><b class="text-beauty">Naziv incidenta: </b> </h4>
-			<input type="text" placeholder="Naziv incidenta" ng-model="incident.title" name="name" class="input-beauty"
+                <h4><b class="text-beauty">Email: </b></h4>
+                <input type="text" placeholder="Ime:" ng-model="incident.user.email" name="name" class="input-beauty"
+                       ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+                <h4><b class="text-beauty">Kontakt telefon: </b></h4>
+                <input type="text" placeholder="Kontakt telefon:" ng-model="incident.user.telephone" name="name"
+                       class="input-beauty"
+                       ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+                <h3><b class="text-beauty">Incident prijavio:</b></h2>
+                    <h4><b class="text-beauty">Korisničko ime: </b></h4>
+                    <input type="text" placeholder="Ime:" ng-model="incident.evidenterUser.username" name="name"
+                           class="input-beauty"
                            ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
-             <h4><b class="text-beauty">Opis incidenta:</b> </h4>
-			<input type="text" placeholder="Opis poduzetih incidenta" ng-model="incident.description" name="name" class="input-beauty"
-                           ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+                    <h3><b class="text-beauty">Informacije o incidentu: </b></h2>
+
+                        <h4><b class="text-beauty">Način prijave: : </b></h4>
+                        <input type="text" placeholder="Ime:" ng-model="methodR" name="name" class="input-beauty"
+                               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+
+                        <h4><b class="text-beauty">Usluga za koju je prijavljen incident: </b></h4>
+                        <input type="text" placeholder="Usluga za koju je prijavljen incident"
+                               ng-model="incident.service.name" name="name" class="input-beauty"
+                               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+
+                        <h4><b class="text-beauty">Naziv incidenta: </b></h4>
+                        <input type="text" placeholder="Naziv incidenta" ng-model="incident.title" name="name"
+                               class="input-beauty"
+                               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+                        <h4><b class="text-beauty">Opis incidenta:</b></h4>
+                        <input type="text" placeholder="Opis poduzetih incidenta" ng-model="incident.description"
+                               name="name" class="input-beauty"
+                               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
+
+
+                        <h4><b class="text-beauty">Odjel za rješavanje:</b></h4>
+                        <div class="ui-select">
+                            <select id="incident_influence" class="form-control" ng-model="incident.department"
+                                    ng-options="x.name for x in departments">
+
+                            </select>
+                        </div>
+
+
+                        <h4 ng-show="imaOdgovoraNaInc">Odgovori:</h4>
+                        <table class="col-12 tabela" ng-show="imaOdgovoraNaInc">
+                            <thead>
+                            <tr>
+                                <th colspan="1">Autor</th>
+                                <th colspan="2">Odgovor</th>
+                                <th colspan="1">Datum</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="a in answers1">
+                                <td colspan="1">{{a.autor.username}}</td>
+                                <td colspan="2">{{a.text}}</td>
+                                <td>{{a.datumPrijave.day}}.{{a.datumPrijave.month}}.{{a.datumPrijave.year}}.godine <br/>
+                                    {{a.datumPrijave.hours}}:{{a.datumPrijave.minutes}}:{{a.datumPrijave.seconds}} sati
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                        <h4><b class="text-beauty">Povezani s nekim od glavnih incidenata:</b></h4>
+                        <label class="radio-inline" for="Povezan-1">
+                            <input class="input-beauty" type="radio" ng-model="connection" name="report_method"
+                                   id="Povezan-1" value="1" ng-checked="incident.incident!=null" ng-change="povezani()">
+                            <p style=" margin-left: 14px;"> Da </p>
+                        </label>
+                        <label class="radio-inline" for="Povezan-1">
+                            <input class="input-beauty" type="radio" ng-model="connection" name="report_method"
+                                   id="Povezan-1" value="2" ng-checked="incident.incident==null" ng-change="povezani()">
+                            <p style=" margin-left: 14px;"> Ne </p>
+                        </label>
+
+                        <br/>
+
+                        <div class="ui-select" ng-show="connection==1 || incident.incident!=null"
+                             style="margin-top: 13px;">
+                            <select id="incident_influence" class="form-control" ng-model="incident.incident"
+                                    ng-options="x.title for x in mainIncidents" data-toggle="tooltip"
+                                    title="{{x.description}}" ng-change="vratiOdgovore()">
+
+                            </select>
+
+                            <b><a href="" ng-click="vratiOdgovore()" ng-show="prikazi==0"
+                                  style="text-decoration: underline;">Prikaži odgovore</a></b>
+                            <b><a href="" ng-click="vratiOdgovore()" ng-show="prikazi==1"
+                                  style="text-decoration: underline;">Sakrij odgovore</a></b>
+                        </div>
+
+                        <h4 ng-show="imaOdgovora && connection==1 && incident.incident!=null && prikazi==1"><b>Ponudjeni
+                            odgovori:</b></h4>
+
+
+                        <table class="col-12 tabela"
+                               ng-show="imaOdgovora && connection==1 && incident.incident!=null && prikazi==1">
+                            <thead>
+                            <tr>
+                                <th>Autor</th>
+                                <th>Odgovor</th>
+                                <th>Prihvati odgovor</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="a in answers">
+                                <td>{{a.autor.username}}</td>
+                                <td>{{a.text}}</td>
+                                <td><input type="radio" class="input-beauty" ng-model="incident.answer.id" name="da"
+                                           value="{{a.id}}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                        <div ng-show="incident.answer.id==null">
+
+                            <h4><b class="text-beauty">Novi odgovor:</b></h4>
+                            <input type="text" placeholder="Tekst odgovora" ng-model="incident.answerText" name="name"
+                                   class="input-beauty"
+                                   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
+
+                            <!--
+                                        <h4><b>Broj ponavljanja incidenta:</b> </h4>
+                                        <input type="number" placeholder="Broj ponavljanja incidenta" ng-model="incident.repetition" name="name" class="username"
+                                                       ng-minlength="3" ng-pattern="/^[0-9\s]*$/" required/>
+                            -->
+                        </div>
+
+
+                        <h4><b class="text-beauty">Način odgovaranja:</b></h4>
+                        <input type="text" placeholder="Tekst odgovora" ng-model="methodC" name="name"
+                               class="input-beauty"
+                               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
 
 
 
+                        <div class="row-beauty">
+
+            <span class="col-md-6"><button type="submit" class="btn btn-info dugme-prijava-beauty"
+                                           style="width: 100%; height: 100%; background: #3f869b"
+                                           ng-click="fixIncident()">IZMIJENI
+            </button>
+
+			</span>
+                            <span class="col-md-6"><button type="submit" class="btn btn-info dugme-prijava-beauty"
+                                                           style="width: 100%;  height: 100%; background: #bf5230;"
+                                                           ng-click="odustani()"
+                            >ODUSTANI</button>
+            </span>
+                        </div>
+
+        </div>
 
 
-			<h4><b class="text-beauty">Odjel za rješavanje:</b></h4>
-			 <div class="ui-select">
-			              <select id="incident_influence" class="form-control" ng-model="incident.department" ng-options="x.name for x in departments" >
-
-			              </select>
-			</div>
+    </div>
 
 
-   		<h4 ng-show="imaOdgovoraNaInc">Odgovori:</h4>
-   		<table class="col-12 tabela" ng-show="imaOdgovoraNaInc">
-        <thead>
-        	<tr>
-        		<th colspan="1">Autor</th>
-        		<th colspan="2">Odgovor</th>
-        		<th colspan="1">Datum</th>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-        	</tr>
-        </thead>
-        <tbody>
-        	<tr ng-repeat="a in answers1">
-        	<td colspan="1">{{a.autor.username}}</td>
-        	<td colspan="2">{{a.text}}</td>
-        	<td>{{a.datumPrijave.day}}.{{a.datumPrijave.month}}.{{a.datumPrijave.year}}.godine <br/>
-				{{a.datumPrijave.hours}}:{{a.datumPrijave.minutes}}:{{a.datumPrijave.seconds}} sati
-				</td>
-
-        	</tr>
-        </tbody>
-        </table>
-
-
-
-		<h4><b class="text-beauty">Povezani s nekim od glavnih incidenata:</b> </h4>
-			 	<label class="radio-inline" for="Povezan-1" >
-			    <input  class="input-beauty"  type="radio" ng-model="connection" name="report_method" id="Povezan-1" value="1" ng-checked="incident.incident!=null" ng-change="povezani()" >
-					<p style=" margin-left: 14px;"> Da </p>
-			    </label>
-			    <label class="radio-inline" for="Povezan-1" >
-			      <input class="input-beauty" type="radio" ng-model="connection" name="report_method" id="Povezan-1" value="2" ng-checked="incident.incident==null"  ng-change="povezani()">
-					<p style=" margin-left: 14px;"> Ne </p>
-				</label>
-
-			<br/>
-
-			 <div class="ui-select" ng-show="connection==1 || incident.incident!=null" style="margin-top: 13px;">
-			              <select id="incident_influence" class="form-control" ng-model="incident.incident"  ng-options="x.title for x in mainIncidents" data-toggle="tooltip" title="{{x.description}}" ng-change="vratiOdgovore()">
-
-			              </select>
-
-			               <b><a href="" ng-click="vratiOdgovore()" ng-show="prikazi==0" style="text-decoration: underline;">Prikaži odgovore</a></b>
-			              <b><a href="" ng-click="vratiOdgovore()" ng-show="prikazi==1" style="text-decoration: underline;">Sakrij odgovore</a></b>
-			 </div>
-
-        <h4 ng-show="imaOdgovora && connection==1 && incident.incident!=null && prikazi==1"><b>Ponudjeni odgovori:</b></h4>
-
-
-        <table class="col-12 tabela" ng-show="imaOdgovora && connection==1 && incident.incident!=null && prikazi==1">
-        <thead>
-        	<tr>
-        		<th>Autor</th>
-        		<th>Odgovor</th>
-        		<th>Prihvati odgovor</th>
-        	</tr>
-        </thead>
-        <tbody>
-        	<tr ng-repeat="a in answers">
-        	<td>{{a.autor.username}}</td>
-        	<td>{{a.text}}</td>
-        	<td><input type="radio" class="input-beauty" ng-model="incident.answer.id" name="da" value="{{a.id}}"></td>
-        	</tr>
-        </tbody>
-        </table>
-
-
-
-
-       <div ng-show="incident.answer.id==null">
-
-		<h4 ><b class="text-beauty">Novi odgovor:</b> </h4>
-		<input type="text" placeholder="Tekst odgovora" ng-model="incident.answerText" name="name" class="input-beauty"
-                           ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
-
-<!--
-			<h4><b>Broj ponavljanja incidenta:</b> </h4>
-			<input type="number" placeholder="Broj ponavljanja incidenta" ng-model="incident.repetition" name="name" class="username"
-                           ng-minlength="3" ng-pattern="/^[0-9\s]*$/" required/>
--->
-      </div>
-
-			<h4><b class="text-beauty">Način odgovaranja: </b>{{methodC}}</h4>
-<!--
-			<input type="submit" class="btn btn-danger dugme-prijava" style="margin-bottom: 10px;" ng-click="rijesenIncident()" value="Rijesi incident"/>
--->			<div class="div-beauty">
-			<input type="submit" class="btn btn-danger dugme-prijava button-beauty-submit" style="margin-bottom: 10px;" ng-click="fixIncident()" value="Izmijeni incident"/>
-			<input type="submit" class="btn btn-info dugme-prijava button-beauty-submit" style="margin-bottom: 10px;" ng-click="odustani()" value="Odustani"/>
-			</div>
-		</div>
-
-	</div>
-
-
-
-
-
-
-</div>
+        body {
+            font-family: "Roboto", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
