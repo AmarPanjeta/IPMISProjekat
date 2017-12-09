@@ -59,6 +59,12 @@ app.config(function($routeProvider){
   }).when("/myrequests",{
     templateUrl:"partials/myrequests.html",
     controller:"myRequestsCtrl"
+  }).when("/myservices",{
+    templateUrl:"partials/myservices.html",
+    controller:"myServicesCtrl"
+  }).when("/addincident/:id",{
+    templateUrl: "partials/addIncident.html",
+    controller: "addIncidentCtrl"
   }).when("/",{
     templateUrl:"partials/homePage.html"
   }).otherwise("/")

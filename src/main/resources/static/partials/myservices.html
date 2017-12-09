@@ -1,0 +1,44 @@
+
+<div class="skrolaj  usluge">
+<table ng-controller="myServicesCtrl" ng-init="onInit()" class="tabela">
+
+  <thead>
+    <tr class="naslov-tabele" style="height: 50px;">
+      <th colspan="6" class="naziv-u-tabeli">
+        Prijavljene usluge
+      </th>
+    </tr>
+    <tr style="border-bottom: 2px solid white;">
+      <th colspan="1" class="filter-red">Naziv usluge</th>
+      <th colspan="2" class="filter-red">Opis usluge</th>
+      <th colspan="1" class="filter-red">Cijena usluge</th>
+      <th colspan="1" class="filter-red">Opcije</th>
+    </tr>
+  </thead>
+  <tr  ng-repeat="service in services" >
+    <td style="padding: 15px;">
+
+      {{service.name}}
+    </td>
+    <td colspan="2">
+
+      {{service.description}}
+    </td>
+    <td>
+
+      {{service.price}}
+    </td>
+    <td>
+     
+        <span class="glyphicon glyphicon-flash amarove-ikone" title="Prijavi incident" ng-click="PrijaviIncident(service.id)" ></span>
+
+        <span class="glyphicon glyphicon-send amarove-ikone" title="Odjavi uslugu" ng-click="Promijeni(service.id)" ></span>
+      
+
+    </td>
+
+  </tr>
+
+
+</table>
+</div>

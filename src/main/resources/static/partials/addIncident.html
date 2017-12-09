@@ -1,0 +1,143 @@
+<div class="container row">
+
+    <div class="col-md-12 col-lg-12 col-sm-12 form">
+        <h2 style="text-decoration: underline;"><b>Prijava incidenta za uslugu {{service.name}}</b></h2>
+
+
+
+        <h4><b>Naziv usluge:</b></h4>
+        <input type="text" placeholder="Korisnicko ime" ng-model="service.name" name="name" class="username"
+               readonly />
+
+        <h4><b>Opis usluge:</b></h4>
+        <input type="text" placeholder="Ime" ng-model="service.description" name="name" class="username"
+               readonly/>
+
+        <h4><b>Cijena usluge:</b></h4>
+        <input type="text" placeholder="Prezime" ng-model="service.price" name="name" class="username"
+                readonly/>
+
+        <h4><b>Naziv incidenta:</b></h4>
+        <input type="text" placeholder="Naziv incidenta" ng-model="incident.title" name="name" class="username"
+               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
+         <h4><b>Opis incidenta:</b></h4>
+        <input type="text" placeholder="Detaljniji opis incidenta" ng-model="incident.description" name="name" class="username"
+               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/"  required/>
+
+
+        <h4 ng-model="incident.contactMethod"><b>Način odgovaranja:</b></h4>
+        <label class="radio-inline" for="contactMethod-1">
+            <input type="radio" ng-model="incident.contactMethod" name="contactMethod" id="contactMethod-1" value="1"
+                   checked="checked">
+            Telefon
+        </label>
+        <label class="radio-inline" for="contactMethod-2">
+            <input type="radio" ng-model="incident.contactMethod" name="contactMethod" id="contactMethod-2" value="2">
+            E-mail
+        </label>
+
+        <br/>
+        <div class="row">
+            <span class="col-md-6"><button type="submit" class="btn btn-danger dugme-prijava"
+                                                   style="width: 100%;"
+                                                   ng-click="prijaviIncident()">Prijavi incident
+        </button>
+            </span>
+            <span class="col-md-6"> <button type="submit" class="btn btn-info dugme-prijava" style="width: 100%; background: #bf5230;"
+                                                   ng-click="odustani()">
+            Odustani
+        </button>
+            </span>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+    .form {
+        background: #FFFFFF;
+        padding: 45px;
+        text-align: left;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+
+    .form input:not([type=radio]) {
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background: #f2f2f2;
+        width: 100%;
+        border: 0;
+        margin: 0 0 15px;
+        padding: 15px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+
+    .form button:hover, .form button:active, .form button:focus {
+        background: #3f869b;
+    }
+
+    .form button {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        background: #3f869b;
+        width: 100%;
+        border: 0;
+        padding: 15px;
+        color: #FFFFFF;
+        font-size: 14px;
+        -webkit-transition: all 0.3 ease;
+        transition: all 0.3 ease;
+        cursor: pointer;
+    }
+
+    .form .message a {
+        color: #3f869b;
+        text-decoration: none;
+    }
+
+    .container:before, .container:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    .container .info h1 {
+        margin: 0 0 15px;
+        padding: 0;
+        font-size: 36px;
+        font-weight: 300;
+        color: #1a1a1a;
+    }
+
+    .container .info span {
+        color: #4d4d4d;
+        font-size: 12px;
+    }
+
+    .container .info span a {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    .container .info span .fa {
+        color: #EF3B3A;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    body {
+        font-family: "Roboto", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+</style>
