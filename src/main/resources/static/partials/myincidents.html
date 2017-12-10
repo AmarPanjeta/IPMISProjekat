@@ -1,35 +1,27 @@
-<div class="container row" ng-init="prikaziMojeIncidente('mojiincidenti')">
- <div class="col-md-12 col-lg-12 col-sm-12 form">
-			<h2 style="text-align:center;"><b>Pregled incidenata</b></h2>
-			<table class="col-12 tabela">
-				<thead>
-					<tr class="naslov-tabele">
-						<th style="width:40%" colspan="2">Naziv incidenta</th>
-						<th style="width:40%" class="filter-red">
-					<div class="dropdown">Status
-	
-					  <select name="filterStatus" ng-model="filterStatus"  ng-change="filtriraj()" class="btn btn-default dropdown-toggle filter-opcija" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					    <option value="Nerijesen">Nerijesen</option>
-					    <option value="Zatvoren">Zatvoren</option>
-					    <option value="Popravljen">Popravljen</option>
-					    <option value="U obradi">U obradi</option>
-					    <option value="Odbijen">Odbijen</option>
-					    <option value="Odobren">Odobren</option>
-					    <option value="Otkazan">Otkazan</option>
-					    <option value="Pogresno prijavljen">Pogresno prijavljen</option>
-					  </select>
-					
-					</div>
+<div class="form" ng-init="prikaziMojeIncidente('mojiincidenti')">
+<div>
+ <div class="usluge skrolaj">
+			<table class="tabela">
+			<thead>
+               <tr class="naslov-tabele" style="height: 50px;">
+                  <th colspan="6" class="naziv-u-tabeli">
+                     <b>Pregled incidenata</b>
+                  </th>
+               </tr>
+               <tr style="border-bottom: 2px solid white;">
+                  <th class="filter-red" style="width:40%" colspan="2"><b>Naziv incidenta</b></th>
+                  <th class="filter-red" style="width:40%"><b>Status</b></th>
+                  <th style="width:20%"></th>
+               </tr>
+            </thead>
 
-				</th>
-				<th style="width:20%">Detalji i odgovori</th>
-					</tr>
-				</thead>
-				<tbody style="width:100%" ng-repeat="incident in incidenti" ng-switch on="isSelInc(incident)">
-					<tr ng-class="{sel:selIdx==$index}" ng-click="selectIncident(incident,$index)">
+				<tbody  ng-repeat="incident in incidenti" ng-switch on="isSelInc(incident)">
+					<tr ng-class="{sel:selIdx==$index}">
 						<td colspan="2">{{incident.title}}</td>
 						<td colspan="1">{{incident.status.status}}</td>
-						<td><span ng-click="selectRequest(zahtjev,$index)" class="glyphicon glyphicon-plus-sign" style="color:#3f869b;"></span></td>
+						<td><input class="btn btn-primary" type="submit" style="background-color:#3f869b;" value="Prikazi odgovore"
+                       ng-click="selectIncident(incident,$index)"/></td>
+						
 					</tr>
 				
 					<tr ng-switch-when="true" style="background-color:#3f869b; height:2px"><td colspan="5"></td></tr> 
@@ -67,13 +59,13 @@
                <td style="font-size: 15px; vertical-align:bottom; text-align: left;" colspan="3"> <br>
                   <input type="text" name="noviOdgovorText" ng-model="noviOdgovorText" style="width: 98%; vertical-align:bottom; margin-left: 1%; margin-right:1%">
                </td>
-               <td  class="dugme-prijava" style="height:100%; margin-bottom:3%; width: 100%;" colspan="1"><button><span ng-click="dodajOdgovorNaIncident(noviOdgovorText)"" ></span>Dodaj odgovor</button>
+               <td  class="dugme-prijava" style="height:100%; margin-bottom:3%; width: 100%;" colspan="1" ng-click="dodajOdgovorNaIncident(noviOdgovorText)"><button>Dodaj odgovor</button>
                </td>
             </tr>
             <tr ng-switch-when="true" style="background-color: white; height: 50px;">
                <td colspan="3"></td>
                <td style="valign:middle;" colspan="1"><br>
-                  <button class="btn btn-danger dugme-prijava" style="background: #bf5230;"><span ng-click="zatvoriIncident()" ></span>Zatvori zahtjev</button><br><br>
+                  <button class="btn btn-danger dugme-prijava" style="background: #bf5230;" ng-click="zatvoriIncident()">Zatvori zahtjev</button><br><br>
                </td>
                </tr>
                <tr ng-switch-when="true" style="background-color:#3f869b; height:2px"><td colspan="5"></td></tr>
@@ -84,19 +76,15 @@
 
 				</table>
 			</div></div>
-
+</div>
 
 
 <style>
-   @import url(https://fonts.googleapis.com/css?family=Roboto:300);
    .form {
-   background: #FFFFFF;
    padding: 45px;
    text-align: left;
-   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
    }
    .form input:not([type=radio]) {
-   font-family: "Roboto", sans-serif;
    outline: 0;
    background: #f2f2f2;
    width: 100%;
@@ -110,7 +98,6 @@
    background: #3f869b;
    }
    .form button {
-   font-family: "Roboto", sans-serif;
    text-transform: uppercase;
    outline: 0;
    background: #3f869b;
@@ -154,7 +141,6 @@
    width: 100%;
    }
    body {
-   font-family: "Roboto", sans-serif;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    }

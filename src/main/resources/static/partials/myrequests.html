@@ -1,6 +1,6 @@
-<div >
+<div class="form">
    <div ng-init="prikazi('svizahtjevi')">
-      <div class=" usluge skrolaj ">
+      <div class=" usluge skrolaj">
          <table class=" tabela">
             <thead>
                <tr class="naslov-tabele" style="height: 50px;">
@@ -11,7 +11,7 @@
                <tr style="border-bottom: 2px solid white;">
                   <th class="filter-red" style="width:40%" colspan="2"><b>Naziv zahtjeva</b></th>
                   <th class="filter-red" style="width:40%"><b>Status</b></th>
-                  <th style="width:20%"><b>Detalji i odgovori</b></th>
+                  <th style="width:20%"></th>
                </tr>
             </thead>
             <tbody ng-repeat="zahtjev in zahtjevi" ng-switch on="isSelReq(zahtjev)">
@@ -99,13 +99,13 @@
             </label><br>
          </div>
          <div class="row">
-            <span class="col-md-6"><button type="submit" class="btn btn-danger dugme-prijava"
-               style="width: 100%;">Evidentiraj zahtjev</button>
-            </span>
-            <span class="col-md-6"> <button type="submit" class="btn btn-info dugme-prijava" style="width: 100%; background: #bf5230;"
+            <button type="submit" class="btn btn-danger dugme-prijava col-md-6"
+               style="width: 47%;">Evidentiraj zahtjev</button>
+         
+            <button type="submit" class="btn btn-info dugme-prijava col-md-6" style="width: 47%; margin-left:6%; background: #bf5230;"
                ng-click="odustani()">Odustani
             </button>
-            </span>
+         
          </div>
       </form>
    </div>
@@ -119,7 +119,6 @@
    text-align: left;
    }
    .form input:not([type=radio]) {
-   font-family: "Roboto", sans-serif;
    outline: 0;
    background: #f2f2f2;
    width: 100%;
@@ -133,7 +132,6 @@
    background: #3f869b;
    }
    .form button {
-   font-family: "Roboto", sans-serif;
    text-transform: uppercase;
    outline: 0;
    background: #3f869b;
@@ -177,8 +175,9 @@
    width: 100%;
    }
    body {
-   font-family: "Roboto", sans-serif;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    }
-</style>
+</style>	
+
+
