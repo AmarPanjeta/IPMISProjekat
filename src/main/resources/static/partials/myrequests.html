@@ -1,134 +1,122 @@
 <div >
-<div id="scrollingContainer" class="container row" ng-init="prikazi('svizahtjevi')">
-   <div class="col-md-12 col-lg-12 col-sm-12 form">
-      <h2 style="text-align:center;"><b>Pregled zahtjeva</b></h2>
-      <table class="col-12 tabela">
-         <thead>
-            <tr class="naslov-tabele">
-               <th style="width:40%" colspan="2">Naziv zahtjeva</th>
-               <th style="width:40%" class="filter-red">
-                  <div class="dropdown">
-                     Status
-                     <select name="filterStatus" ng-model="filterStatus"  ng-change="filtriraj()" class="btn btn-default dropdown-toggle filter-opcija" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <option value="Nerijesen">Nerijesen</option>
-                        <option value="Zatvoren">Zatvoren</option>
-                        <option value="Popravljen">Popravljen</option>
-                        <option value="U obradi">U obradi</option>
-                        <option value="Odbijen">Odbijen</option>
-                        <option value="Odobren">Odobren</option>
-                        <option value="Otkazan">Otkazan</option>
-                        <option value="Pogresno prijavljen">Pogresno prijavljen</option>
-                     </select>
-                  </div>
-               </th>
-               <th style="width:20%">Detalji i odgovori</th>
-            </tr>
-         </thead>
-         <tbody ng-repeat="zahtjev in zahtjevi" ng-switch on="isSelReq(zahtjev)">
-            <tr ng-class="{sel:selIdxZ==$index}" >
-               <td colspan="2">{{zahtjev.title}}</td>
-               <td colspan="1">{{zahtjev.status.status}}</td>
-               <td><span ng-click="selectRequest(zahtjev,$index)" class="glyphicon glyphicon-plus-sign" style="color:#3f869b;"></span></td>
-               
-               
+   <div ng-init="prikazi('svizahtjevi')">
+      <div class=" usluge skrolaj ">
+         <table class=" tabela">
+            <thead>
+               <tr class="naslov-tabele" style="height: 50px;">
+                  <th colspan="6" class="naziv-u-tabeli">
+                     <b>Pregled zahtjeva</b>
+                  </th>
                </tr>
-            <tr ng-switch-when="true" style="background-color:#3f869b; height:2px"><td colspan="5"></td></tr> 
-            <tr ng-switch-when="true" style="background-color: white" ng-click="selectRequest(zahtjev,$index)">
-               <td style="font-size: 15px; text-align: left;" colspan="4"><br>Opis zahtjeva: {{zahtjev.description}}</td>
-            </tr>
-            <tr ng-switch-when="true" style="background-color: white" ng-show="imaOdgovorZ" ng-click="selectRequest(zahtjev,$index)">
-               <td style="font-size: 15px; text-align: left;" colspan="4"><br>Odgovori na zahtjev: </td>
-            </tr>
-            <tr ng-switch-when="true" style="background-color: white" ng-show="imaOdgovorZ" ng-click="selectRequest(zahtjev,$index)">
-               <td style="font-size: 15px; font-weight: bold; text-align: center; border:1px solid black" colspan="1">Autor</td>
-               <td style="font-size: 15px; font-weight: bold; text-align: center; border:1px solid black" colspan="2">Odgovor</td>
-               <td style="font-size: 15px; font-weight: bold; text-align: center; border:1px solid black" colspan="1">Datum</td>
-            </tr>
-            <tr ng-switch-when="true" style="background-color: white" ng-repeat="answer in answers2" ng-click="selectRequest(zahtjev,$index)">
-               <td style="font-size: 15px; text-align: center; border:1px solid black" colspan="1">{{answer.autor.username}}</td>
-               <td style="font-size: 15px; text-align: center; border:1px solid black" colspan="2">{{answer.text}}</td>
-               <td style="font-size: 15px; text-align: center; border:1px solid black" colspan="1">{{answer.datumPrijave.day}}.{{answer.datumPrijave.month}}.{{answer.datumPrijave.year}}.godine
-                  {{answer.datumPrijave.hours}}:{{answer.datumPrijave.minutes}}:{{answer.datumPrijave.seconds}} sati
-               </td>
-            </tr>
-            <tr ng-switch-when="true" style="background-color: white;" ng-show="!imaOdgovorZ" ng-click="selectRequest(zahtjev,$index)">
-               <td colspan="4" style="font-size: 15px; text-align: left;">Ovaj zahtjev nema odgovora.</td>
-            </tr>
-            <tr ng-switch-when="true" style="background-color: white; height: 30px;" ng-click="selectRequest(zahtjev,$index)">
-               <td colspan="4" style="font-size: 15px; text-align: left;"><br>Dodaj odgovor:</td>
-            </tr>
-            <tr ng-switch-when="true" style="background-color: white; height: 48px;">
-               <td style="font-size: 15px; vertical-align:bottom; text-align: left;" colspan="3"> <br>
-                  <input type="text" name="noviOdgovorZahtjev" ng-model="noviOdgovorZahtjev" style="width: 98%; vertical-align:bottom; margin-left: 1%; margin-right:1%">
-               </td>
-               <td  class="dugme-prijava" style="height:100%; margin-bottom:3%; width: 100%;" colspan="1"><button><span ng-click="dodajOdgovorNaZahtjev(noviOdgovorZahtjev)" ></span>Dodaj odgovor</button>
-               </td>
-            </tr>
-            <tr ng-switch-when="true" style="background-color: white; height: 50px;">
-               <td colspan="3"></td>
-               <td style="valign:middle;" colspan="1"><br>
-                  <button class="btn btn-danger dugme-prijava" style="background: #bf5230;"><span ng-click="zatvoriZahtjev()" ></span>Zatvori zahtjev</button><br><br>
-               </td>
+               <tr style="border-bottom: 2px solid white;">
+                  <th class="filter-red" style="width:40%" colspan="2"><b>Naziv zahtjeva</b></th>
+                  <th class="filter-red" style="width:40%"><b>Status</b></th>
+                  <th style="width:20%"><b>Detalji i odgovori</b></th>
                </tr>
-               <tr ng-switch-when="true" style="background-color:#3f869b; height:2px"><td colspan="5"></td></tr> 
-        
-         </tbody>
-      </table>
-      <div class="row">
-         <span class="col-md-6"><button style="text-align:center; margin-left:50%" type="submit" value="Predaj novi zahtjev" ng-click="prikazi('prijavaUsluge')" class="btn btn-danger dugme-prijava" style="height:40px; margin-left:50%; margin-top:3%; width: 100%;">Prijavi novi zahtjev</button>
-         </span>
-      </div>
+            </thead>
+            <tbody ng-repeat="zahtjev in zahtjevi" ng-switch on="isSelReq(zahtjev)">
+               <tr ng-class="{sel:selIdxZ==$index}" >
+                  <td colspan="2">{{zahtjev.title}}</td>
+                  <td >{{zahtjev.status.status}}</td>
+                  <td><input class="btn btn-primary" type="submit" style="background-color:#3f869b;" value="Prikazi odgovore"
+                     ng-click="selectRequest(zahtjev,$index)"/></td>
+               </tr>
+               <tr ng-switch-when="true" style="background-color:#3f869b; height:2px">
+                  <td colspan="5"></td>
+               </tr>
+               <tr ng-switch-when="true" style="background-color: white" ng-click="selectRequest(zahtjev,$index)">
+                  <td style="font-size: 15px; text-align: left;" colspan="4"><br>Opis zahtjeva: {{zahtjev.description}}</td>
+               </tr>
+               <tr ng-switch-when="true" style="background-color: white" ng-show="imaOdgovorZ" ng-click="selectRequest(zahtjev,$index)">
+                  <td style="font-size: 15px; text-align: left;" colspan="4"><br>Odgovori na zahtjev: </td>
+               </tr>
+               <tr ng-switch-when="true" style="background-color: white" ng-show="imaOdgovorZ" ng-click="selectRequest(zahtjev,$index)">
+                  <td style="font-size: 15px; font-weight: bold; text-align: center; border:1px solid black" colspan="1">Autor</td>
+                  <td style="font-size: 15px; font-weight: bold; text-align: center; border:1px solid black" colspan="2">Odgovor</td>
+                  <td style="font-size: 15px; font-weight: bold; text-align: center; border:1px solid black" colspan="1">Datum</td>
+               </tr>
+               <tr ng-switch-when="true" style="background-color: white" ng-repeat="answer in answers2" ng-click="selectRequest(zahtjev,$index)">
+                  <td style="font-size: 15px; text-align: center; border:1px solid black" colspan="1">{{answer.autor.username}}</td>
+                  <td style="font-size: 15px; text-align: center; border:1px solid black" colspan="2">{{answer.text}}</td>
+                  <td style="font-size: 15px; text-align: center; border:1px solid black" colspan="1">{{answer.datumPrijave.day}}.{{answer.datumPrijave.month}}.{{answer.datumPrijave.year}}.godine
+                     {{answer.datumPrijave.hours}}:{{answer.datumPrijave.minutes}}:{{answer.datumPrijave.seconds}} sati
+                  </td>
+               </tr>
+               <tr ng-switch-when="true" style="background-color: white;" ng-show="!imaOdgovorZ" ng-click="selectRequest(zahtjev,$index)">
+                  <td colspan="4" style="font-size: 15px; text-align: left;">Ovaj zahtjev nema odgovora.</td>
+               </tr>
+               <tr ng-switch-when="true" style="background-color: white; height: 30px;" ng-click="selectRequest(zahtjev,$index)">
+                  <td colspan="4" style="font-size: 15px; text-align: left;"><br>Dodaj odgovor:</td>
+               </tr>
+               <tr ng-switch-when="true" style="background-color: white; height: 48px;">
+                  <td style="font-size: 15px; vertical-align:bottom; text-align: left;" colspan="3"> <br>
+                     <input type="text" name="noviOdgovorZahtjev" ng-model="noviOdgovorZahtjev" style="width: 98%; vertical-align:bottom; margin-left: 1%; margin-right:1%">
+                  </td>
+                  <td colspan="1"><button class="dugme-prijava" style="height:100%; margin-bottom:3%; width: 100%;" colspan="1" ng-click="dodajOdgovorNaZahtjev(noviOdgovorZahtjev)">Odgovori</button></td>
+                  </td>
+               </tr>
+               <tr ng-switch-when="true" style="background-color: white; height: 50px;">
+                  <td colspan="3"></td>
+                  <td style="valign:middle;" colspan="1"><br><button class="btn btn-danger dugme-prijava" style="background: #bf5230;" ng-click="zatvoriZahtjev()" class="glyphicon glyphicon-ok">Zatvori zahtjev</button>
+                     <br><br>
+                  </td>
+               </tr>
+               <tr ng-switch-when="true" style="background-color:#3f869b; height:2px">
+                  <td colspan="5"></td>
+               </tr>
+               <tr>
+                  <td><br></td>
+               </tr>
+            </tbody>
+         </table>
+         </div>
+         <div class="row form">
+            <span class="col-md-6"><button style="text-align:center; margin-left:50%;" type="submit" value="Predaj novi zahtjev" ng-click="prikazi('prijavaUsluge')" class="btn btn-danger dugme-prijava" style="height:40px; margin-left:50%; margin-top:3%; width: 100%;">Prijavi novi zahtjev</button>
+            </span>
+         </div>
+      
    </div>
+   <br><br>
+   <div class="container row" ng-show="prikaz=='prijavaUsluge'">
+      <form class="col-md-12 col-lg-12 col-sm-12 form" style="background: #FFFFFF;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);" ng-submit="prijaviZahtjevZaUslugom()" name="reqform" class="forma">
+         <div class="form-group" style="margin-left: 10%; margin-right: 10%;">
+            <label>Naziv zahtjeva:</label><br>
+            <input type="text" placeholder="Naziv" ng-model="request.title" name="address" class="address"
+               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
+         </div>
+         <div class="form-group" style="margin-left: 10%; margin-right: 10%;">
+            <label>Opis:</label><br>
+            <input type="text" placeholder="Opis" ng-model="request.description" name="address"
+               class="address" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
+         </div>
+         <div class="form-group" style="margin-left: 10%; margin-right: 10%;">
+            <label>O statusu zahtjeva obavijestiti putem: </label>
+            <label style="width: 20%; padding:0px; margin: 0px; font-weight: normal;">Emaila <input type="radio" ng-model="request.contact_method"
+               value="email" style="width: 20%; padding:0px; margin: 0px;"/>
+            </label>
+            <label style="width: 20%; padding:0px; margin: 0px; font-weight: normal;">Telefona <input type="radio" ng-model="request.contact_method"
+               value="telephone" style="width: 20%; padding:0px; margin: 0px;" />
+            </label><br>
+         </div>
+         <div class="row">
+            <span class="col-md-6"><button type="submit" class="btn btn-danger dugme-prijava"
+               style="width: 100%;">Evidentiraj zahtjev</button>
+            </span>
+            <span class="col-md-6"> <button type="submit" class="btn btn-info dugme-prijava" style="width: 100%; background: #bf5230;"
+               ng-click="odustani()">Odustani
+            </button>
+            </span>
+         </div>
+      </form>
+   </div>
+   <br><br><br><br>
 </div>
 
-
-<br><br><br><br>
-
-
-<div class="container row" ng-show="prikaz=='prijavaUsluge'">
-   <form class="col-md-12 col-lg-12 col-sm-12 form" ng-submit="prijaviZahtjevZaUslugom()" name="reqform" class="forma">
-      <div class="form-group" style="margin-left: 10%; margin-right: 10%;">
-         <label>Naziv zahtjeva:</label><br>
-         <input type="text" placeholder="Naziv" ng-model="request.title" name="address" class="address"
-            ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
-      </div>
-      <div class="form-group" style="margin-left: 10%; margin-right: 10%;">
-         <label>Opis:</label><br>
-         <input type="text" placeholder="Opis" ng-model="request.description" name="address"
-            class="address" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
-      </div>
-      <div class="form-group" style="margin-left: 10%; margin-right: 10%;">
-         <label>O statusu zahtjeva obavijestiti putem: </label>
-         <label style="width: 20%; padding:0px; margin: 0px; font-weight: normal;">Emaila <input type="radio" ng-model="request.contact_method"
-            value="email" style="width: 20%; padding:0px; margin: 0px;"/>
-         </label>
-         <label style="width: 20%; padding:0px; margin: 0px; font-weight: normal;">Telefona <input type="radio" ng-model="request.contact_method"
-            value="telephone" style="width: 20%; padding:0px; margin: 0px;" />
-         </label><br>
-      </div>
-      <div class="row">
-         <span class="col-md-6"><button type="submit" class="btn btn-danger dugme-prijava"
-            style="width: 100%;">Evidentiraj zahtjev</button>
-         </span>
-         <span class="col-md-6"> <button type="submit" class="btn btn-info dugme-prijava" style="width: 100%; background: #bf5230;"
-            ng-click="odustani()">Odustani
-         </button>
-         </span>
-      </div>
-   </form>
-</div>
-
-
-<br><br><br><br>
-</div>
 
 <style>
-   @import url(https://fonts.googleapis.com/css?family=Roboto:300);
    .form {
-   background: #FFFFFF;
    padding: 45px;
    text-align: left;
-   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
    }
    .form input:not([type=radio]) {
    font-family: "Roboto", sans-serif;
