@@ -1,5 +1,5 @@
 <div class="form" ng-init="prikaziMojeIncidente('mojiincidenti')">
-   <div>
+   
       <div class="usluge skrolaj">
          <table class="tabela">
             <thead>
@@ -24,14 +24,15 @@
                <tr ng-switch-when="true" style="background-color:#3f869b; height:2px">
                   <td colspan="5"></td>
                </tr>
+
                <tr ng-switch-when="true" style="height: 30px;" ng-click="selectIncident(incident,$index)">
-                  <td style="font-size: 15px; text-align: left;" colspan="4"><br>&nbsp;&nbsp;&nbsp;Opis incidenta: {{incident.description}}</td>
+                  <td style="font-size: 15px; text-align: left;" colspan="4"><br>&nbsp;&nbsp;&nbsp;<b>Opis incidenta:</b> {{incident.description}}</td>
                </tr>
                <tr ng-switch-when="true"  ng-click="selectIncident(incident,$index)">
-                  <td style="font-size: 15px; text-align: left" colspan="4"><br>&nbsp;&nbsp;&nbsp;Incident na uslugu: {{incident.service.name}}</td>
+                  <td style="font-size: 15px; text-align: left" colspan="4"><br>&nbsp;&nbsp;&nbsp;<b>Incident na uslugu:</b> {{incident.service.name}}</td>
                </tr>
                <tr ng-switch-when="true" ng-show="imaOdgovor" ng-click="selectIncident(incident,$index)">
-                  <td style="font-size: 15px; text-align: left" colspan="4"><br>&nbsp;&nbsp;&nbsp;Odgovori na incident:<br><br> </td>
+                  <td style="font-size: 15px; text-align: left" colspan="4"><br>&nbsp;&nbsp;&nbsp;<b>Odgovori na incident:</b><br><br> </td>
                </tr>
                <tr ng-switch-when="true"  ng-show="imaOdgovor" ng-click="selectIncident(incident,$index)">
                   <td style="font-size: 15px; font-weight: bold; text-align: center;" colspan="1">Autor</td>
@@ -46,10 +47,10 @@
                   </td>
                </tr>
                <tr ng-switch-when="true"  ng-show="!imaOdgovor" ng-click="selectIncident(incident,$index)">
-                  <td colspan="4" style="font-size: 15px;"><br>&nbsp;&nbsp;&nbsp;Ovaj incident nema odgovora.</td>
+                  <td colspan="4" style="font-size: 15px;"><br>&nbsp;&nbsp;&nbsp;<b>Ovaj incident nema odgovora.</b></td>
                </tr>
                <tr  ng-switch-when="true" style="height: 30px;" ng-click="selectIncident(incident,$index)">
-                  <td colspan="4" style="font-size: 15px; text-align: left;"><br>&nbsp;&nbsp;&nbsp;Dodaj odgovor:</td>
+                  <td colspan="4" style="font-size: 15px; text-align: left;"><br>&nbsp;&nbsp;&nbsp;<b>Dodaj odgovor:</b></td>
                </tr>
                <tr ng-switch-when="true" style="height: 48px;">
                   <td style="font-size: 15px; vertical-align:bottom; text-align: left;" colspan="3"> <br>
@@ -61,7 +62,7 @@
                <tr ng-switch-when="true" style="height: 50px;">
                   <td colspan="3"></td>
                   <td style="valign:middle;" colspan="1"><br>
-                     <button class="btn btn-danger dugme-prijava" style="background: #bf5230;" ng-click="zatvoriIncident()">Zatvori zahtjev</button><br><br>
+                     <button class="btn btn-danger dugme-prijava" style="background: #bf5230;" ng-click="zatvoriIncident()">Zatvori prikaz</button><br><br>
                   </td>
                </tr>
                <tr ng-switch-when="true" style="background-color:#3f869b; height:2px">
@@ -71,7 +72,7 @@
             </tbody>
          </table>
       </div>
-   </div>
+   
 </div>
 <style>
    @import url(https://fonts.googleapis.com/css?family=Roboto:300);

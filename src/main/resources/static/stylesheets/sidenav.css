@@ -84,7 +84,7 @@ body{
 
 .floating-add-button{
   position: fixed;
-  bottom: 150px;
+  bottom: 25px;
   right: 25px;
   height: 75px;
   width: 75px;
@@ -98,7 +98,7 @@ body{
 
 .floating-add-button-message{
   position: fixed;
-  bottom: 181px;
+  bottom: 56px;
   right: 107px;
   text-align: right;
   background-color: black;

@@ -25,10 +25,10 @@
                   <td colspan="5"></td>
                </tr>
                <tr ng-switch-when="true" ng-click="selectRequest(zahtjev,$index)">
-                  <td style="font-size: 15px; text-align: left;" colspan="4"><br>&nbsp;&nbsp;&nbsp;Opis zahtjeva: {{zahtjev.description}}</td>
+                  <td style="font-size: 15px; text-align: left;" colspan="4"><br>&nbsp;&nbsp;&nbsp;<b>Opis zahtjeva:</b> {{zahtjev.description}}</td>
                </tr>
                <tr ng-switch-when="true" ng-show="imaOdgovorZ" ng-click="selectRequest(zahtjev,$index)">
-                  <td style="font-size: 15px; text-align: left;" colspan="4"><br>&nbsp;&nbsp;&nbsp;Odgovori na zahtjev: </td>
+                  <td style="font-size: 15px; text-align: left;" colspan="4"><br>&nbsp;&nbsp;&nbsp;<b>Odgovori na zahtjev:</b> </td>
                </tr>
                <tr ng-switch-when="true" ng-show="imaOdgovorZ" ng-click="selectRequest(zahtjev,$index)">
                   <td style="font-size: 15px; font-weight: bold; text-align: center;" colspan="1">Autor</td>
@@ -43,10 +43,10 @@
                   </td>
                </tr>
                <tr ng-switch-when="true" ng-show="!imaOdgovorZ" ng-click="selectRequest(zahtjev,$index)">
-                  <td colspan="4" style="font-size: 15px; text-align: left;"><br>&nbsp;&nbsp;&nbsp;Ovaj zahtjev nema odgovora.</td>
+                  <td colspan="4" style="font-size: 15px; text-align: left;"><br>&nbsp;&nbsp;&nbsp;<b>Ovaj zahtjev nema odgovora.</b></td>
                </tr>
                <tr ng-switch-when="true" style="height: 30px;" ng-click="selectRequest(zahtjev,$index)">
-                  <td colspan="4" style="font-size: 15px; text-align: left;"><br>&nbsp;&nbsp;&nbsp;Dodaj odgovor:</td>
+                  <td colspan="4" style="font-size: 15px; text-align: left;"><br>&nbsp;&nbsp;&nbsp;<b>Dodaj odgovor:</b></td>
                </tr>
                <tr ng-switch-when="true" style="height: 48px;">
                   <td style="font-size: 15px; vertical-align:bottom; text-align: left;" colspan="3"> <br>
