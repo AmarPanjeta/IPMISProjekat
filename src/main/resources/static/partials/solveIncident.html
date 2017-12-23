@@ -15,7 +15,7 @@
             <h4><b class="text-beauty">Prijavio:</b></h4>
             <input class="input-beauty" type="text" placeholder="Korisnicko ime"
                    ng-model="incident.evidenterUser.username" name="name" class="input-beauty"
-                   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
+                   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
 
             <h4><b class="text-beauty">Korisnicko ime korisnika:</b></h4>
@@ -61,12 +61,12 @@
 
             <h4><b class="text-beauty">Naziv incidenta:</b></h4>
             <input type="text" placeholder="Naziv incidenta" ng-model="incident.title" name="name" class="input-beauty"
-                   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
+                   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
             <h4><b class="text-beauty">Opis incidenta:</b></h4>
             <input type="text" placeholder="Opis poduzetih incidenta" ng-model="incident.description" name="name"
                    class="input-beauty"
-                   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
+                   ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
             <h4><b class="text-beauty">Prioritet:</b></h4>
             <select id="incident_urgency" class="form-control" ng-model="incident.priority"
@@ -180,12 +180,12 @@
 
             <h4><b class="text-beauty">Način prijave:</b></h4>
 
-            <input class="input-beauty" type="text" ng-model="methodR" value="methodR" name="contactMethod"/>
+            <input class="input-beauty" type="text" ng-model="methodR" value="methodR" name="contactMethod" readonly />
 
             <br/>
-            <h4><b class="text-beauty">Način odgovaranja:</b></h4>
+            <h4><b class="text-beauty" readonly>Način odgovaranja:</b></h4>
 
-            <input class="input-beauty" type="text" ng-model="methodC" value="methodR" name="contactMethod"/>
+            <input class="input-beauty" type="text" ng-model="methodC" value="methodR" name="contactMethod" readonly/>
 
             <br/>
             <!--
