@@ -19,6 +19,7 @@ import com.example.models.Status;
 import com.example.repositories.AnswerRepository;
 import com.example.repositories.IncidentAnswerRepository;
 import com.example.repositories.IncidentRepository;
+import com.example.repositories.StatusRepository;
 import com.example.repositories.UserRepository;
 
 @RestController
@@ -36,6 +37,9 @@ public class IncidentAnswerController {
 	
 	@Autowired
 	UserRepository ur;
+	
+	@Autowired
+	StatusRepository sr;
 	
 	@RequestMapping("/add")
 	public void addNew(@RequestBody AnswerBody odg){
@@ -106,6 +110,7 @@ public class IncidentAnswerController {
 			a.setAutor(ur.findById(tijelo.idAutora));
 			a=ar.save(a);
 			IncidentAnswer iao=new IncidentAnswer();
+			i.setStatus(sr.findByStatus("Popravljen"));
 			i=ir.save(i);
 			iao.setIncident(i);
 			iao.setAnswer(a);
@@ -120,6 +125,7 @@ public class IncidentAnswerController {
 				Answer ap=ar.findOne(tijelo.answerId);
 				IncidentAnswer po=new IncidentAnswer();
 				po.setAnswer(ap);
+				i.setStatus(sr.findByStatus("Popravljen"));
 				i=ir.save(i);
 				po.setIncident(i);
 				iar.save(po);
