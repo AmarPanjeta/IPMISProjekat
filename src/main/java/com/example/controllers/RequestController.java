@@ -409,6 +409,11 @@ public class RequestController {
 			throw new ServletException("Nedostaje naziv zahtjeva");
 		}
 
+		if(rb.contactMethod == -1) {
+			throw new ServletException("Nedostaje nacin odgovora");
+		}
+
+
 		Request r = new Request();
 		r.setTitle(rb.title);
 		r.setDescription(rb.description);

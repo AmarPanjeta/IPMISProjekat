@@ -4,6 +4,7 @@ app.controller('addIncidentCtrl',function(servis,$http,$log,$rootScope,$scope,$r
 
 	$scope.methodR="";
 	$scope.methodC="";
+	$scope.errorMsg = '';
 
 
 
@@ -41,8 +42,11 @@ app.controller('addIncidentCtrl',function(servis,$http,$log,$rootScope,$scope,$r
 $scope.prijaviIncident = function(){
 
 		$http.post("http://localhost:8080/incidents/reportincident",$scope.incident).then(function(response2){
+					$scope.errorMsg = '';
 					$location.path("/myservices");
-				});
+				}).catch((err)=> {
+			$scope.errorMsg = err.message;
+		});
 
 }
 	

@@ -22,6 +22,8 @@ app.controller('myRequestsCtrl', function($scope, $http, $rootScope, $log, $loca
 	$scope.filterStatus="Status";
 	$scope.filterOdjel="Odjel";
 	$scope.filterDatum="Datum prijave";
+
+	$scope.errorMsg = '';
 	
 	
 	$scope.odustani=function(){
@@ -139,13 +141,17 @@ app.controller('myRequestsCtrl', function($scope, $http, $rootScope, $log, $loca
 
 	
 	$scope.prijaviZahtjevZaUslugom=function(){
-		$scope.request.contactMethod = ($scope.request.contact_method=="email"? 1:2);
+		if($scope.request.contactMethod) $scope.request.contactMethod = ($scope.request.contact_method=="email"? 1:2);
+		else $scope.request.contactMethod = -1;
 		$scope.request.reportMethod = 1;
 
 		$http.post('http://localhost:8080/requests/reportrequest',{userId:$rootScope.id,title:$scope.request.title,description:$scope.request.description,contactMethod:$scope.request.contactMethod}).then(function(response)
 		{
 			$scope.prikazi('svizahtjevi');
+			$scope.errorMsg = '';
 			location.reload();
+		}).catch((err) => {
+			$scope.errorMsg = err.data.message;
 		});
 
 	}

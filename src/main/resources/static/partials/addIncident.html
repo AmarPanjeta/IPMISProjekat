@@ -3,6 +3,7 @@
     <div class="col-md-12 col-lg-12 col-sm-12 form">
         <h2 style="text-decoration: underline;"><b>Prijava incidenta za uslugu {{service.name}}</b></h2>
 
+       <p style="color: red;">{{errorMsg}}</p>
 
 
         <h4><b>Naziv usluge:</b></h4>
@@ -19,10 +20,10 @@
 
         <h4><b>Naziv incidenta:</b></h4>
         <input type="text" placeholder="Naziv incidenta" ng-model="incident.title" name="name" class="username"
-               ng-minlength="3" ng-pattern="^[a-zA-ZČĆŽŠĐčćžšđ,-]+(?:\s?[a-zA-Z0-9, ČĆŽŠĐčćžšđ-])*$" required/>
+               ng-minlength="3" ng-pattern="/^[a-zA-Z\\u0161-\\u0111-\\u010D-\\u0107-\\u017E,-]+(?:\\s?[a-zA-Z0-9, \\u0161-\\u0111-\\u010D-\\u0107-\\u017E-])*$/" required/>
          <h4><b>Opis incidenta:</b></h4>
         <input type="text" placeholder="Detaljniji opis incidenta" ng-model="incident.description" name="name" class="username"
-               ng-minlength="3" ng-pattern="^[a-zA-ZČĆŽŠĐčćžšđ,-]+(?:\s?[a-zA-Z0-9, ČĆŽŠĐčćžšđ-])*$" required/>
+               ng-minlength="3" ng-pattern="/^[a-zA-Z\\u0161-\\u0111-\\u010D-\\u0107-\\u017E,-]+(?:\\s?[a-zA-Z0-9, \\u0161-\\u0111-\\u010D-\\u0107-\\u017E-])*$/" required/>
 
 
         <h4 ng-model="incident.contactMethod"><b>Način odgovaranja:</b></h4>
