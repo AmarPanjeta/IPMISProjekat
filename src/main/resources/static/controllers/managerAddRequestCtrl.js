@@ -21,16 +21,21 @@ if($rootScope.username!=null){
 	})
 }
 
-$scope.ispuni=function(username){
+$scope.ispuni=function(){
+var username=$rootScope.username;
 $http.get("http://localhost:8080/users/search/findByUsername?username="+username).then(function(response){
-	$scope.user=response.data;
-	$scope.request.user=response.data;
+	$log.log(response);
+	if (response.status == 200){
+		console.log("Ispravan username");
+		$scope.user=response.data;
+		$scope.request.user=response.data;
+	}
+	else console.log("Neispravan username!");
 	})
 }
 
 $scope.evidentirajZahtjev=function(){
 	$log.log($rootScope.username);
-
 	if($scope.requestUrgency=="Velika" && $scope.requestInfluence=="Veliki"){
 		$scope.request.priority=1;
 	} else if($scope.requestUrgency=="Velika" && $scope.requestInfluence=="Srednji"){
