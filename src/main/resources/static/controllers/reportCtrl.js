@@ -1,4 +1,4 @@
-app.controller('reportCtrl',function($http,$log,$rootScope,$scope,$route,$location){
+app.controller('reportCtrl',function(servis, $http,$log,$rootScope,$scope,$route,$location){
 
 $scope.connection=0;
 $scope.mjesecni=false;
@@ -15,17 +15,46 @@ $scope.prikazi=0;
 
 $scope.kreirajIzvjestaj=function(){
 
-	if($scope.month!=0 && $scope.year!=0){
-		$http.get("http://localhost:8080/incidents/monthlystatistics?year="+$scope.year+"&month="+$scope.month).then(function(response){
-			$scope.Statistika=response.data;
-		})
-	}else if($scope.month==0 && $scope.year!=0){
-		$http.get("http://localhost:8080/incidents/yearlystatistics?year="+$scope.year).then(function(response){
-			$scope.Statistika=response.data;
-		})
-	}
+    if ($scope.connection == 0) {
+        var data = {
+            headerText: "Pogrešni podaci",
+            bodyText: "Odaberite tip izvještaja!"
+        };
 
-	$scope.prikazi=1;
+        servis.modal(data).then(function (x) {
+        });
+
+    }
+    else if ($scope.connection == 1 && ($scope.month == 0 || $scope.year == 0)) {
+        var data = {
+            headerText: "Pogrešni podaci",
+            bodyText: "Odaberite mjesec i godinu!"
+        };
+
+        servis.modal(data).then(function (x) {
+        });
+    }
+    else if ($scope.connection == 2 && $scope.year == 0) {
+        var data = {
+            headerText: "Pogrešni podaci",
+            bodyText: "Odaberite godinu!"
+        };
+
+        servis.modal(data).then(function (x) {
+        });
+    }
+    else if ($scope.month != 0 && $scope.year != 0) {
+        $http.get("http://localhost:8080/incidents/monthlystatistics?year=" + $scope.year + "&month=" + $scope.month).then(function (response) {
+            $scope.Statistika = response.data;
+            $scope.prikazi = 1;
+        })
+    } else if ($scope.month == 0 && $scope.year != 0) {
+        $http.get("http://localhost:8080/incidents/yearlystatistics?year=" + $scope.year).then(function (response) {
+            $scope.Statistika = response.data;
+            $scope.prikazi = 1;
+        })
+    }
+
 
 }
 
