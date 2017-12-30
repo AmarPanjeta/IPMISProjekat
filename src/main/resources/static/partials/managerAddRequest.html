@@ -12,7 +12,7 @@
 
         <h4><b>Prijavio:</b></h4>
         <input type="text" placeholder="Korisnicko ime" ng-model="user.username" name="name" class="username"
-               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" ng-change="ispuni(user.username)" required/>
+               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" data-ng-init="ispuni()" readonly required/>
 
         <h4><b>Ime korisnika:</b></h4>
         <input type="text" placeholder="Ime" ng-model="user.name" name="name" class="username"
