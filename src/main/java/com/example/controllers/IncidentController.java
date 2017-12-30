@@ -37,6 +37,7 @@ public class IncidentController {
 	@Autowired
 	private AnswerRepository ar;
 	
+	@Autowired
 	private RequestRepository rr;
 	
 	//bolje bi bilo da je u kontroleru za service pa bi bilo "/services/id/addIncident" na konkretnu uslugu
