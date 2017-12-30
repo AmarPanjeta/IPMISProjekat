@@ -82,12 +82,12 @@
          <div class="form-group" style="margin-left: 10%; margin-right: 10%;">
             <label>Naziv zahtjeva:</label><br>
             <input type="text" placeholder="Naziv" ng-model="request.title" name="address" class="address"
-               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
+               ng-minlength="3" ng-pattern="^[a-zA-ZČĆŽŠĐčćžšđ,-]+(?:\s?[a-zA-Z0-9, ČĆŽŠĐčćžšđ-])*$" required/>
          </div>
          <div class="form-group" style="margin-left: 10%; margin-right: 10%;">
             <label>Opis:</label><br>
             <input type="text" placeholder="Opis" ng-model="request.description" name="address"
-               class="address" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
+               class="address" ng-minlength="3" ng-pattern="^[a-zA-ZČĆŽŠĐčćžšđ,-]+(?:\s?[a-zA-Z0-9, ČĆŽŠĐčćžšđ-])*$" required/>
          </div>
          <div class="form-group" style="margin-left: 10%; margin-right: 10%;">
             <label>O statusu zahtjeva obavijestiti putem: </label>
