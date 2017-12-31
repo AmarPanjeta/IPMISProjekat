@@ -45,7 +45,7 @@ $scope.prijaviIncident = function(){
 					$scope.errorMsg = '';
 					$location.path("/myservices");
 				}).catch((err)=> {
-			$scope.errorMsg = err.message;
+			$scope.errorMsg = err.data.message;
 		});
 
 }
