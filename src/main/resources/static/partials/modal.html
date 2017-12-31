@@ -5,12 +5,17 @@
     <div class="modal-body">
         <p>{{modal.data.bodyText}}</p>
     </div>
-    <div class="modal-footer">
+    <div ng-if="modal.data.headerText!='Pogrešni podaci'" class="modal-footer">
         <button type="button" class="btn  dugme-prijava dugme-modal"
                 data-ng-click="modal.cancel()">Ne
         </button>
         <button class="btn btn-info dugme-prijava dugme-modal"
                 data-ng-click="modal.ok();">Da
+        </button>
+    </div>
+    <div ng-if="modal.data.headerText=='Pogrešni podaci'" class="modal-footer">
+        <button type="button" class="btn  dugme-prijava dugme-modal"
+                data-ng-click="modal.cancel()">Ok
         </button>
     </div>
 </div>
