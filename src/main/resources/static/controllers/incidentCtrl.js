@@ -10,6 +10,7 @@ $scope.departments={};
 $scope.incidentId={};
 $scope.services={};
 $scope.incident.repetition=0;
+
 if($rootScope.username!=null){
 		$log.log($rootScope.username);
 		
@@ -19,16 +20,11 @@ if($rootScope.username!=null){
 
 		$http.get("http://localhost:8080/departments/all").then(function(response){
 			$scope.departments=response.data;
-
-
 		})
-
-
-
-		
 	}
 
-$scope.ispuni=function(username){
+$scope.ispuni=function(){
+	var username = $rootScope.username;
 $http.get("http://localhost:8080/users/search/findByUsername?username="+username).then(function(response){
 	$scope.user=response.data;
 	$scope.incident.user=response.data;
@@ -44,10 +40,10 @@ $scope.prijaviIncident=function(){
 
     
 
-	$http.get("http://localhost:8080/incidents/search/findById?id="+$scope.incidentId).then(function(response){
+	/*$http.get("http://localhost:8080/incidents/search/findById?id="+$scope.incidentId).then(function(response){
 			$scope.incident.incident=response.data;
 		})
-
+*/
 
 	if($scope.incidentUrgency=="Velika" && $scope.incidentInfluence=="Veliki"){
 		$scope.incident.priority=1;
@@ -84,6 +80,11 @@ $scope.prijaviIncident=function(){
 	});
 }
 
+$scope.validacija=function(){
+		if ($scope.incident.title=="" || $scope.incident.title==null || $scope.incident.description=="" || $scope.incident.description==null)
+			return true;
+		return false;
+}
 $scope.odustani=function(){
 	
 	$location.path("/incidentmanager");

@@ -7,17 +7,17 @@
 -            <input type="text" placeholder="Status incidenta:" ng-model="user.name" name="name" class="username"
 -                           ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
 -        -->
-
+<form>
         <h4><b>Prijavio:</b></h4>
         <input type="text" placeholder="Korisnicko ime" ng-model="user.username" name="name" class="username"
-               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" ng-change="ispuni(user.username)" required/>
+               ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" data-ng-init="ispuni()" required/>
 
         <h4><b>Ime korisnika:</b></h4>
-        <input type="text" placeholder="Ime" ng-model="user.name" name="name" class="username"
+        <input type="text" placeholder="Ime korisnika" ng-model="user.name" name="name" class="username"
                ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
         <h4><b>Prezime korisnika:</b></h4>
-        <input type="text" placeholder="Prezime" ng-model="user.surname" name="name" class="username"
+        <input type="text" placeholder="Prezime korisnika" ng-model="user.surname" name="name" class="username"
                ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
         <h4><b>Adresa korisnika:</b></h4>
@@ -25,11 +25,11 @@
                ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
         <h4><b>Email korisnika:</b></h4>
-        <input type="text" placeholder="Email" ng-model="user.email" name="name" class="username"
+        <input type="text" placeholder="Email korisnika" ng-model="user.email" name="name" class="username"
                ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
         <h4><b>Kontakt telefon:</b></h4>
-        <input type="text" placeholder="Kontakt telefon" ng-model="user.telephone" name="name" class="username"
+        <input type="text" placeholder="Kontakt telefon korisnika" ng-model="user.telephone" name="name" class="username"
                ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" readonly required/>
 
 
@@ -43,22 +43,22 @@
         <h4><b>Način prijave:</b></h4>
         <label class="radio-inline" for="reportMethod-1">
             <input type="radio" ng-model="incident.reportMethod" name="report_method" id="reportMethod-1" value="1"
-                   checked="checked">
+                   checked="checked" required>
             Telefon
         </label>
         <label class="radio-inline" for="reportMethod-2">
-            <input type="radio" ng-model="incident.reportMethod" name="report_method" id="reportMethod-2" value="2">
+            <input type="radio" ng-model="incident.reportMethod" name="report_method" id="reportMethod-2" value="2" required>
             E-mail
         </label>
 
         <h4><b>Usluga za koju se prijavljuje incident:</b></h4>
         <select id="incident_service" class="form-control" ng-model="incident.service"
-                ng-options="x.name for x in services">
+                ng-options="x.name for x in services" required>
         </select>
 
 
         <h4><b>Naziv incidenta:</b></h4>
-        <input type="text" placeholder="Opis incidenta" ng-model="incident.title" name="name" class="username"
+        <input type="text" placeholder="Naziv incidenta" ng-model="incident.title" name="name" class="username"
                ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required/>
 
         <h4><b>Opis incidenta:</b></h4>
@@ -73,14 +73,14 @@
 
         <h4><b>Uticaj:</b></h4>
         <select id="incident_influence" class="form-control" ng-model="incidentInfluence"
-                ng-options="x for x in influence">
+                ng-options="x for x in influence" required>
         </select>
 
 
         <h4><b>Odjel za rješavanje:</b></h4>
         <div class="ui-select">
             <select id="incident_influence" class="form-control" ng-model="incident.department"
-                    ng-options="x.name for x in departments">
+                    ng-options="x.name for x in departments" required>
 
             </select>
         </div>
@@ -99,18 +99,19 @@
         <h4 ng-model="incident.contactMethod"><b>Način odgovaranja:</b></h4>
         <label class="radio-inline" for="contactMethod-1">
             <input type="radio" ng-model="incident.contactMethod" name="contactMethod" id="contactMethod-1" value="1"
-                   checked="checked" style="position: relative;">
+                   checked="checked" style="position: relative;" required>
             Telefon
         </label>
         <label class="radio-inline" for="contactMethod-2">
-            <input type="radio" ng-model="incident.contactMethod" name="contactMethod" id="contactMethod-2" value="2">
+            <input type="radio" ng-model="incident.contactMethod" name="contactMethod" id="contactMethod-2" value="2" required>
             E-mail
         </label>
 
         <br/>
         <div class="row">
 
-            <span class="col-md-6"><button type="submit" class="btn btn-danger dugme-prijava" style="width: 100%;"
+            <span class="col-md-6"><button type="submit"  class="btn btn-danger dugme-prijava" style="width: 100%;"
+                                           ng-disabled="validacija()"
                                            ng-click="prijaviIncident()">Prijavi incident
             </button>
             </span>
@@ -119,8 +120,9 @@
                                            ng-click="odustani()"
             >Odustani</button>
             </span>
+            <div ng-show="validacija()"><p  style="color:red">Molimo popunite sva polja.</p></div>
         </div>
-
+</form>
     </div>
 
 </div>
