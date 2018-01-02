@@ -1,13 +1,56 @@
    <div class="login-page">
        <div class="form">
-           <form ng-submit="register()">
+           <form ng-submit="register()" name="regForm">
+            
             <input type="text" placeholder="Ime" ng-model="user.name" name="name" class="username" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required />
-               <input type="text" placeholder="Prezime" ng-model="user.surname" name="surname" class="username" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/"  required />
-               <input type="text" placeholder="Adresa" ng-model="user.address" name="address" class="address" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required />
-               <input type="text" placeholder="Korisničko ime" ng-model="user.username" name="username" class="username" ng-minlength="4" required />
-               <input type="password" placeholder="Korisnička šifra" ng-model="user.password" name="password" class="pass" ng-minlength="4" required />
-               <input type="password" placeholder="Ponovljena šifra" ng-model="passwordRepeat" name="passwordRepeat" class="pass" required />
-               <button type="submit">Registruj se</button>
+
+            <span style="color:red" ng-show="regForm.name.$touched && regForm.name.$invalid">
+              <span ng-show="regForm.name.$error.required">*Ime je obavezno!</span>
+              <span ng-show="regForm.name.$error.minlength">*Ime je prekratko!</span>
+              <span ng-show="regForm.name.$error.pattern">*Ime mora biti alfanumericka vrijednost!</span>
+            </span>
+
+            <input type="text" placeholder="Prezime" ng-model="user.surname" name="surname" class="username" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/"  required />
+
+            <span style="color:red" ng-show="regForm.surname.$touched && regForm.surname.$invalid">
+              <span ng-show="regForm.surname.$error.required">*Prezime je obavezno!</span>
+              <span ng-show="regForm.surname.$error.minlength">*Prezime je prekratko!</span>
+              <span ng-show="regForm.surname.$error.pattern">*Prezime mora biti alfanumericka vrijednost!</span>
+            </span>
+            
+            <input type="text" placeholder="Adresa" ng-model="user.address" name="address" class="address" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9\s]*$/" required />
+            
+            <span style="color:red" ng-show="regForm.address.$touched && regForm.address.$invalid">
+              <span ng-show="regForm.address.$error.required">*Adresa je obavezna!</span>
+              <span ng-show="regForm.address.$error.minlength">*Adresa je prekratka!</span>
+              <span ng-show="regForm.address.$error.pattern">*Adresa mora biti alfanumericka vrijednost!</span>
+            </span>
+
+            
+            <input type="text" placeholder="Korisničko ime" ng-model="user.username" name="username" class="username" ng-minlength="4" required />
+            
+            <span style="color:red" ng-show="regForm.username.$touched && regForm.username.$invalid">
+              <span ng-show="regForm.username.$error.required">*Korisnicko ime je obavezno!</span>
+              <span ng-show="regForm.username.$error.minlength">*Korisnicko ime je prekratko!</span>
+            </span>
+
+            <input type="password" placeholder="Korisnička šifra" ng-model="user.password" name="password" class="pass" ng-minlength="4" required />
+            
+            <span style="color:red" ng-show="regForm.password.$touched && regForm.password.$invalid">
+              <span ng-show="regForm.password.$error.required">*Korisnicka sifra je obavezna!</span>
+              <span ng-show="regForm.password.$error.minlength">*Korisnicka sifra je prekratka!</span>
+            </span>
+
+            <input type="password" placeholder="Ponovljena šifra" ng-model="passwordRepeat" name="passwordRepeat" class="pass" required />
+            
+            <span style="color:red" ng-show="regForm.passwordRepeat.$touched && regForm.passwordRepeat.$invalid">
+              <span ng-show="regForm.passwordRepeat.$error.required">*Ponovljena korisnicka sifra je obavezna!</span>
+              <span ng-show="user.password!=passwordRepeat">*Ponovljena korisnicka sifra mora biti ista kao korisnicka sifra!</span>
+            </span>
+
+               <button type="submit" ng-disabled="regForm.name.$dirty && regForm.name.$invalid || regForm.surname.$dirty && regForm.surname.$invalid || user.password!=passwordRepeat || regForm.username.$dirty && regForm.username.$invalid || regForm.password.$dirty && regForm.password.$invalid || regForm.passwordRepeat.$dirty && regForm.passwordRepeat.$invalid || regForm.name.$untouched || regForm.username.$untouched || regForm.surname.$untouched || regForm.password.$untouched || regForm.passwordRepeat.$untouched
+                ">Registruj se</button>
+     
                </form>
        </div>
    </div>
