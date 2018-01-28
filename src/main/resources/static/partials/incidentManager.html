@@ -22,7 +22,7 @@
 
 		<div class="col-md-12">
 		<h2 style="text-align:center;"><b>Pregled incidenata</b></h2>
-        <div class="skrolaj" ng-show="!zatvoreniKlik && !statistikaKlik">
+        <div class="skrolaj" ng-show="!zatvoreniKlik && !statistikaKlik" ng-class="aktuelniKlik ? 'minHeight':'neklasa'">
 		<table class="col-12 tabela">
 		<thead>
 			<tr  class="naslov-tabele">
@@ -68,7 +68,10 @@
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 					    <li><a ng-click="filterOdjel='Incident management'">Incident management</a></li>
 					    <li><a ng-click="filterOdjel='Problem management'">Problem management</a></li>
-					    <li><a ng-click="filterOdjel='Request fulfillment'">Request fulfillment</a></li>
+						<li><a ng-click="filterOdjel='Request fulfillment'">Request fulfillment</a></li>
+						<li><a ng-click="filterOdjel='Odjel za IT'">Odjel za IT</a></li>
+					    <li><a ng-click="filterOdjel='Odjel za podrsku korisnicima'">Odjel za podrsku korisnicima</a></li>
+					    <li><a ng-click="filterOdjel='Odjel za sigurnost'">Odjel za sigurnost</a></li>
 					  </ul>
 					</div>
 
@@ -152,7 +155,7 @@
 		</table>
 	</div>
 
-	<div class="skrolaj" ng-show="!aktuelniKlik && !statistikaKlik">
+	<div class="skrolaj" ng-show="!aktuelniKlik && !statistikaKlik" ng-class="zatvoreniKlik ? 'minHeight':'neklasa'">
 
 		<table class="col-12 tabela">
 		<thead>

@@ -45,6 +45,10 @@ padding: 0px;
 	background-color: #eef8fb;
 }
 
+.minHeight{
+  min-height: 250px;
+}
+
 body{
 	background-color: #eef8fb;
 }
@@ -196,6 +200,7 @@ h4{
     }
 
 
+/*
 
     .department-class[value="Incident management"]{
       background-color: #46b8da;
@@ -210,7 +215,7 @@ h4{
       background-color: violet;
       padding-right:20%;
     }
-/*
+
 
     .status-class[value="Nerijesen"]{
       background-color: #f44336;
