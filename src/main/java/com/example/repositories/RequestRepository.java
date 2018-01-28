@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface RequestRepository extends CrudRepository<Request, Long>{
 Request findById(@Param("id") long id);
-    @Query("select i from Request i where i.user=:userid")
+    @Query("select i from Request i where i.user=:userid order by i.id desc")
     List<Request> getByUser(@Param("userid") RegisteredUser userid);
     
 	@Query("select i from Request i where i.status.status<>'Zatvoren' and i.status.status<>'Pogresno prijavljen' and i.status.status<>'Odbijen'")

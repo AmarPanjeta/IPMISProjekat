@@ -497,6 +497,13 @@ public class RequestController {
     	r.setStatus(statusr.findByStatus("Zatvoren"));
     	reqr.save(r);
     }
+    
+    @RequestMapping("/solve/{id}")
+    public void solve(@PathVariable("id") long id){
+    	Request r = reqr.findById(id);
+    	r.setStatus(statusr.findByStatus("Rijesen"));
+    	reqr.save(r);
+    }
 
 	@SuppressWarnings("unused")
 	public static class StatisticsResponse{

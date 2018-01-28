@@ -18,7 +18,7 @@
                <tr ng-class="{sel:selIdx==$index}">
                   <td colspan="2">{{incident.title}}</td>
                   <td colspan="1">{{incident.status.status}}</td>
-                  <td><input class="btn btn-primary" type="submit" style="background-color:#3f869b;" value="Prikazi odgovore"
+                  <td><input class="btn btn-primary" type="submit" style="background-color:#3f869b;" ng-value="!isSelInc(incident)? 'Prikazi odgovore' : 'Sakrij odgovore'"
                      ng-click="selectIncident(incident,$index)"/></td>
                </tr>
                <tr ng-switch-when="true" style="background-color:#3f869b; height:2px">
@@ -52,7 +52,7 @@
                <tr  ng-switch-when="true" style="height: 30px;" ng-click="selectIncident(incident,$index)">
                   <td colspan="4" style="font-size: 15px; text-align: left;"><br>&nbsp;&nbsp;&nbsp;<b>Dodaj odgovor:</b></td>
                </tr>
-               <tr ng-switch-when="true" style="height: 48px;">
+               <tr ng-switch-when="true" ng-hide="incident.status.status=='Rijesen'" style="height: 48px;">
                   <td style="font-size: 15px; vertical-align:bottom; text-align: left;" colspan="3"> <br>
                      <input type="text" name="noviOdgovorText" ng-model="noviOdgovorText" style="width: 98%; vertical-align:bottom; margin-left: 1%; margin-right:1%">
                   </td>
@@ -62,7 +62,7 @@
                <tr ng-switch-when="true" style="height: 50px;">
                   <td colspan="3"></td>
                   <td style="valign:middle;" colspan="1"><br>
-                     <button class="btn btn-danger dugme-prijava" style="background: #bf5230;" ng-click="zatvoriIncident()">Zatvori prikaz</button><br><br>
+                     <button class="btn btn-danger dugme-prijava" ng-hide="incident.status.status=='Rijesen'" style="background: #bf5230;" ng-click="rijesiIncident()">Oznaci kao rijesen</button><br><br>
                   </td>
                </tr>
                <tr ng-switch-when="true" style="background-color:#3f869b; height:2px">

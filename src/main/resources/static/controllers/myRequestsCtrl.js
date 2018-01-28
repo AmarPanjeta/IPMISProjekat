@@ -28,7 +28,7 @@ app.controller('myRequestsCtrl', function($scope, $http, $rootScope, $log, $loca
 	
 	$scope.odustani=function(){
 
-		location.reload();
+		$scope.prikaz='svizahtjevi';
 	}
 	
 
@@ -47,6 +47,10 @@ app.controller('myRequestsCtrl', function($scope, $http, $rootScope, $log, $loca
 
 	$scope.isSelReq=function(zah){
 		return $scope.selectedRequest===zah;
+	}
+
+	$scope.hideZahtjev=function(){
+		$scope.selectedRequest=undefined;
 	}
 
 	$scope.selectUsluga=function(usl,idx){
@@ -88,12 +92,12 @@ app.controller('myRequestsCtrl', function($scope, $http, $rootScope, $log, $loca
 
 	}
 
-	$scope.zatvoriZahtjev=function(){
-		$http.get("http://localhost:8080/requests/close/"+$scope.selectedRequest.id).then(function(response){
+	$scope.rijesiZahtjev=function(){
+		$http.get("http://localhost:8080/requests/solve/"+$scope.selectedRequest.id).then(function(response){
 			$http.get('http://localhost:8080/requests/usersactive?userid='+$rootScope.id).then(function(res)
 			{
-				$scope.zahtjevi=res.data;
-				location.reload();
+				$scope.prikazi('svizahtjevi');
+				$scope.selectedRequest=undefined;
 			});
 		})
 	}
@@ -149,7 +153,6 @@ app.controller('myRequestsCtrl', function($scope, $http, $rootScope, $log, $loca
 		{
 			$scope.prikazi('svizahtjevi');
 			$scope.errorMsg = '';
-			location.reload();
 		}).catch((err) => {
 			$scope.errorMsg = err.data.message;
 		});
@@ -166,7 +169,8 @@ app.controller('myRequestsCtrl', function($scope, $http, $rootScope, $log, $loca
 		$http.post('http://localhost:8080/requestanswer/add',$scope.answerIncident).then(function(response)
 		{
 			$scope.prikazi('svizahtjevi');
-			location.reload();
+			$scope.selectedRequest=undefined;
+			
 		});
 	}
 	

@@ -113,12 +113,12 @@ app.controller('myIncidentsCtrl', function($scope, $http, $rootScope, $log, $loc
 		})
 	}
 	
-	$scope.zatvoriIncident=function(){
-		$http.get("http://localhost:8080/incidents/close/"+$scope.selectedIncident.id).then(function(response){
+	$scope.rijesiIncident=function(){
+		$http.get("http://localhost:8080/incidents/solve/"+$scope.selectedIncident.id).then(function(response){
 			$http.get('http://localhost:8080/incidents/usersactive?userid='+$rootScope.id).then(function(res)
 			{
-				$scope.incidenti=res.data;
-				location.reload();
+				$scope.prikaziMojeIncidente('mojiincidenti');
+				$scope.selectedIncident=undefined;
 			});
 		})
 	}
@@ -174,10 +174,10 @@ app.controller('myIncidentsCtrl', function($scope, $http, $rootScope, $log, $loc
 		$log.log($scope.answerIncident);
 		$http.post('http://localhost:8080/incidentanswers/add',$scope.answerIncident).then(function(response)
 		{
-			$log.log(response);
+			$scope.selectedIncident=undefined;
 			$scope.prikazi('incidenti');
 		});
-		location.reload();
+		
 	}
 	
 

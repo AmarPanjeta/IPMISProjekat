@@ -626,6 +626,14 @@ public class IncidentController {
     	ir.save(i);    	
     }
     
+    @RequestMapping("/solve/{id}")
+    public void solve(@PathVariable("id") long id){
+    	Incident i = ir.findById(id);
+    	i.setStatus(statusr.findByStatus("Rijesen"));
+    	ir.save(i);    	
+    }
+    
+    
     @RequestMapping("/filter")
     public List<Incident> filter(@RequestParam("status") String status,@RequestParam("odjel") String odjel, @RequestParam("prioritet") String prioritet, @RequestParam("datum") String datum) {
     	

@@ -16,7 +16,7 @@ import java.util.List;
 public interface IncidentRepository extends CrudRepository<Incident, Long>{
 	Incident findById(@Param("id") long id);
 
-	@Query("select i from Incident i where i.user=:userid")
+	@Query("select i from Incident i where i.user=:userid order by i.id desc")
 	List<Incident> getByUser(@Param("userid") RegisteredUser userid);
 	
 	@Query("select i from Incident i where i.status.status<>'Zatvoren'")
